@@ -4,6 +4,7 @@ import { GetStaticProps } from "next";
 import { getAllPens } from "../lib/fetchPen";
 import { PEN } from "../types/penType";
 import ReactMarkdown from "react-markdown";
+import Pen from "../components/Pen";
 
 interface STATICPROPS {
   pens: PEN[];
@@ -16,7 +17,8 @@ const pen: React.FC<STATICPROPS> = ({ pens }) => {
       <div>
         {pens &&
           pens.map((pen) => (
-            <ReactMarkdown key={pen.name}>{pen.description}</ReactMarkdown>
+            //   <ReactMarkdown key={pen.name}>{pen.description}</ReactMarkdown>
+            <Pen key={pen.id} {...pen} />
           ))}
       </div>
     </Layout>
@@ -26,7 +28,7 @@ const pen: React.FC<STATICPROPS> = ({ pens }) => {
 export default pen;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const pens = await getAllPens("");
+  const pens = await getAllPens();
   return {
     props: {
       pens: pens,

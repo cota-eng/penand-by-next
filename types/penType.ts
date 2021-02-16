@@ -3,6 +3,7 @@ import { CATEGORY } from "./categoryType";
 import { TAG } from "./tagType";
 
 export interface PEN {
+  id: number;
   name: string;
   description: string;
   category: CATEGORY;
