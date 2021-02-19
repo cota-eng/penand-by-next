@@ -16,6 +16,7 @@ const PenDetail: React.FC<PEN> = ({
   return (
     <div>
       <Layout title="fff">
+        
         <p>{name}</p>
         <p>{description}</p>
         <p>{category.name}</p>

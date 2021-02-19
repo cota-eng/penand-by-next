@@ -15,11 +15,17 @@ const pen: React.FC<STATICPROPS> = ({ pens }) => {
     <Layout title="ペンの一覧ページ">
       <h2>aaaaa</h2>
       <div>
-        {pens &&
-          pens.map((pen) => (
-            //   <ReactMarkdown key={pen.name}>{pen.description}</ReactMarkdown>
-            <Pen key={pen.id} {...pen} />
-          ))}
+        <section className="text-gray-600 body-font">
+          <div className="container px-5 py-24 mx-auto">
+            <div className="flex flex-wrap -m-2">
+              {pens &&
+                pens.map((pen) => (
+                  //   <ReactMarkdown key={pen.name}>{pen.description}</ReactMarkdown>
+                  <Pen key={pen.id} {...pen} />
+                ))}
+            </div>
+          </div>
+        </section>
       </div>
     </Layout>
   );
