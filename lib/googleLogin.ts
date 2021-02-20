@@ -5,22 +5,10 @@ const cookies = new Cookies();
 // const router = useRouter();
 const googleLogin = async (accesstoken: string) => {
   try {
-    const res = await axios.post(
-      "http://localhost:8000/auth/login/",
-      {
-        withCredentials: true,
-        access_token: accesstoken,
-      }
-
-      //   {
-      //     headers: {
-      //       "Access-Control-Allow-Origin": "*",
-      //       "Access-Control-Allow-Methods":
-      //         "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-      //       "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
-      //     },
-      //   }
-    );
+    const res = await axios.post("http://localhost:8000/auth/login/", {
+      withCredentials: true,
+      access_token: accesstoken,
+    });
     console.log(res);
     // console.log("以下status");
     // console.log(res.status);

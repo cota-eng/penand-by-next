@@ -1,5 +1,7 @@
+import { USER } from "./user";
+
 export interface REVIEW {
-  //   pen:
+  id: string;
   title: string;
   stars_of_design: number;
   stars_of_durability: number;
@@ -9,6 +11,6 @@ export interface REVIEW {
   avarage_star: number;
   good_point_text: string;
   bad_point_text: string;
-  // reviewer
+  reviewer: USER;
   created_at: string;
 }

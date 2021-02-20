@@ -1,9 +1,10 @@
 import { BRAND } from "./brand";
 import { CATEGORY } from "./category";
+import { REVIEW } from "./review";
 import { TAG } from "./tag";
 
 export interface PEN {
-  id: number;
+  id: string;
   name: string;
   description: string;
   category: CATEGORY;
@@ -19,4 +20,5 @@ export interface PEN {
   mercari_link_to_buy: string;
   number_of_review: number;
   avarage_of_review_star: number;
+  review: REVIEW[] | null | undefined;
 }

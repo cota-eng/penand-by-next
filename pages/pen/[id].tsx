@@ -3,6 +3,7 @@ import { PEN } from "../../types/pen";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import { getAllPenIds, getPenData } from "../../lib/fetchPen";
+import { useRouter } from "next/router";
 const PenDetail: React.FC<PEN> = ({
   name,
   description,
@@ -12,7 +13,13 @@ const PenDetail: React.FC<PEN> = ({
   tag,
   created_at,
   updated_at,
+  review,
 }) => {
+  const router = useRouter();
+  if (router.isFallback || !name) {
+    return <div>loading...</div>;
+  }
+  // pen.tsxからのpropsを分解しているから、nameがないときはpenがないと同じはず
   return (
     <div>
       <Layout title="fff">
@@ -43,6 +50,9 @@ const PenDetail: React.FC<PEN> = ({
             <a>"Go back to Home"</a>
           </div>
         </Link>
+        <p>review</p>
+
+        {review && review.map((rev) => <p key={rev.id}>{rev.title}</p>)}
       </Layout>
     </div>
   );
@@ -52,7 +62,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllPenIds();
   return {
     paths,
-    fallback: false,
+    fallback: true,
+    // fallback false => access unexist id => return 404
   };
 };
 
@@ -60,6 +71,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const pen = await getPenData(context.params.id as string);
   return {
     props: { ...pen },
+    revalidate: 3,
   };
 };
 
