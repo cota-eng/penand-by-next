@@ -1,4 +1,5 @@
-export interface CATEGORY{
-    name: string;
-    slug:string
+export interface CATEGORY {
+  id: string;
+  name: string;
+  slug: string;
 }

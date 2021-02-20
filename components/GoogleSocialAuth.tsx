@@ -2,7 +2,7 @@ import GoogleLogin from "react-google-login";
 // import { GoogleLogout } from "react-google-login";
 import googleLogin from "../lib/googleLogin";
 import Cookies from "universal-cookie";
-const cookies = new Cookies();
+// const cookies = new Cookies();
 const responseGoogle = async (response) => {
   await googleLogin(response.accessToken);
   console.log(responseGoogle);

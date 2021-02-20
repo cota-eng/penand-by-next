@@ -34,6 +34,22 @@ const Layout: React.FC<TITLE> = ({
                   Pen
                 </a>
               </Link>
+              <Link href="/brand">
+                <a
+                  data-testid="context-nav"
+                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+                >
+                  brand
+                </a>
+              </Link>
+              <Link href="/category">
+                <a
+                  data-testid="context-nav"
+                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+                >
+                  category
+                </a>
+              </Link>
             </div>
           </div>
         </nav>
