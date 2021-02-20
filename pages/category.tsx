@@ -1,20 +1,19 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
 import { GetStaticProps } from "next";
-import { getAllBrands } from "../lib/fetchBrand";
-import { BRAND } from "../types/brandType";
-import BrandDetail from "../components/BrandDetail";
+import { getAllCategories } from "../lib/fetchCategory";
+import { CATEGORY } from "../types/categoryType";
 
 interface STATICPROPS {
-  brands: BRAND[];
+  categories: CATEGORY[];
 }
 
-const brand: React.FC<STATICPROPS> = ({ brands }) => {
+const brand: React.FC<STATICPROPS> = ({ categories }) => {
   return (
     <Layout title="ブランドの一覧ページ">
       <h2>BRAND</h2>
-      {brands &&
-        brands.map((brand) => <BrandDetail key={brand.id} {...brand} />)}
+      {categories &&
+        categories.map((category) => <p key={category.id}>{category.name}</p>)}
     </Layout>
   );
 };
@@ -22,10 +21,10 @@ const brand: React.FC<STATICPROPS> = ({ brands }) => {
 export default brand;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const brands = await getAllBrands();
+  const categories = await getAllCategories();
   return {
     props: {
-      brands,
+      categories,
     },
   };
 };
