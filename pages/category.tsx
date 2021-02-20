@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { getAllCategories } from "../lib/fetchCategory";
-import { CATEGORY } from "../types/categoryType";
+import { CATEGORY } from "../types/category";
 
 interface STATICPROPS {
   categories: CATEGORY[];

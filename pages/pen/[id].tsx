@@ -1,5 +1,5 @@
 import Layout from "../../components/Layout";
-import { PEN } from "../../types/penType";
+import { PEN } from "../../types/pen";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import { getAllPenIds, getPenData } from "../../lib/fetchPen";
@@ -16,7 +16,6 @@ const PenDetail: React.FC<PEN> = ({
   return (
     <div>
       <Layout title="fff">
-        
         <p>{name}</p>
         <p>{description}</p>
         <p>{category.name}</p>

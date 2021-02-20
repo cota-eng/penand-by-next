@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { BRAND } from "../types/brandType";
+import { BRAND } from "../types/brand";
 const BrandDetail: React.FC<BRAND> = ({ name }) => {
   return (
     <>

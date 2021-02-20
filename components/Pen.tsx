@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { PEN } from "../types/penType";
+import { PEN } from "../types/pen";
 const Pen: React.FC<PEN> = ({ id, name }) => {
   return (
     <>

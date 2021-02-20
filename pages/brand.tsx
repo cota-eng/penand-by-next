@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { getAllBrands } from "../lib/fetchBrand";
-import { BRAND } from "../types/brandType";
+import { BRAND } from "../types/brand";
 import BrandDetail from "../components/BrandDetail";
 
 interface STATICPROPS {

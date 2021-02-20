@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { getAllPens } from "../lib/fetchPen";
-import { PEN } from "../types/penType";
+import { PEN } from "../types/pen";
 import ReactMarkdown from "react-markdown";
 import Pen from "../components/Pen";
 

@@ -1,6 +1,6 @@
-import { BRAND } from "./brandType";
-import { CATEGORY } from "./categoryType";
-import { TAG } from "./tagType";
+import { BRAND } from "./brand";
+import { CATEGORY } from "./category";
+import { TAG } from "./tag";
 
 export interface PEN {
   id: number;
