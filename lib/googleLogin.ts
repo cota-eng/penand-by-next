@@ -5,10 +5,13 @@ const cookies = new Cookies();
 // const router = useRouter();
 const googleLogin = async (accesstoken: string) => {
   try {
-    const res = await axios.post("http://localhost:8000/api/login/", {
-      withCredentials: true,
-      access_token: accesstoken,
-    });
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/login/`,
+      {
+        withCredentials: true,
+        access_token: accesstoken,
+      }
+    );
     console.log(res);
     // console.log("以下status");
     // console.log(res.status);
