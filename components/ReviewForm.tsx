@@ -6,20 +6,20 @@ import { postReview } from "../lib/postReview";
 interface PENID {
   id: string;
 }
-interface POSTREVIEW {
-  id: string;
-  data: {
-    title: string;
-    starsOfDesign: string;
-    starsOfDurability: string;
-    starsOfUsefulness: string;
-    starsOfFunction: string;
-    starsOfEasyToGet: string;
-    goodPointText: string;
-    badPointText: string;
-  };
-  token: string;
-}
+// interface POSTREVIEW {
+//   id: string;
+//   data: {
+//     title: string;
+//     starsOfDesign: string;
+//     starsOfDurability: string;
+//     starsOfUsefulness: string;
+//     starsOfFunction: string;
+//     starsOfEasyToGet: string;
+//     goodPointText: string;
+//     badPointText: string;
+//   };
+//   token: string;
+// }
 const ReviewForm: React.FC<PENID> = ({ id }) => {
   const [title, setTitle] = useState<REVIEW["title"]>("");
   const [starsOfDesign, setStarsOfDesign] = useState<REVIEW["stars_of_design"]>(
@@ -78,7 +78,7 @@ const ReviewForm: React.FC<PENID> = ({ id }) => {
         className="w-full max-w-xl bg-white rounded-lg px-4 pt-2"
         onSubmit={PostClicked}
       >
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-col flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-full px-3 mb-2 mt-2">
             <p>デザイン性：{starsOfDesign}</p>
             <Rating
