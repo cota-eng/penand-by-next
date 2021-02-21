@@ -10,7 +10,7 @@ export interface PEN {
   category: CATEGORY;
   price_yen: number;
   brand: BRAND;
-  tag: TAG;
+  tag: TAG[] | null;
   image: string;
   image_src: string;
   created_at: Date;
