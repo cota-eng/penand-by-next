@@ -23,7 +23,9 @@ export const getAllPenIds = async () => {
 };
 
 export const getPenData = async (id: string) => {
-  const res = await fetch(new URL(`${process.env.NEXT_PUBLIC_API_URL}/${id}/`));
+  const res = await fetch(
+    new URL(`${process.env.NEXT_PUBLIC_API_URL}/api/pen/${id}/`)
+  );
   const pen = await res.json();
   return pen;
 };
