@@ -21,6 +21,7 @@
         "react-google-login": "^5.2.2",
         "react-markdown": "^5.0.3",
         "react-rating": "^2.0.5",
+        "react-select": "^4.1.0",
         "recharts": "^2.0.7",
         "swr": "^0.4.2",
         "tailwindcss": "^2.0.3",
