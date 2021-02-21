@@ -5,7 +5,7 @@ const cookies = new Cookies();
 // const router = useRouter();
 const googleLogin = async (accesstoken: string) => {
   try {
-    const res = await axios.post("http://localhost:8000/auth/login/", {
+    const res = await axios.post("http://localhost:8000/api/login/", {
       withCredentials: true,
       access_token: accesstoken,
     });
@@ -13,14 +13,6 @@ const googleLogin = async (accesstoken: string) => {
     // console.log("以下status");
     // console.log(res.status);
     if (res.status === 200) {
-      const options = {
-        // path: "/",
-        // secure: true,
-        // httpOnly: true,
-        // sameSite: "lax"
-      };
-      //   cookies.set("access_token", res.data.access_token, options);
-      //   cookies.set("refresh_token", res.data.refresh_token, options);
       localStorage.setItem(
         "access_token",
         JSON.stringify(res.data.access_token)
