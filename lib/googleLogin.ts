@@ -6,34 +6,16 @@ const cookies = new Cookies();
 const googleLogin = async (accesstoken: string) => {
   try {
     const res = await axios.post(
-      //   "http://127.0.0.1:8000/api/auth/login/",
-      "http://localhost:8000/api/auth/login/",
+      `${process.env.NEXT_PUBLIC_API_URL}/api/login/`,
       {
         withCredentials: true,
         access_token: accesstoken,
       }
-
-      //   {
-      //     headers: {
-      //       "Access-Control-Allow-Origin": "*",
-      //       "Access-Control-Allow-Methods":
-      //         "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-      //       "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
-      //     },
-      //   }
     );
     console.log(res);
     // console.log("以下status");
     // console.log(res.status);
     if (res.status === 200) {
-      const options = {
-        // path: "/",
-        // secure: true,
-        // httpOnly: true,
-        // sameSite: "lax"
-      };
-      //   cookies.set("access_token", res.data.access_token, options);
-      //   cookies.set("refresh_token", res.data.refresh_token, options);
       localStorage.setItem(
         "access_token",
         JSON.stringify(res.data.access_token)

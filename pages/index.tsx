@@ -1,4 +1,4 @@
-import GoogleSocialAuth from "../components/GoogleSocialAuth";
+import GoogleSocialAuth from "../components/Authentication/GoogleSocialAuth";
 import Layout from "../components/Layout";
 import Top from "../components/Top";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { PEN } from "../types/penType";
-const Pen: React.FC<PEN> = ({ id, name }) => {
+import { PEN } from "../types/pen";
+const Pen: React.FC<PEN> = ({ id, name, category }) => {
   return (
     <>
       <Link href={`/pen/${id}`}>
@@ -14,7 +14,7 @@ const Pen: React.FC<PEN> = ({ id, name }) => {
             ></img>
             <div className="flex-grow">
               <h2 className="text-gray-900 title-font font-medium">{name}</h2>
-              <p className="text-gray-500">UI Designer</p>
+              <p className="text-gray-500">category:{category.name}</p>
             </div>
           </div>
         </div>

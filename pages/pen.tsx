@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { getAllPens } from "../lib/fetchPen";
-import { PEN } from "../types/penType";
+import { PEN } from "../types/pen";
 import ReactMarkdown from "react-markdown";
 import Pen from "../components/Pen";
 
@@ -24,6 +24,7 @@ const pen: React.FC<STATICPROPS> = ({ pens }) => {
                   <Pen key={pen.id} {...pen} />
                 ))}
             </div>
+            <div className="flex flex-wrap -m-2"></div>
           </div>
         </section>
       </div>
@@ -39,5 +40,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       pens: pens,
     },
+    revalidate: 3,
   };
 };
