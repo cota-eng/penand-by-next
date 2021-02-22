@@ -13,75 +13,57 @@ const Layout: React.FC<TITLE> = ({
       <Head>
         <title>{title}</title>
       </Head>
-      {/* <header>
-        <nav className="bg-gray-800 w-screen">
-          <div className="flex items-center pl-8 h-14">
-            <div className="flex space-x-4">
-              <Link href="/">
-                <a
-                  data-testid="home-nav"
-                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
-                >
-                  Home
-                </a>
-              </Link>
 
-              <Link href="/pen">
-                <a
-                  data-testid="context-nav"
-                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
-                >
-                  Pen
-                </a>
-              </Link>
-              <Link href="/brand">
-                <a
-                  data-testid="context-nav"
-                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
-                >
-                  brand
-                </a>
-              </Link>
-              <Link href="/category">
-                <a
-                  data-testid="context-nav"
-                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
-                >
-                  category
-                </a>
-              </Link>
-            </div>
-          </div>
-        </nav>
-      </header> */}
-      <header className="text-gray-600 body-font">
+      <header className="bg-gray-800 w-screen text-gray-600 body-font">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-          <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-              />
-            </svg>
-            <span className="ml-3 text-xl">PENS</span>
-          </a>
+          <Link href="/">
+            <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                />
+              </svg>
+              <span className="ml-3 text-white text-xl">PENS</span>
+            </a>
+          </Link>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <a className="mr-5 hover:text-gray-900">First Link</a>
-            <a className="mr-5 hover:text-gray-900">Second Link</a>
-            <a className="mr-5 hover:text-gray-900">Third Link</a>
+            <Link href="/pen">
+              <a
+                data-testid="context-nav"
+                className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+              >
+                Pen
+              </a>
+            </Link>
+            <Link href="/brand">
+              <a
+                data-testid="context-nav"
+                className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+              >
+                brand
+              </a>
+            </Link>
+            <Link href="/category">
+              <a
+                data-testid="context-nav"
+                className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+              >
+                category
+              </a>
+            </Link>
           </nav>
 
           <Link href="/search/">
             <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-              Button
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -96,6 +78,7 @@ const Layout: React.FC<TITLE> = ({
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                 />
               </svg>
+              Search
             </button>
           </Link>
         </div>
@@ -104,28 +87,8 @@ const Layout: React.FC<TITLE> = ({
       <main className="flex flex-1 justify-center items-center flex-col w-screen">
         {children}
       </main>
-      <footer className="bg-blue-100 text-gray-600 body-font">
+      <footer className="w-screen bg-blue-100 text-gray-600 body-font w-100">
         <div className="container px-5 py-24 mx-0 flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
-          <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
-            <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-              </svg>
-              <span className="ml-3 text-xl">Tailblocks</span>
-            </a>
-            <p className="mt-2 text-sm text-gray-500">
-              Air plant banjo lyft occupy retro adaptogen indego
-            </p>
-          </div>
           <div className="flex-grow flex flex-wrap md:pr-20 -mb-10 md:text-left text-center order-first">
             <div className="lg:w-1/4 md:w-1/2 w-full px-4">
               <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
@@ -142,14 +105,21 @@ const Layout: React.FC<TITLE> = ({
                     Second Link
                   </a>
                 </li>
+              </nav>
+            </div>
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+              <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+                CATEGORIES
+              </h2>
+              <nav className="list-none mb-10">
                 <li>
                   <a className="text-gray-600 hover:text-gray-800">
-                    Third Link
+                    First Link
                   </a>
                 </li>
                 <li>
                   <a className="text-gray-600 hover:text-gray-800">
-                    Fourth Link
+                    Second Link
                   </a>
                 </li>
               </nav>
@@ -169,16 +139,6 @@ const Layout: React.FC<TITLE> = ({
                     Second Link
                   </a>
                 </li>
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Third Link
-                  </a>
-                </li>
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Fourth Link
-                  </a>
-                </li>
               </nav>
             </div>
             <div className="lg:w-1/4 md:w-1/2 w-full px-4">
@@ -194,43 +154,6 @@ const Layout: React.FC<TITLE> = ({
                 <li>
                   <a className="text-gray-600 hover:text-gray-800">
                     Second Link
-                  </a>
-                </li>
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Third Link
-                  </a>
-                </li>
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Fourth Link
-                  </a>
-                </li>
-              </nav>
-            </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-                CATEGORIES
-              </h2>
-              <nav className="list-none mb-10">
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    First Link
-                  </a>
-                </li>
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Second Link
-                  </a>
-                </li>
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Third Link
-                  </a>
-                </li>
-                <li>
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Fourth Link
                   </a>
                 </li>
               </nav>

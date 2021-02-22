@@ -14,7 +14,7 @@ const Pen: React.FC<PEN> = ({ id, name, category }) => {
             ></img>
             <div className="flex-grow">
               <h2 className="text-gray-900 title-font font-medium">{name}</h2>
-              <p className="text-gray-500">category:{category}</p>
+              <p className="text-gray-500">category:{category.name}</p>
             </div>
           </div>
         </div>

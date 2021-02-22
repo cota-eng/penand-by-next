@@ -22,8 +22,8 @@ const brand: React.FC<STATICPROPS> = ({ brands }) => {
           </p>
         </div>
         <section className="text-gray-600 body-font">
-          <div className="container px-5 py-24 mx-auto">
-            <div className="flex flex-wrap -m-4">
+          <div className="container px-5 py-2 mx-auto">
+            <div className="flex flex-wrap -m-1">
               {brands &&
                 brands.map((brand) => (
                   <BrandDetail key={brand.id} {...brand} />

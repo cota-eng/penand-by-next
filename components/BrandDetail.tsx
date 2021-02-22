@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { BRAND } from "../types/brand";
 import Image from "next/image";
-const BrandDetail: React.FC<BRAND> = ({ name }) => {
+const BrandDetail: React.FC<BRAND> = ({ name, official_site_link }) => {
   return (
-    <div className="p-4 md:w-1/3">
+    <div className="p-4 md:w-1/3 ">
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
         <img
           className="lg:h-48 md:h-36 w-full object-cover object-center"
@@ -30,7 +30,7 @@ const BrandDetail: React.FC<BRAND> = ({ name }) => {
           </p>
           <div className="flex items-center flex-wrap ">
             <a className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">
-              このブランドのペンを見る
+              このブランドのペン
               <svg
                 className="w-4 h-4 ml-2"
                 viewBox="0 0 24 24"
@@ -44,6 +44,27 @@ const BrandDetail: React.FC<BRAND> = ({ name }) => {
                 <path d="M12 5l7 7-7 7"></path>
               </svg>
             </a>
+          </div>
+          <div>
+            <Link href={official_site_link}>
+              <a>
+                公式サイト
+                <svg
+                  className="w-6 h-6 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </a>
+            </Link>
             <span className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
               <svg
                 className="w-4 h-4 mr-1"
