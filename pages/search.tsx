@@ -1,6 +1,5 @@
 import Layout from "../components/Layout";
 import React, { useState } from "react";
-import Select from "react-select";
 import dynamic from "next/dynamic";
 
 const CategorySelect = dynamic(() => import("../components/Search/Category"), {
@@ -10,9 +9,20 @@ const TagSelect = dynamic(() => import("../components/Search/Tag"), {
   ssr: false,
 });
 
+const searchPens = () => {};
 const Search: React.FC = () => {
-  //   const [food, setFood] = useState("");
-  const [name, setName] = useState<string | null | undefined>("");
+  const [name, setName] = useState<string | undefined>(null);
+  const [category, setCategory] = useState<string | undefined>(null);
+  const [tag, setTag] = useState<string | null | undefined>(null);
+  const [minPrice, setMinPrice] = useState<string | undefined>(null);
+  const [maxPrice, setMaxPrice] = useState<string | undefined>(null);
+  const resetKeyword = () => {
+    setTag(null);
+    setCategory(null);
+    setName("");
+    setMinPrice("0");
+    setMaxPrice("100000");
+  };
   return (
     <Layout title="条件検索">
       <h1>SEARCH</h1>
@@ -37,30 +47,28 @@ const Search: React.FC = () => {
                   className="w-full rounded-md bg-gray-200 text-gray-700 leading-tight focus:outline-none py-2 px-2"
                   id="search"
                   type="text"
-                  value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Search For Name"
                 />
               </div>
               <div className="py-3 text-sm">
-                <CategorySelect />
-                <TagSelect />
+                <CategorySelect setCategory={setCategory} />
+                <TagSelect setTag={setTag} />
               </div>
               <div className="flex items-center justify-center">
                 <div className="inline-flex items-center mt-2 w-1/3 mr-1 w-2/5 border border-gray-700">
                   <label
                     className="hidden block text-sm text-gray-600"
                     htmlFor="min"
-                  >
-                    Min
-                  </label>
+                  ></label>
                   <input
                     className="w-full px-2 py-2 text-gray-700  rounded"
-                    id="min"
                     name="min"
                     type="number"
                     required={true}
-                    placeholder="最小"
+                    value={minPrice ? minPrice : "0"}
+                    onChange={(e) => setMinPrice(e.target.value)}
+                    placeholder="最低金額"
                     aria-label="number"
                   />
                 </div>
@@ -69,23 +77,25 @@ const Search: React.FC = () => {
                   <label
                     className="hidden block text-sm text-gray-600"
                     htmlFor="max"
-                  >
-                    MaxPrice
-                  </label>
+                  ></label>
                   <input
                     className="w-full px-2 py-2 text-gray-700  rounded"
-                    id="max"
                     name="max"
                     type="number"
                     required={true}
-                    placeholder="最大(円)"
+                    value={maxPrice ? maxPrice : "100000"}
+                    onChange={(e) => setMaxPrice(e.target.value)}
+                    placeholder="最高金額"
                     aria-label="number"
                   />
                 </div>
               </div>
               <div className="flex items-center justify-center">
                 <div className="m-3">
-                  <button className="bg-white text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+                  <button
+                    className="bg-white text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center"
+                    onClick={resetKeyword}
+                  >
                     <span className="mr-2">RESET</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +112,10 @@ const Search: React.FC = () => {
                 </div>
 
                 <div className="m-3">
-                  <button className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+                  <button
+                    className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center"
+                    onClick={searchPens}
+                  >
                     <span className="mr-2">SEARCH</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

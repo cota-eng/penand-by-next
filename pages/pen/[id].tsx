@@ -4,12 +4,12 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import { getAllPenIds, getPenData } from "../../lib/fetchPen";
 import { useRouter } from "next/router";
-import ReviewForm from "../../components/ReviewForm";
+import ReviewForm from "../../components/Review/ReviewForm";
 import Tag from "../../components/Tag";
-import ReviewTop from "../../components/ReviewTop";
+import ReviewTop from "../../components/Review/ReviewTop";
 import dynamic from "next/dynamic";
 
-const MyChart = dynamic(() => import("../../components/ReviewDetail"), {
+const MyChart = dynamic(() => import("../../components/Review/ReviewDetail"), {
   ssr: false,
 });
 

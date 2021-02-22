@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Select from "react-select";
-
-const Category: React.FC = () => {
+interface CATEGORYPROPS {
+  setCategory: (text: string) => void;
+}
+const Category: React.FC<CATEGORYPROPS> = ({ setCategory }) => {
   const categories = [
     { value: "mechanical-pencil", label: "シャーペン" },
     { value: "ball-point-pen", label: "ボールペン" },
@@ -9,9 +11,15 @@ const Category: React.FC = () => {
   ];
   const [selectedCategory, setSelectedCategory] = useState(null);
 
+  useEffect(() => {
+    if (selectedCategory) {
+      setCategory(selectedCategory.value);
+    }
+  }, [selectedCategory]);
   return (
     <>
       <span>CATEGORY</span>
+      <p>{selectedCategory && selectedCategory.value}</p>
       <Select
         defaultValue={selectedCategory}
         onChange={setSelectedCategory}

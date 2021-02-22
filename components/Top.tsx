@@ -1,5 +1,5 @@
 import React from "react";
-import GoogleSocialAuth from "./GoogleSocialAuth";
+import GoogleSocialAuth from "./Authentication/GoogleSocialAuth";
 
 const Top: React.FC = () => {
   return (

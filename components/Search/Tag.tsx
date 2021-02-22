@@ -1,20 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Select from "react-select";
-
-const Tag: React.FC = () => {
+interface TAGPROPS {
+  setTag: (text: string) => void;
+}
+const Tag: React.FC<TAGPROPS> = ({ setTag }) => {
   const tags = [
     { value: "wood", label: "木軸" },
     { value: "rich", label: "高級" },
   ];
   const [selectedTag, setSelectedTag] = useState(null);
-
+  useEffect(() => {
+    if (selectedTag) {
+      setTag(selectedTag.value);
+    }
+  });
   return (
     <>
-      <span>TAG</span>
+      <span className="">TAG</span>
+      {selectedTag && <p>{selectedTag.value}</p>}
       <Select
         defaultValue={selectedTag}
         onChange={setSelectedTag}
         options={tags}
+        isMulti
       />
     </>
   );
