@@ -19,37 +19,41 @@ const ReviewDetail: React.FC<REVIEW> = ({
   avarage_star,
   good_point_text,
   bad_point_text,
-  created_at,
+  //   created_at,
 }) => {
   const data = [
     {
       subject: "外観",
       A: stars_of_design,
+      fullMark: 0,
     },
     {
       subject: "耐久",
       A: stars_of_durability,
+      fullMark: 0,
     },
     {
       subject: "便利",
       A: stars_of_usefulness,
+      fullMark: 0,
     },
     {
       subject: "機能",
       A: stars_of_function,
+      fullMark: 0,
     },
     {
       subject: "入手",
       A: stars_of_easy_to_get,
+      fullMark: 0,
     },
   ];
   return (
     <div>
       <div className="flex flex-col max-w-md py-4 px-8 bg-white shadow-lg rounded-lg my-20">
-        <div className="">
-          <h2 className="text-gray-800 text-3xl font-semibold">{title}</h2>
-          <p className="mt-2 text-gray-600">Average:{avarage_star}</p>
-        </div>
+        <h2 className="text-gray-800 text-3xl font-semibold">{title}</h2>
+        <p className="mt-2 text-gray-600">Average:{avarage_star}</p>
+        <p className="mt-2 text-gray-600">Average:{id}</p>
         <div className="">
           {/* <ResponsiveContainer> */}
           <RadarChart
@@ -75,11 +79,11 @@ const ReviewDetail: React.FC<REVIEW> = ({
           {/* </ResponsiveContainer> */}
         </div>
         <div>
-          <h2 className="text-gray-800 text-3xl font-semibold">GoodPoint</h2>
+          <h2 className="text-gray-800 text-2xl font-semibold">GoodPoint</h2>
           <p>{good_point_text}</p>
         </div>
         <div>
-          <h2 className="text-gray-800 text-3xl font-semibold">BadPoint</h2>
+          <h2 className="text-gray-800 text-2xl font-semibold">BadPoint</h2>
           <p>{bad_point_text}</p>
         </div>
       </div>
