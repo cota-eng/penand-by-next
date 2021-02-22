@@ -5,9 +5,9 @@ interface CATEGORYPROPS {
 }
 const Category: React.FC<CATEGORYPROPS> = ({ setCategory }) => {
   const categories = [
-    { value: "mechanical-pencil", label: "シャーペン" },
-    { value: "ball-point-pen", label: "ボールペン" },
-    { value: "fountain-pen", label: "万年筆" },
+    { value: "1", label: "シャーペン" },
+    { value: "2", label: "ボールペン" },
+    { value: "3", label: "万年筆" },
   ];
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -19,7 +19,6 @@ const Category: React.FC<CATEGORYPROPS> = ({ setCategory }) => {
   return (
     <>
       <span>CATEGORY</span>
-      <p>{selectedCategory && selectedCategory.value}</p>
       <Select
         defaultValue={selectedCategory}
         onChange={setSelectedCategory}

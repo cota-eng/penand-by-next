@@ -1,6 +1,19 @@
 import Layout from "../components/Layout";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { SEARCH } from "../types/search";
+import { getFilteredPens } from "../lib/fetchSearchResult";
+import useSWR from "swr";
+import { useRouter } from "next/router";
+import { RESULTS } from "../types/results";
+import PenResult from "../components/PenResult";
+import { PEN } from "../types/pen";
+// async function fetcher(url: string): Promise<boolean | null | PEN[]> {
+//   const response = await fetch(url);
+//   return response.json();
+// }
+import axios from "axios";
+const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 const CategorySelect = dynamic(() => import("../components/Search/Category"), {
   ssr: false,
@@ -9,27 +22,60 @@ const TagSelect = dynamic(() => import("../components/Search/Tag"), {
   ssr: false,
 });
 
-const searchPens = () => {};
 const Search: React.FC = () => {
   const [name, setName] = useState<string | undefined>(null);
   const [category, setCategory] = useState<string | undefined>(null);
   const [tag, setTag] = useState<string | null | undefined>(null);
   const [minPrice, setMinPrice] = useState<string | undefined>(null);
   const [maxPrice, setMaxPrice] = useState<string | undefined>(null);
-  const resetKeyword = () => {
-    setTag(null);
-    setCategory(null);
-    setName("");
-    setMinPrice("0");
-    setMaxPrice("100000");
-  };
+  //   const resetKeyword = () => {
+  //     setTag(null);
+  //     setCategory(null);
+  //     setName("");
+  //     setMinPrice("0");
+  //     setMaxPrice("100000");
+  //   };
+  //   const searchClicked = () => ({
+  //     name,
+  //     category,
+  //     tag,
+  //     minPrice,
+  //     maxPrice,
+  //   }: SEARCH) => {
+  //     const result = getFilteredPens({
+  //       name,
+  //       category,
+  //       tag,
+  //       minPrice,
+  //       maxPrice,
+  //     });
+  //     console.log(result);
+  //   };
+  const router = useRouter();
+  //   const { data: RESULTS, error, mutate } = useSWR(
+  const { data, error, mutate } = useSWR<PEN[]>(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/search/?name=${
+      name ? name : ""
+    }&tag=${tag ? tag : ""}&category=${category ? category : ""}&lte=${
+      maxPrice ? maxPrice : ""
+    }&gte=${minPrice ? minPrice : ""}`,
+    fetcher
+  );
+  useEffect(() => {
+    mutate();
+  }, []);
+  if (error) return <div>failed to load</div>;
+  if (!data || router.isFallback) return <div>loading...</div>;
   return (
     <Layout title="条件検索">
       <h1>SEARCH</h1>
+      {/* {data && data.map((pen) => <PenResult key={pen.id} {...pen} />)} */}
+      {data && data.map((pen) => <p>{pen.name}</p>)}
       <div className="w-full max-w-screen-xl mx-auto px-6">
         <div className="flex justify-center p-4 px-3 py-10">
           <div className="w-full max-w-md">
             <div className="bg-white shadow-md rounded-lg px-3 py-2 mb-4">
+              {/* <form onSubmit={searchClicked}> */}
               <div className="flex items-center bg-gray-200 rounded-md mt-5">
                 <div className="pl-2">
                   <svg
@@ -91,30 +137,30 @@ const Search: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <div className="m-3">
-                  <button
-                    className="bg-white text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center"
-                    onClick={resetKeyword}
-                  >
-                    <span className="mr-2">RESET</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
+                {/* <div className="m-3">
+                    <button
+                      className="bg-white text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center"
+                      onClick={resetKeyword}
                     >
-                      <path
-                        fill="currentcolor"
-                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
-                      />
-                    </svg>
-                  </button>
-                </div>
+                      <span className="mr-2">RESET</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="currentcolor"
+                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
+                        />
+                      </svg>
+                    </button>
+                  </div> */}
 
                 <div className="m-3">
                   <button
                     className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center"
-                    onClick={searchPens}
+                    type="submit"
                   >
                     <span className="mr-2">SEARCH</span>
                     <svg
@@ -131,6 +177,7 @@ const Search: React.FC = () => {
                   </button>
                 </div>
               </div>
+              {/* </form> */}
             </div>
           </div>
         </div>
