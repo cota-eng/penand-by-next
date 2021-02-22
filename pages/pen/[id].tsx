@@ -5,7 +5,14 @@ import Link from "next/link";
 import { getAllPenIds, getPenData } from "../../lib/fetchPen";
 import { useRouter } from "next/router";
 import ReviewForm from "../../components/ReviewForm";
-import ReviewDetail from "../../components/ReviewDetail";
+import Tag from "../../components/Tag";
+import ReviewTop from "../../components/ReviewTop";
+import dynamic from "next/dynamic";
+
+const MyChart = dynamic(() => import("../../components/ReviewDetail"), {
+  ssr: false,
+});
+
 const PenDetail: React.FC<PEN> = ({
   id,
   name,
@@ -19,24 +26,25 @@ const PenDetail: React.FC<PEN> = ({
   review,
 }) => {
   const router = useRouter();
-  if (router.isFallback || !id) {
+  if (router.isFallback || !name) {
     return <div>loading...</div>;
   }
   // pen.tsxからのpropsを分解しているから、nameがないときはpenがないと同じはず
   return (
     <div>
-      <Layout title="{name}のレビュー">
+      <Layout title="レビュー}">
         <section className="text-gray-600 body-font">
           <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-            <a
+            <span
               className="inline-block rounded-full text-white 
-        bg-blue-400 hover:bg-blue-500 duration-300 
-        text-xs font-bold 
-        mr-1 md:mr-2 mb-2 px-2 md:px-4 py-1 
-        opacity-90 hover:opacity-100"
+                        bg-blue-400 hover:bg-blue-500 duration-300 
+                        text-xs font-bold 
+                        mr-1 md:mr-2 mb-2 px-2 md:px-4 py-1 
+                        opacity-90 hover:opacity-100"
             >
               カテゴリ：{category.name}
-            </a>
+            </span>
+            {tag && tag.map((t) => <Tag key={t.id} {...t} />)}
             <img
               className="lg:w-6/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
               alt="hero"
@@ -48,24 +56,18 @@ const PenDetail: React.FC<PEN> = ({
               </h1>
               <p className="mb-8 leading-relaxed">{brand.name}.</p>
               <div className="flex justify-center">
-                <a className="inline-flex text-white bg-gray-500 border-0 py-2 px-6  rounded text-lg">
-                  {created_at}
+                <a className="inline-flex text-white bg-gray-400 border-0 py-2 px-6  rounded text-lg">
+                  掲載:{created_at}
                 </a>
-                <a className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6  rounded text-lg">
-                  {updated_at}
+                <a className="ml-4 inline-flex text-gray-400 bg-gray-100 border-0 py-2 px-6  rounded text-lg">
+                  更新:{updated_at}
                 </a>
-              </div>
-              <div className="flex justify-center">
-                <button className="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">
-                  Button
-                </button>
               </div>
             </div>
           </div>
         </section>
         <p>{description}</p>
         <p>{price_yen}円</p>
-        <p>{tag && tag.map((t) => <p key={t.id}>{t.name}</p>)}</p>
         <Link href="/pen">
           <div className="flex cursor-pointer mt-12">
             <svg
@@ -85,11 +87,8 @@ const PenDetail: React.FC<PEN> = ({
             <a className="text-lg">Home</a>
           </div>
         </Link>
-        <hr className="text-black-200" />
-        {review &&
-          review.map((rev) => (
-            <ReviewDetail key={rev.id} {...rev}></ReviewDetail>
-          ))}
+        <ReviewTop />
+        {review && review.map((rev) => <MyChart key={rev.id} {...rev} />)}
         <hr />
         <ReviewForm id={id} />
       </Layout>
