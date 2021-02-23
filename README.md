@@ -5,7 +5,7 @@
 
 - トップページ
 ![2021-02-24_08h12_38](https://user-images.githubusercontent.com/65804288/108921127-39562780-7679-11eb-837c-5db46d2ae3bc.png)
-- ログインページ（バックエンドでのGoogleログイン）
+- ログインページ（Googleログイン）
 ![2021-02-24_08h12_52](https://user-images.githubusercontent.com/65804288/108921130-39562780-7679-11eb-80c8-571780310d46.png)
 - 絞り込み検索ページ
 ![2021-02-24_08h16_52](https://user-images.githubusercontent.com/65804288/108921131-39eebe00-7679-11eb-9ade-99ff989a3987.png)
@@ -23,5 +23,23 @@
 ![2021-02-24_08h18_59](https://user-images.githubusercontent.com/65804288/108921124-38bd9100-7679-11eb-9eaf-72e4520c270d.png)
 
 - GIF　動作イメージ
+- 
 ![Videotogif](https://user-images.githubusercontent.com/65804288/108922129-fea0bf00-7679-11eb-991e-d9f89a0ec8c9.gif)
 
+## 実装内容
+
+- Nextを用いたフロントエンドの構築
+- ログインページ、トップページ、検索ページ、詳細ページなど
+- レビュー機能（ログイン後に付与されるJWTのアクセストークンによるログイン）
+
+
+## 仕様技術
+
+- Next.js(SSG,ISR,Link,Image,DynamicImport,useRouter etc...)
+- tailwindcss
+- TypeScript
+- ReactHooks(useState,useEffect etc...)
+
+## 実装予定
+
+- ログイン状態を常に判別し、未ログインであればログイン必須機能アクセス時にログインページにリダイレクト
