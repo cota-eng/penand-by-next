@@ -22,5 +22,6 @@
 - ISRによるレビューの反映
 ![2021-02-24_08h18_59](https://user-images.githubusercontent.com/65804288/108921124-38bd9100-7679-11eb-9eaf-72e4520c270d.png)
 
-
+- GIF　動作イメージ
+![Videotogif](https://user-images.githubusercontent.com/65804288/108922129-fea0bf00-7679-11eb-991e-d9f89a0ec8c9.gif)
 
