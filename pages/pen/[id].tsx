@@ -13,7 +13,7 @@ const MyChart = dynamic(() => import("../../components/Review/ReviewDetail"), {
   ssr: false,
 });
 
-const PenDetail: React.FC<PEN> = ({
+const PenPage: React.FC<PEN> = ({
   id,
   name,
   description,
@@ -113,4 +113,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export default PenDetail;
+export default PenPage;
