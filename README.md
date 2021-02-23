@@ -1,5 +1,31 @@
 ## アプリ概要
 
+より正確なレビューを行うことができる文房具レビューサイト。
+SEOからの流入をメインとしたいのでSSG，ISRを用いた高速なレスポンスを期待
+SEO対策にも力を入れる
+バックエンドのAPI
+https://github.com/cota-eng/stationery-rest-api
+である
+
+## 実装内容
+
+- Nextを用いたフロントエンドの構築
+- ログインページ、トップページ、検索ページ、詳細ページなど
+- レビュー機能（ログイン後に付与されるJWTのアクセストークンによるログイン）
+
+
+## 仕様技術
+
+- Next.js(SSG,ISR,Link,Image,DynamicImport,useRouter etc...)
+- tailwindcss
+- TypeScript
+- ReactHooks(useState,useEffect etc...)
+
+## 実装予定
+
+- ログイン状態を常に判別し、未ログインであればログイン必須機能アクセス時にログインページにリダイレクト
+
+## 使用の様子
 本番運用はまだなので、写真とGIFを掲載しております。
 
 
@@ -26,20 +52,4 @@
 - 
 ![Videotogif](https://user-images.githubusercontent.com/65804288/108922129-fea0bf00-7679-11eb-991e-d9f89a0ec8c9.gif)
 
-## 実装内容
 
-- Nextを用いたフロントエンドの構築
-- ログインページ、トップページ、検索ページ、詳細ページなど
-- レビュー機能（ログイン後に付与されるJWTのアクセストークンによるログイン）
-
-
-## 仕様技術
-
-- Next.js(SSG,ISR,Link,Image,DynamicImport,useRouter etc...)
-- tailwindcss
-- TypeScript
-- ReactHooks(useState,useEffect etc...)
-
-## 実装予定
-
-- ログイン状態を常に判別し、未ログインであればログイン必須機能アクセス時にログインページにリダイレクト
