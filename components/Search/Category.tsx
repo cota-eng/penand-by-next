@@ -5,11 +5,15 @@ interface CATEGORYPROPS {
 }
 const Category: React.FC<CATEGORYPROPS> = ({ setCategory }) => {
   const categories = [
+    { value: "", label: "なし" },
     { value: "1", label: "シャーペン" },
     { value: "2", label: "ボールペン" },
     { value: "3", label: "万年筆" },
   ];
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState({
+    value: "",
+    label: "None",
+  });
 
   useEffect(() => {
     if (selectedCategory) {

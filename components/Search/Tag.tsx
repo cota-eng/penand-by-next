@@ -5,10 +5,11 @@ interface TAGPROPS {
 }
 const Tag: React.FC<TAGPROPS> = ({ setTag }) => {
   const tags = [
+    { value: "", label: "なし" },
     { value: "wood", label: "木軸" },
     { value: "rich", label: "高級" },
   ];
-  const [selectedTag, setSelectedTag] = useState(null);
+  const [selectedTag, setSelectedTag] = useState({ value: "", label: "なし" });
   useEffect(() => {
     if (selectedTag) {
       setTag(selectedTag.value);
@@ -22,7 +23,7 @@ const Tag: React.FC<TAGPROPS> = ({ setTag }) => {
         defaultValue={selectedTag}
         onChange={setSelectedTag}
         options={tags}
-        isMulti
+        // isMulti
       />
     </>
   );
