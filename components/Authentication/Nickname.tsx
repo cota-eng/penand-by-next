@@ -1,7 +1,7 @@
 import React from "react";
 
 const Nickname: React.FC = () => {
-  return <div></div>;
+  return <div>{/* for change nickname */}</div>;
 };
 
 export default Nickname;
