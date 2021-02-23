@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { RESULTS } from "../types/results";
 import PenResult from "../components/PenResult";
 import { PEN } from "../types/pen";
+import Pen from "../components/Pen";
 // async function fetcher(url: string): Promise<boolean | null | PEN[]> {
 //   const response = await fetch(url);
 //   return response.json();
@@ -21,11 +22,15 @@ const CategorySelect = dynamic(() => import("../components/Search/Category"), {
 const TagSelect = dynamic(() => import("../components/Search/Tag"), {
   ssr: false,
 });
+const BrandSelect = dynamic(() => import("../components/Search/Brand"), {
+  ssr: false,
+});
 
 const Search: React.FC = () => {
   const [name, setName] = useState<string | undefined>(null);
   const [category, setCategory] = useState<string | undefined>(null);
   const [tag, setTag] = useState<string | null | undefined>(null);
+  const [brand, setBrand] = useState<string | null | undefined>(null);
   const [minPrice, setMinPrice] = useState<string | undefined>(null);
   const [maxPrice, setMaxPrice] = useState<string | undefined>(null);
   //   const resetKeyword = () => {
@@ -35,47 +40,51 @@ const Search: React.FC = () => {
   //     setMinPrice("0");
   //     setMaxPrice("100000");
   //   };
-  //   const searchClicked = () => ({
-  //     name,
-  //     category,
-  //     tag,
-  //     minPrice,
-  //     maxPrice,
-  //   }: SEARCH) => {
-  //     const result = getFilteredPens({
-  //       name,
-  //       category,
-  //       tag,
-  //       minPrice,
-  //       maxPrice,
-  //     });
-  //     console.log(result);
-  //   };
-  const router = useRouter();
+
   //   const { data: RESULTS, error, mutate } = useSWR(
-  const { data, error, mutate } = useSWR<PEN[]>(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/search/?name=${
-      name ? name : ""
-    }&tag=${tag ? tag : ""}&category=${category ? category : ""}&lte=${
-      maxPrice ? maxPrice : ""
-    }&gte=${minPrice ? minPrice : ""}`,
-    fetcher
-  );
+  //   const { data, error, mutate } = useSWR<PEN[]>(, fetcher
+  //   );
+  //   useEffect(() => {
+  //     mutate();
+  //   }, []);
+  const router = useRouter();
+  const [pens, setPens] = useState<PEN[]>(null);
+  const [isSearch, setIsSearch] = useState(false);
   useEffect(() => {
-    mutate();
-  }, []);
-  if (error) return <div>failed to load</div>;
-  if (!data || router.isFallback) return <div>loading...</div>;
+    if (isSearch) {
+      try {
+        setPens(null);
+        axios
+          .get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/search/?name=${
+              name ? name : ""
+            }&tag=${tag ? tag : ""}&category=${
+              category ? category : ""
+            }&brand=${brand ? brand : ""}&lte=${maxPrice ? maxPrice : ""}&gte=${
+              minPrice ? minPrice : ""
+            }`
+          )
+          .then((res) => setPens(res.data));
+      } catch (e) {
+        console.log("error");
+      } finally {
+        () => setIsSearch(false);
+      }
+    }
+  }, [isSearch]);
+  if (router.isFallback) {
+    //   if (router.isFallback || !pens) {
+    return <div>loading...</div>;
+  }
+  //   if (error) return <div>failed to load</div>;
+  //   if (!data || router.isFallback) return <div>loading...</div>;
   return (
     <Layout title="条件検索">
       <h1>SEARCH</h1>
-      {/* {data && data.map((pen) => <PenResult key={pen.id} {...pen} />)} */}
-      {data && data.map((pen) => <p>{pen.name}</p>)}
       <div className="w-full max-w-screen-xl mx-auto px-6">
         <div className="flex justify-center p-4 px-3 py-10">
           <div className="w-full max-w-md">
             <div className="bg-white shadow-md rounded-lg px-3 py-2 mb-4">
-              {/* <form onSubmit={searchClicked}> */}
               <div className="flex items-center bg-gray-200 rounded-md mt-5">
                 <div className="pl-2">
                   <svg
@@ -100,6 +109,7 @@ const Search: React.FC = () => {
               <div className="py-3 text-sm">
                 <CategorySelect setCategory={setCategory} />
                 <TagSelect setTag={setTag} />
+                <BrandSelect setBrand={setBrand} />
               </div>
               <div className="flex items-center justify-center">
                 <div className="inline-flex items-center mt-2 w-1/3 mr-1 w-2/5 border border-gray-700">
@@ -137,30 +147,11 @@ const Search: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                {/* <div className="m-3">
-                    <button
-                      className="bg-white text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center"
-                      onClick={resetKeyword}
-                    >
-                      <span className="mr-2">RESET</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fill="currentcolor"
-                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
-                        />
-                      </svg>
-                    </button>
-                  </div> */}
-
                 <div className="m-3">
                   <button
                     className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center"
                     type="submit"
+                    onClick={() => setIsSearch(!isSearch)}
                   >
                     <span className="mr-2">SEARCH</span>
                     <svg
@@ -177,10 +168,17 @@ const Search: React.FC = () => {
                   </button>
                 </div>
               </div>
-              {/* </form> */}
             </div>
           </div>
         </div>
+        <section className="text-gray-600 body-font">
+          <div className="container px-5 py-24 mx-auto">
+            <div className="flex flex-wrap -m-2">
+              {pens && pens.map((pen) => <Pen key={pen.id} {...pen} />)}
+              {pens === undefined && <h2>該当するペンはありませんでした</h2>}
+            </div>
+          </div>
+        </section>
       </div>
     </Layout>
   );

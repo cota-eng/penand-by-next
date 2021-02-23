@@ -13,7 +13,11 @@ interface STATICPROPS {
 const pen: React.FC<STATICPROPS> = ({ pens }) => {
   return (
     <Layout title="ペンの一覧ページ">
-      <h2>aaaaa</h2>
+      <div>
+        <h2 className="font-semibold mb-2 mx-auto mt-5 leading-tight text-3xl w-full text-gray-500">
+          ペンの一覧ページ
+        </h2>
+      </div>
       <div>
         <section className="text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto">
