@@ -1,34 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## アプリ概要
 
-## Getting Started
+本番運用はまだなので、写真とGIFを掲載しております。
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- トップページ
+![2021-02-24_08h12_38](https://user-images.githubusercontent.com/65804288/108921127-39562780-7679-11eb-837c-5db46d2ae3bc.png)
+- ログインページ（バックエンドでのGoogleログイン）
+![2021-02-24_08h12_52](https://user-images.githubusercontent.com/65804288/108921130-39562780-7679-11eb-80c8-571780310d46.png)
+- 絞り込み検索ページ
+![2021-02-24_08h16_52](https://user-images.githubusercontent.com/65804288/108921131-39eebe00-7679-11eb-9ade-99ff989a3987.png)
+- 検索結果表示
+![2021-02-24_08h17_23](https://user-images.githubusercontent.com/65804288/108921134-39eebe00-7679-11eb-8625-975b280715ea.png)
+- 検索結果表示
+![2021-02-24_08h17_41](https://user-images.githubusercontent.com/65804288/108921135-3a875480-7679-11eb-8c42-532b1fe69751.png)
+- レビュー前（ISRによるビルド前）
+![2021-02-24_08h18_10](https://user-images.githubusercontent.com/65804288/108921138-3b1feb00-7679-11eb-9a38-5b9b1364ec65.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- レビュー入力例
+![2021-02-24_08h18_37](https://user-images.githubusercontent.com/65804288/108921121-378c6400-7679-11eb-953c-cb15a5e31202.png)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- ISRによるレビューの反映
+![2021-02-24_08h18_59](https://user-images.githubusercontent.com/65804288/108921124-38bd9100-7679-11eb-9eaf-72e4520c270d.png)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
