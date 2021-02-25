@@ -66,3 +66,38 @@ Django 側では set-cookie のオプションと指定しても、cookie にセ
 - GIF 　実際の動作イメージ
 
 ![Videotogif](https://user-images.githubusercontent.com/65804288/108922129-fea0bf00-7679-11eb-991e-d9f89a0ec8c9.gif)
+
+## SSG,ISR について
+
+以下のようになった。
+
+```shell
+
+Page                                                           Size     First Load JS
+┌ ○ /                                                          782 B          69.7 kB
+├   /_app                                                      0 B            63.9 kB
+├ ○ /404                                                       3.46 kB        67.3 kB
+├ ● /brand                                                     1.67 kB        70.6 kB
+├ ○ /brand/[slug]                                              269 B          64.2 kB
+├ ● /category                                                  1.38 kB        70.3 kB
+├ ○ /login                                                     6.23 kB        80.6 kB
+├ ● /pen (ISR: 3 Seconds)                                      1.09 kB          70 kB
+├ ● /pen/[id]                                                  27.2 kB        96.1 kB
+├   ├ /pen/01EYZ6BVRWW81369FA761HK6FK
+├   ├ /pen/01EYZ0NBPTGKR2N4E5DWZWCTM9
+├   ├ /pen/01EYZ0NBPVP428BF7ZERHBEQVH
+├   └ [+27 more paths]
+└ ○ /search                                                    4.5 kB         78.9 kB
++ First Load JS shared by all                                  63.9 kB
+  ├ chunks/3fca65f3c3320de7031016f25b31f4b3abba85d1.15e728.js  13.1 kB
+  ├ chunks/framework.ce4a96.js                                 42.3 kB
+  ├ chunks/main.172a97.js                                      6.63 kB
+  ├ chunks/pages/_app.228976.js                                557 B
+  ├ chunks/webpack.f03ca1.js                                   1.33 kB
+  └ css/407c678a32b6cd685731.css                               3.6 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+   (ISR)     incremental static regeneration (uses revali
+```
