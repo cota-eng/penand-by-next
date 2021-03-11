@@ -1,31 +1,30 @@
 import fetch from "node-fetch";
 
-export const getAllPens = async () => {
+export const getAllProducts = async () => {
   const res = await fetch(
-    new URL(`${process.env.NEXT_PUBLIC_API_URL}/api/pen/`)
+    new URL(`${process.env.NEXT_PUBLIC_API_URL}/api/product/`)
   );
-  //   const res = await fetch(new URL(`http://localhost:8000/api/pen${page}`));
-  const pens = await res.json();
-  console.log(pens);
-  return pens;
+  //   const res = await fetch(new URL(`http://localhost:8000/api/product${page}`));
+  const products = await res.json();
+  return products;
 };
 
 export const getAllPenIds = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/pen/`);
-  const pens = await res.json();
-  return pens.map((pen) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/product/`);
+  const products = await res.json();
+  return products.map((product) => {
     return {
       params: {
-        id: pen.id.toString(),
+        id: product.id.toString(),
       },
     };
   });
 };
 
-export const getPenData = async (id: string) => {
+export const getProductData = async (id: string) => {
   const res = await fetch(
-    new URL(`${process.env.NEXT_PUBLIC_API_URL}/api/pen/${id}/`)
+    new URL(`${process.env.NEXT_PUBLIC_API_URL}/api/product/${id}/`)
   );
-  const pen = await res.json();
-  return pen;
+  const product = await res.json();
+  return product;
 };

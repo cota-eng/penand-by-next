@@ -12,7 +12,6 @@ export const getFilteredPens = async ({
   const res = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/api/search?name=${name}&tag=${tag}&category=${category}&lte=${maxPrice}&gte=${minPrice}/`
   );
-  console.log(res);
   return res.data;
   //   if (res.status === 200) {
   //     return res.data;
