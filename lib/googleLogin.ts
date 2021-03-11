@@ -26,7 +26,7 @@ const googleLogin = async (accesstoken: string) => {
       );
       //   router.push("/blog-page");
     } else {
-      console.log("not 200");
+      console.log("not 200 OK");
     }
   } catch (error) {
     throw new Error(error);
