@@ -3,7 +3,7 @@ import { CATEGORY } from "./category";
 import { REVIEW } from "./review";
 import { TAG } from "./tag";
 
-export interface PEN {
+export interface PRODUCT {
   id: string;
   name: string;
   description: string;

@@ -1,8 +1,8 @@
 import Layout from "../../components/Layout";
-import { PEN } from "../../types/pen";
+import { PRODUCT } from "../../types/product";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
-import { getAllPenIds, getPenData } from "../../lib/fetchPen";
+import { getAllProductIds, getProductData } from "../../lib/fetchProducts";
 import { useRouter } from "next/router";
 import ReviewForm from "../../components/Review/ReviewForm";
 import Tag from "../../components/Tag";
@@ -13,7 +13,7 @@ const MyChart = dynamic(() => import("../../components/Review/ReviewDetail"), {
   ssr: false,
 });
 
-const PenPage: React.FC<PEN> = ({
+const ProductPage: React.FC<PRODUCT> = ({
   id,
   name,
   description,
@@ -97,7 +97,7 @@ const PenPage: React.FC<PEN> = ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getAllPenIds();
+  const paths = await getAllProductIds();
   return {
     paths,
     fallback: true,
@@ -106,11 +106,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const pen = await getPenData(context.params.id as string);
+  const product = await getProductData(context.params.id as string);
   return {
-    props: { ...pen },
+    props: { ...product },
     revalidate: 10,
   };
 };
 
-export default PenPage;
+export default ProductPage;

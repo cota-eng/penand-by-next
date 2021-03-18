@@ -1,17 +1,41 @@
 import GoogleLogin from "react-google-login";
 // import { GoogleLogout } from "react-google-login";
 import googleLogin from "../../lib/googleLogin";
-import Cookies from "universal-cookie";
+import { useState } from "react";
+// import Cookies from "universal-cookie";
 // const cookies = new Cookies();
-const responseGoogle = async (response) => {
-  await googleLogin(response.accessToken);
-  console.log(responseGoogle);
-  console.log(response);
-};
+
 const GoogleSocialAuth: React.FC = () => {
+  const [error, setError] = useState(false);
+  const [errorText, setErrorText] = useState("");
+  const responseGoogle = async (response) => {
+    const res = await googleLogin(response.accessToken);
+    if (res.status === 200) {
+      console.log("a");
+      console.log(res);
+      setError(true);
+    }
+    //   console.log(responseGoogle);
+    //   console.log(response);
+  };
   return (
     <div>
       <div>
+        {error && (
+          <p>
+            <svg
+              className="animate-bounce w-6 h-6 text-gray-900"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </p>
+        )}
         <h2 className="font-semibold mb-2 mx-auto mt-5 leading-tight text-3xl w-full text-gray-500">
           グーグルアカウントでログインする
         </h2>

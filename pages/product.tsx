@@ -1,16 +1,21 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
 import { GetStaticProps } from "next";
-import { getAllPens } from "../lib/fetchPen";
-import { PEN } from "../types/pen";
+import { getAllProductIds, getAllProducts } from "../lib/fetchProducts";
+import { PRODUCT } from "../types/product";
 import ReactMarkdown from "react-markdown";
-import Pen from "../components/Pen";
+import Product from "../components/Product";
+import { useEffect } from "react";
+import { animateScroll as scroll } from "react-scroll";
 
 interface STATICPROPS {
-  pens: PEN[];
+  products: PRODUCT[];
 }
 
-const pen: React.FC<STATICPROPS> = ({ pens }) => {
+const product: React.FC<STATICPROPS> = ({ products }) => {
+//   useEffect(() => {
+//     scroll.scrollToBottom();
+//   }, []);
   return (
     <Layout title="ペンの一覧ページ">
       <div>
@@ -22,10 +27,10 @@ const pen: React.FC<STATICPROPS> = ({ pens }) => {
         <section className="text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto">
             <div className="flex flex-wrap -m-2">
-              {pens &&
-                pens.map((pen) => (
+              {products &&
+                products.map((product) => (
                   //   <ReactMarkdown key={pen.name}>{pen.description}</ReactMarkdown>
-                  <Pen key={pen.id} {...pen} />
+                  <Product key={product.id} {...product} />
                 ))}
             </div>
             <div className="flex flex-wrap -m-2"></div>
@@ -36,13 +41,13 @@ const pen: React.FC<STATICPROPS> = ({ pens }) => {
   );
 };
 
-export default pen;
+export default product;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const pens = await getAllPens();
+  const products = await getAllProducts();
   return {
     props: {
-      pens: pens,
+      products: products,
     },
     revalidate: 3,
   };

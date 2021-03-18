@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
-import { PEN } from "../types/pen";
-const Pen: React.FC<PEN> = ({ id, name, category }) => {
+import { PRODUCT } from "../types/product";
+const Product: React.FC<PRODUCT> = ({ id, name, category }) => {
   return (
     <>
-      <Link href={`/pen/${id}`}>
+      <Link href={`/product/${id}`}>
         <div className="p-2 lg:w-1/3 md:w-1/2 w-full cursor-pointer">
           <div className="h-full flex items-center border-gray-200  hover:border-gray-700  border p-4 rounded-lg ">
             <img
@@ -23,4 +23,4 @@ const Pen: React.FC<PEN> = ({ id, name, category }) => {
   );
 };
 
-export default Pen;
+export default Product;

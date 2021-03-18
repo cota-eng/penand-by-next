@@ -1,4 +1,4 @@
-import { PEN } from "./pen";
+import { PEN } from "./product";
 
 export interface RESULTS {
   count: number | null;
