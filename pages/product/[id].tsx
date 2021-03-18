@@ -68,6 +68,7 @@ const ProductPage: React.FC<PRODUCT> = ({
         </section>
         <p>{description}</p>
         <p>{price_yen}円</p>
+        
         <Link href="/pen">
           <div className="flex cursor-pointer mt-12">
             <svg

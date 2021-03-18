@@ -12,8 +12,8 @@ export const getAllProducts = async () => {
 
 export const getAllProductIds = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/`);
-  const products:PRODUCT[] = await res.json();
-  return products.map((product:PRODUCT) => {
+  const products: PRODUCT[] = await res.json();
+  return products.map((product: PRODUCT) => {
     return {
       params: {
         id: product.id.toString(),
@@ -24,7 +24,7 @@ export const getAllProductIds = async () => {
 
 export const getProductData = async (id: string) => {
   const res = await fetch(
-    new URL(`${process.env.NEXT_PUBLIC_API_URL}/api/product/${id}/`)
+    new URL(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${id}/`)
   );
   const product = await res.json();
   return product;
