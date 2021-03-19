@@ -1,5 +1,6 @@
-import React from 'react'
-import { todoListState } from '../states/todoListState'
+import React from "react";
+import { todoListState } from "../states/todoListState";
+import { filteredTodoListState } from "../states/filteredTodoListState";
 import {
   RecoilRoot,
   atom,
@@ -7,23 +8,25 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import TodoItemCreator from './TodoItemCreator';
-import TodoItem from './TodoItem';
-
+import TodoItemCreator from "./TodoItemCreator";
+import TodoItem from "./TodoItem";
+import TodoListFilters from "./TodoListFilters";
+import TodoListStats from "./TodoListStats";
 
 const TodoList: React.FC = () => {
-    const todoList = useRecoilValue(todoListState);
-    return (
-      <>
-        {/* <TodoListStats /> */}
-        {/* <TodoListFilters /> */}
-        <TodoItemCreator />
+  const todoList = useRecoilValue(filteredTodoListState);
+  return (
+    <div>
+      <TodoListStats />
+      <TodoListFilters />
+      <TodoItemCreator />
 
-        {todoList.map((todoItem) => (
+      {todoList &&
+        todoList.map((todoItem) => (
           <TodoItem key={todoItem.id} item={todoItem} />
         ))}
-      </>
-    );
-}
+    </div>
+  );
+};
 
-export default TodoList
+export default TodoList;
