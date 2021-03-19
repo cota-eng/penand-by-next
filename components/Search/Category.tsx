@@ -4,6 +4,7 @@ interface CATEGORYPROPS {
   setCategory: (text: string) => void;
 }
 const Category: React.FC<CATEGORYPROPS> = ({ setCategory }) => {
+    // 一旦手動、TODO:async変更
   const categories = [
     { value: "", label: "なし" },
     { value: "1", label: "シャーペン" },
