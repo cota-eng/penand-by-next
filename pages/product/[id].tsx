@@ -101,7 +101,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllProductIds();
   return {
     paths,
-    fallback: true,
+    fallback: "blocking",
     // fallback false => access unexist id => return 404
   };
 };
