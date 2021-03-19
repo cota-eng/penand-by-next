@@ -12,6 +12,7 @@ import {
 } from "recoil";
 import CharactorCounter from "../components/CharacterCounter";
 import CharacterCount from "../components/CharacterCount";
+import TodoList from "../components/TodoList";
 const Home: React.FC = () => {
   //   useEffect(() => {
   //     const { pathname } = Router;
@@ -25,6 +26,7 @@ const Home: React.FC = () => {
         <Top />
         <CharactorCounter />
         <CharacterCount />
+        <TodoList />
       </Layout>
     </>
   );
