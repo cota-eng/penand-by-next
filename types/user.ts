@@ -1,4 +1,3 @@
-export interface USER {
-  id: string;
-  nickname: string;
+export interface CURRENTUSER {
+  id: string | null;
 }
