@@ -4,12 +4,13 @@ import { GetStaticProps } from "next";
 import { getAllBrands } from "../lib/fetchBrand";
 import { BRAND } from "../types/brand";
 import BrandDetail from "../components/BrandDetail";
+import { NextPage } from "next";
 
 interface STATICPROPS {
   brands: BRAND[];
 }
 
-const brand: React.FC<STATICPROPS> = ({ brands }) => {
+const brand: NextPage<STATICPROPS> = ({ brands }) => {
   return (
     <>
       <Layout title="ブランドの一覧ページ">
