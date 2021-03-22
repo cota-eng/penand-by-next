@@ -13,6 +13,12 @@ const MyChart = dynamic(() => import("../../components/Review/ReviewDetail"), {
   ssr: false,
 });
 
+const CategoryColor: { [key: string]: string } = {
+  "1": "red",
+  "2": "blue",
+  "3": "green",
+};
+
 const ProductPage: React.FC<PRODUCT> = ({
   id,
   name,
@@ -25,8 +31,10 @@ const ProductPage: React.FC<PRODUCT> = ({
   updated_at,
   review,
 }) => {
+  const color = CategoryColor[`${category.id}`];
   const router = useRouter();
   if (router.isFallback || !name) {
+    console.log(CategoryColor["1"]);
     return <div>loading...</div>;
   }
   // pen.tsxからのpropsを分解しているから、nameがないときはpenがないと同じはず
@@ -36,13 +44,14 @@ const ProductPage: React.FC<PRODUCT> = ({
         <section className="text-gray-600 body-font">
           <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
             <span
-              className="inline-block rounded-full text-white 
-                        bg-blue-400 hover:bg-blue-500 duration-300 
+              className={`inline-block rounded-full text-white 
+                            bg-${color}-400 hover:bg-blue-500 duration-300 
                         text-xs font-bold 
                         mr-1 md:mr-2 mb-2 px-2 md:px-4 py-1 
-                        opacity-90 hover:opacity-100"
+                        opacity-90 hover:opacity-100`}
             >
               カテゴリ：{category.name}
+              {category.id}
             </span>
             {tag && tag.map((t) => <Tag key={t.id} {...t} />)}
             <img
@@ -68,7 +77,7 @@ const ProductPage: React.FC<PRODUCT> = ({
         </section>
         <p>{description}</p>
         <p>{price_yen}円</p>
-        
+
         <Link href="/pen">
           <div className="flex cursor-pointer mt-12">
             <svg
