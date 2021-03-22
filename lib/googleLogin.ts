@@ -1,7 +1,7 @@
 import axios from "axios";
 // import { useRouter } from "next/router";
 import Cookies from "universal-cookie";
-const cookies = new Cookies();
+// const cookies = new Cookies();
 // const router = useRouter();
 const googleLogin = async (accesstoken: string) => {
   const res = await axios.post(
@@ -11,8 +11,6 @@ const googleLogin = async (accesstoken: string) => {
       access_token: accesstoken,
     }
   );
-  console.log("login func");
-
   return res;
   // console.log(res);
   // console.log("以下status");

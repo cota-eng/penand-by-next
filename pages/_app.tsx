@@ -11,22 +11,22 @@ import {
 } from "recoil";
 import CharacterCounter from "../components/CharacterCounter";
 import { currentUserState } from "../states/currentUserState";
-import { fetchCurentUser } from "../lib/fetchCurrentUser";]
+import { fetchCurentUser } from "../lib/fetchCurrentUser";
 
-function AppInit() {
-  const setCurrentUser = useSetRecoilState(currentUserState);
-  useEffect(() => {
-    (async function () {
-      try {
-        const { currentUser } = await fetchCurentUser();
-        serCurrentUser(currentUser);
-      } catch {
-        setCurrentUser(null);
-      }
-    })();
-  }, []);
-  return null;
-}
+// function AppInit() {
+//   const setCurrentUser = useSetRecoilState(currentUserState);
+//   useEffect(() => {
+//     (async function () {
+//       try {
+//         const { currentUser } = await fetchCurentUser();
+//         serCurrentUser(currentUser);
+//       } catch {
+//         setCurrentUser(null);
+//       }
+//     })();
+//   }, []);
+//   return null;
+// }
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <RecoilRoot>
       <Component {...pageProps} />
-      <AppInit />
+      {/* <AppInit /> */}
       <CharacterCounter />
     </RecoilRoot>
   );
