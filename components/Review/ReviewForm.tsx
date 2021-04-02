@@ -47,36 +47,36 @@ const ReviewForm: React.FC<PENID> = ({ id }) => {
     setToken(JSON.parse(localStorage.getItem("access_token")));
   }, []);
   const [token, setToken] = useState<string | undefined>("");
-  const PostClicked = (e) => {
-    e.preventDefault();
-    postReview(
-      id,
-      {
-        title: title,
-        stars_of_design: starsOfDesign,
-        stars_of_durability: starsOfDurability,
-        stars_of_usefulness: starsOfUsefulness,
-        stars_of_function: starsOfFunction,
-        stars_of_easy_to_get: starsOfEasyToGet,
-        good_point_text: goodPointText,
-        bad_point_text: badPointText,
-      },
-      token
-    );
-    setTitle("");
-    setStarsOfDesign(0);
-    setStarsOfDurability(0);
-    setStarsOfFunction(0);
-    setStarsOfUsefulness(0);
-    setStarsOfEasyToGet(0);
-    setGoodPointText("");
-    setBadPointText("");
-  };
+  //   const PostClicked = (e) => {
+  //     e.preventDefault();
+  //     postReview(
+  //       id,
+  //       {
+  //         title: title,
+  //         stars_of_design: starsOfDesign,
+  //         stars_of_durability: starsOfDurability,
+  //         stars_of_usefulness: starsOfUsefulness,
+  //         stars_of_function: starsOfFunction,
+  //         stars_of_easy_to_get: starsOfEasyToGet,
+  //         good_point_text: goodPointText,
+  //         bad_point_text: badPointText,
+  //       },
+  //       token
+  //     );
+  //     setTitle("");
+  //     setStarsOfDesign(0);
+  //     setStarsOfDurability(0);
+  //     setStarsOfFunction(0);
+  //     setStarsOfUsefulness(0);
+  //     setStarsOfEasyToGet(0);
+  //     setGoodPointText("");
+  //     setBadPointText("");
+  //   };
   return (
     <div className="flex mx-auto items-center justify-center shadow-lg mt-56 mx-8 mb-4 max-w-lg">
       <form
         className="w-full max-w-xl bg-white rounded-lg px-4 pt-2"
-        onSubmit={PostClicked}
+        // onSubmit={PostClicked}
       >
         <div className="flex flex-col flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-full px-3 mb-2 mt-2">
