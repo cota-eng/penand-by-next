@@ -1,6 +1,18 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import AvatarMenu from "./Authentication/AvatarMenu";
+import { useCurrentUser } from "../hooks/useCurrentUser";
 const NavBar = () => {
+  const [avatar, setAvatar] = useState<string | null>(null);
+  const { isAuthChecking, currentUser } = useCurrentUser();
+  useEffect(() => {
+    if (currentUser) {
+      setAvatar(currentUser.avatar);
+    } else {
+      setAvatar(null);
+    }
+  }, []);
   return (
     <header className="z-50 fixed bg-gray-800 w-screen text-gray-600 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -51,7 +63,7 @@ const NavBar = () => {
         </nav>
 
         <Link href="/search">
-          <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+          <button className="inline-flex items-center border-0 py-1 px-3 focus:outline-none text-white-100 rounded text-base mt-4 md:mt-0">
             <svg
               className="w-6 h-6"
               fill="none"
@@ -66,9 +78,9 @@ const NavBar = () => {
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
-            Search
           </button>
         </Link>
+        <AvatarMenu />
       </div>
     </header>
   );
