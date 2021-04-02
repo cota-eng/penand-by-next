@@ -7,7 +7,7 @@ import {
   useRecoilValue,
 } from "recoil";
 
-import {textState} from '../states/textState'
+import {textState} from '../../states/textState'
 const CharacterCounter: React.FC = () => {
   const [text, setText] = useRecoilState(textState);
 
