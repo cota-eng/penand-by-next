@@ -1,6 +1,6 @@
 import GoogleLogin from "react-google-login";
 // import { GoogleLogout } from "react-google-login";
-import googleLogin from "../../lib/googleLogin";
+import googleLogin from "../../lib/auth/googleLogin";
 import { useState } from "react";
 // import Cookies from "universal-cookie";
 // const cookies = new Cookies();
@@ -11,12 +11,17 @@ const GoogleSocialAuth: React.FC = () => {
   const responseGoogle = async (response) => {
     const res = await googleLogin(response.accessToken);
     if (res.status === 200) {
-      console.log("a");
-      console.log(res);
-      setError(true);
+      localStorage.setItem(
+        "access_token",
+        JSON.stringify(res.data.access_token)
+      );
+      localStorage.setItem(
+        "refresh_token",
+        JSON.stringify(res.data.refresh_token)
+      );
+    } else {
+      console.log("not 200 OK");
     }
-    //   console.log(responseGoogle);
-    //   console.log(response);
   };
   return (
     <div>
