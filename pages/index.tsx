@@ -10,37 +10,22 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-// import CharactorCounter from "../components/CharacterCounter";
-// import CharacterCount from "../components/notuse/CharacterCount";
-// import TodoList from "../components/TodoList";
-import { NextPage } from "next";
 
+import { NextPage } from "next";
 import { useCurrentUser } from "../hooks/useCurrentUser";
+import Image from "next/image";
 const Home: NextPage = () => {
   const { isAuthChecking, currentUser } = useCurrentUser();
-  if (isAuthChecking) {
-    console.log("checking");
-  } else {
-    console.log("checked");
-  }
-  if (!currentUser) {
-    console.log("not logined");
-  } else {
-    console.log(currentUser);
-  }
-  //   useEffect(() => {
-  //     const { pathname } = Router;
-  //     if (pathname == "/") {
-  //       Router.push("/pen");
-  //     }
-  //   });
   return (
     <>
       <Layout title="home">
         <Top />
-        {/* <CharactorCounter />
-        <CharacterCount />
-        <TodoList /> */}
+        <Image
+          src="/vercel.svg"
+          alt="Picture of the author"
+          width={100}
+          height={100}
+        />
       </Layout>
     </>
   );
