@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CURRENTUSER } from "../../types/user";
+import { CURRENTUSER } from "../../types/currentUser";
 
 export const fetchCurentUser = async () => {
   const res = await axios.get<CURRENTUSER | null | undefined>(
