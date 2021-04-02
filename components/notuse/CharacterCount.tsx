@@ -6,7 +6,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { textState } from "../states/textState";
+import { textState } from "../../states/textState";
 
 const charCountState = selector({
   key: "charCountState", // unique ID (with respect to other atoms/selectors)
