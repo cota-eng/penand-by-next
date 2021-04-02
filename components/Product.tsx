@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { PRODUCT } from "../types/product";
+import Image from "next/image";
 const Product: React.FC<PRODUCT> = ({ id, name, category, image }) => {
   return (
     <>
