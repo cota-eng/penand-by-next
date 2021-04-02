@@ -59,8 +59,8 @@ const ProductPage: React.FC<PRODUCT> = ({
               alt="hero"
               src="https://dummyimage.com/720x600"
             />
-            <div className="text-center lg:w-2/3 w-full">
-              <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+            <div className="text-center  w-full">
+              <h1 className="title-font w-100 sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
                 {name}
               </h1>
               <p className="mb-8 leading-relaxed">{brand.name}.</p>
