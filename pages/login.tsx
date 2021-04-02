@@ -15,7 +15,7 @@ const login: NextPage = () => {
 //     console.log(currentUser["id"]);
 //   }
   if (isAuthChecking) return <div>ログイン情報を確認中…</div>;
-  if (!currentUser) return <div>ログインしていません</div>;
+  if (!currentUser) return <Layout title="need to login">ログインしていません(spinner)</Layout>;
   return (
     <Layout title="ログイン">
       <GoogleSocialAuth />
