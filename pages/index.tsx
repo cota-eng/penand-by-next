@@ -10,10 +10,24 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import CharactorCounter from "../components/CharacterCounter";
-import CharacterCount from "../components/CharacterCount";
-import TodoList from "../components/TodoList";
-const Home: React.FC = () => {
+// import CharactorCounter from "../components/CharacterCounter";
+// import CharacterCount from "../components/notuse/CharacterCount";
+// import TodoList from "../components/TodoList";
+import { NextPage } from "next";
+
+import { useCurrentUser } from "../hooks/useCurrentUser";
+const Home: NextPage = () => {
+  const { isAuthChecking, currentUser } = useCurrentUser();
+  if (isAuthChecking) {
+    console.log("checking");
+  } else {
+    console.log("checked");
+  }
+  if (!currentUser) {
+    console.log("not logined");
+  } else {
+    console.log(currentUser);
+  }
   //   useEffect(() => {
   //     const { pathname } = Router;
   //     if (pathname == "/") {
@@ -24,9 +38,9 @@ const Home: React.FC = () => {
     <>
       <Layout title="home">
         <Top />
-        <CharactorCounter />
+        {/* <CharactorCounter />
         <CharacterCount />
-        <TodoList />
+        <TodoList /> */}
       </Layout>
     </>
   );
