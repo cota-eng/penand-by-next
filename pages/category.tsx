@@ -4,12 +4,13 @@ import { GetStaticProps } from "next";
 import { getAllCategories } from "../lib/fetchCategory";
 import { CATEGORY } from "../types/category";
 import CategoryDetail from "../components/CategoryDetail";
+import { NextPage } from "next";
 
 interface STATICPROPS {
   categories: CATEGORY[];
 }
 
-const brand: React.FC<STATICPROPS> = ({ categories }) => {
+const brand: NextPage<STATICPROPS> = ({ categories }) => {
   return (
     <Layout title="カテゴリの一覧ページ">
       <section className="text-gray-600 body-font">
