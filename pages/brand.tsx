@@ -5,12 +5,14 @@ import { getAllBrands } from "../lib/fetchBrand";
 import { BRAND } from "../types/brand";
 import BrandDetail from "../components/BrandDetail";
 import { NextPage } from "next";
+import { useRequireLogin } from "../hooks/useRequireLogin";
 
 interface STATICPROPS {
   brands: BRAND[];
 }
 
 const brand: NextPage<STATICPROPS> = ({ brands }) => {
+  useRequireLogin();
   return (
     <>
       <Layout title="ブランドの一覧ページ">
