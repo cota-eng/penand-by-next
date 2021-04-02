@@ -1,9 +1,4 @@
 import {
-  RecoilRoot,
-  useSetRecoilState,
-  atom,
-  selector,
-  useRecoilState,
   useRecoilValue,
 } from "recoil";
 import { currentUserState } from "../states/currentUserState";
