@@ -1,5 +1,5 @@
 import axios from "axios";
-import { fetchTokenRefresh } from "./fetchTokenRefresh";
+import { fetchTokenRefresh } from "./auth/fetchTokenRefresh";
 
 export const fetchIsVerifiedToken = async () => {
   const res = await axios.post(
