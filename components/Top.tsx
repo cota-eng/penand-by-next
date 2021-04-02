@@ -16,17 +16,17 @@ interface IFormInput {
 }
 
 const Top: React.FC = () => {
-  const { register, handleSubmit, errors } = useForm<IFormInput>();
+  //   const { register, handleSubmit, errors } = useForm<IFormInput>();
 
-  const onSubmit = (data: IFormInput) => {
-    console.log(data);
-  };
+  //   const onSubmit = (data: IFormInput) => {
+  //     console.log(data);
+  //   };
 
   return (
     <>
       <Hero />
       {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
-      <form
+      {/* <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-xl bg-white rounded-lg px-4 pt-2"
       >
@@ -40,7 +40,7 @@ const Top: React.FC = () => {
         <div>
           {errors && <span>This field is required</span>}
         </div>
-      </form>
+      </form> */}
     </>
   );
 };
