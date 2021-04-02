@@ -12,7 +12,7 @@ import {
 // import CharacterCounter from "../components/CharacterCounter";
 import { currentUserState } from "../states/currentUserState";
 import { fetchCurentUser } from "../lib/auth/fetchCurrentUser";
-import { CURRENTUSER } from "../types/user";
+import { CURRENTUSER } from "../types/currentUser";
 
 function AppInit() {
   const setCurrentUser = useSetRecoilState(currentUserState);
