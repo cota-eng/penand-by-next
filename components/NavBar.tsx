@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 const NavBar = () => {
   return (
-    <header className="bg-gray-800 w-screen text-gray-600 body-font">
+    <header className="z-50 fixed bg-gray-800 w-screen text-gray-600 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <Link href="/">
           <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
@@ -20,11 +20,11 @@ const NavBar = () => {
                 d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
               />
             </svg>
-            <span className="ml-3 text-white text-xl">PENS</span>
+            <span className="ml-3 text-white text-xl">Dista</span>
           </a>
         </Link>
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-          <Link href="/pen">
+          <Link href="/product">
             <a
               data-testid="context-nav"
               className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
@@ -50,7 +50,7 @@ const NavBar = () => {
           </Link>
         </nav>
 
-        <Link href="/search/">
+        <Link href="/search">
           <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
             <svg
               className="w-6 h-6"
