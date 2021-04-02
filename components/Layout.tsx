@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
+import SideBar from "./SideBar";
 
 interface TITLE {
   title: string;
@@ -11,7 +12,7 @@ const Layout: React.FC<TITLE> = ({
   title = "penandへようこそ｜文房具専門のレビューサイト",
 }) => {
   return (
-    <div className="flex justify-center items-center flex-col min-h-screen font-mono">
+    <>
       <Head>
         <title>{title}</title>
         <meta property="og:title" content="My page title" key="title" />
@@ -19,14 +20,17 @@ const Layout: React.FC<TITLE> = ({
       <Head>
         <meta property="og:title" content="My new title" key="title" />
       </Head>
-      <NavBar />
-
-      {/* <main className="flex flex-1 justify-center items-center w-screen"> */}
-      <main className="flex flex-1 justify-center items-center flex-col w-screen">
-        {children}
-      </main>
+      <div className="flex justify-center items-center flex-col my-10">
+        <NavBar />
+      </div>
+      <div className="flex min-h-screen">
+        <SideBar/>
+        <main className="w-full px-10  lg:w-4/5 xl:w-4/5  bg-gray-200  w-screen">
+          {children}
+        </main>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 };
 export default Layout;
