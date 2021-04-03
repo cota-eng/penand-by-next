@@ -1,5 +1,7 @@
 export interface PROFILE {
-  id: string;
-  user_id: string;
-  username:string
+  //   id?: string | null;
+  nickname?: string | null;
+  //   user?: string | null;
+  //   avatar?: string | null;
+  //   twitter_account?: string | null;
 }
