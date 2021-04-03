@@ -6,13 +6,17 @@ export const fetchCurentUser = async () => {
     `${process.env.NEXT_PUBLIC_API_URL}/api/whoami/`,
     {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("access_token")
+        )}`,
       },
     }
   );
   if (res.status === 200) {
+    console.log(res.status);
     return res.data[0];
   } else {
+    console.log(localStorage.getItem("access_token"));
     return null;
   }
 };
