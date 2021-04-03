@@ -80,7 +80,12 @@ const NavBar = () => {
             </svg>
           </button>
         </Link>
-        <AvatarMenu />
+        {currentUser && <AvatarMenu />}
+        {!currentUser && (
+          <button className="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 ml-2 rounded ">
+            <Link href="/login">Login</Link>
+          </button>
+        )}
       </div>
     </header>
   );
