@@ -3,6 +3,7 @@ import Pagination from "../../../components/Pagination";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { PRODUCT } from "../../../types/product";
 import product from "../../product";
+import Layout from "../../../components/Layout";
 
 interface STATICPROPS {
   products: PRODUCT[] | null;
@@ -12,7 +13,7 @@ interface STATICPROPS {
 const PER_PAGE = 5;
 const mechanical: NextPage<STATICPROPS> = ({ products, totalCount }) => {
   return (
-    <div>
+    <Layout title="ペンの一覧ページ">
       <ul>
         {products &&
           products.map((product) => (
@@ -22,7 +23,7 @@ const mechanical: NextPage<STATICPROPS> = ({ products, totalCount }) => {
           ))}
       </ul>
       <Pagination totalCount={totalCount} />
-    </div>
+    </Layout>
   );
 };
 
