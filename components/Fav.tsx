@@ -25,6 +25,7 @@ const Fav: React.FC<FAVPROPS> = ({ id }) => {
             },
           }
         );
+        console.log("first fetch fav");
         setIsFav(res.data["result"]);
       };
       fetchFav();
@@ -49,7 +50,7 @@ const Fav: React.FC<FAVPROPS> = ({ id }) => {
         console.log(res.data["result"]["is_favorite"]);
         setIsFav(res.data["result"]["is_favorite"]);
       };
-      fetchFav();
+      fetchFav().catch(()=>null);
     }
   };
   return (
