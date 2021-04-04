@@ -20,7 +20,6 @@ function AppInit() {
     (async function () {
       try {
         const currentUser = await fetchCurentUser();
-        // console.log(currentUser);
         setCurrentUser(currentUser);
       } catch {
         setCurrentUser(null);
@@ -32,7 +31,7 @@ function AppInit() {
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
-    if (router.pathname === "/login") return;
+    // if (router.pathname === "/login") return;
     console.log("common func");
   }, [router.pathname]);
   return (
