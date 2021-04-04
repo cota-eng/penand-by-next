@@ -20,12 +20,6 @@ const Home: NextPage = () => {
     <>
       <Layout title="home">
         <Top />
-        <Image
-          src="/vercel.svg"
-          alt="Picture of the author"
-          width={100}
-          height={100}
-        />
       </Layout>
     </>
   );
