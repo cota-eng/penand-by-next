@@ -10,53 +10,78 @@ const Fav: React.FC<FAVPROPS> = ({ id }) => {
   const [isFav, setIsFav] = useState(false);
   const [isFavModalOpen, setIsFavModalOpen] = useState(false);
   const { isAuthChecking, currentUser } = useCurrentUser();
+
+  const favChange = async () => {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("access_token")
+        )}`,
+      },
+      // body: JSON.stringify({
+      //   nickname: nickname,
+      //   twitter_account: twitterAccount,
+      // }),
+    };
+    //   setIsLoading(true);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/fav/${id}/fav/`,
+      requestOptions
+    );
+    console.log(res);
+    // TODO: error handling
+    // TODO: forbit to keep pushing
+    // 200 =>
+    setIsFav(!isFav);
+    // 401
+    //
+    //   setIsLoading(false);
+
+    //   .then(() => null)
+    //   .catch(() => null);
+  };
   useEffect(() => {
     if (!currentUser) {
       return null;
     } else {
       const fetchFav = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/fav/${id}/check/`,
-          {
+        await axios
+          .get(`${process.env.NEXT_PUBLIC_API_URL}/api/fav/${id}/check/`, {
             headers: {
               Authorization: `Bearer ${JSON.parse(
                 localStorage.getItem("access_token")
               )}`,
             },
-          }
-        );
+          })
+          .then((res) => setIsFav(res.data["result"]));
         console.log("first fetch fav");
-        setIsFav(res.data["result"]);
       };
       fetchFav();
     }
   }, []);
 
-  const favChange = () => {
-    if (!currentUser) {
-      return null;
-    } else {
-      const fetchFav = async () => {
-        const res = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/fav/${id}/fav/`,
-          {
-            headers: {
-              Authorization: `Bearer ${JSON.parse(
-                localStorage.getItem("access_token")
-              )}`,
-            },
-          }
-        );
-        console.log(res.data["result"]["is_favorite"]);
-        setIsFav(res.data["result"]["is_favorite"]);
-      };
-      fetchFav().catch(()=>null);
-    }
-  };
+  //   const favChange = () => {
+  //       axios
+  //           .post(`${process.env.NEXT_PUBLIC_API_URL}/api/fav/${id}/fav/`, {
+  //               withCredentials: true,
+  //               headers: {
+  //                   Authorization: `Bearer ${JSON.parse(
+  //                       localStorage.getItem("access_token")
+  //                   )}`,
+  //               },
+  //       })
+  //       .then((res) => console.log(res))
+  //       .catch((err) => console.log(err));
+  //     // ).then(res=>setIsFav(res.data["result"]["is_favorite"]))
+  //     // console.log(res.data["result"]["is_favorite"]);
+  //   };
   return (
     <div>
       <button
         className="text-pink-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-300"
+        // onClick={() => favChange()}
         onClick={
           currentUser ? () => favChange() : () => setIsFavModalOpen(true)
         }
