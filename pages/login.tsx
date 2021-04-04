@@ -14,15 +14,15 @@ const login: NextPage = () => {
   const currentUser = useRecoilValue(currentUserState);
   useEffect(() => {
     if (currentUser) {
-        router.push("/");
-        // TODO: how to move to previous page
+      router.push("/");
+      // TODO: how to move to previous page
     }
   }, [currentUser]);
   if (isAuthChecking) return <div>ログイン情報を確認中…</div>;
   //   if (!currentUser)
   //     return <Layout title="need to login">ログインしていません(spinner)</Layout>;
   return (
-    <Layout title="ログイン">
+    <Layout title="ログイン" >
       <GoogleSocialAuth />
       <p>{!currentUser && "未ログインです。"}</p>
       <p>{currentUser && currentUser.id}</p>
