@@ -8,6 +8,7 @@ import ReviewForm from "../../components/Review/ReviewForm";
 import Tag from "../../components/Tag";
 import ReviewTop from "../../components/Review/ReviewTop";
 import dynamic from "next/dynamic";
+import Fav from "../../components/Fav";
 
 const MyChart = dynamic(() => import("../../components/Review/ReviewDetail"), {
   ssr: false,
@@ -53,6 +54,7 @@ const ProductPage: React.FC<PRODUCT> = ({
               カテゴリ：{category.name}
               {category.id}
             </span>
+            <Fav id={id} />
             {tag && tag.map((t) => <Tag key={t.id} {...t} />)}
             <img
               className="lg:w-6/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
@@ -108,6 +110,7 @@ const ProductPage: React.FC<PRODUCT> = ({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllProductIds();
+  // TODO:このエンドポイントをReview含まないものにする（クエリ少ない方で負担軽減）
   return {
     paths,
     fallback: "blocking",
