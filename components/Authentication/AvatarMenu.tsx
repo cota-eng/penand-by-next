@@ -8,7 +8,7 @@ const AvatarMenu = ({}) => {
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      if (!container.current.contains(event.target)) {
+      if (!container.current?.contains(event.target)) {
         if (!show) return;
         setShow(false);
       }
@@ -40,8 +40,6 @@ const AvatarMenu = ({}) => {
         <img
           className="w-10 h-10 rounded-full"
           src="https://picsum.photos/seed/picsum/200/300"
-          //   src={user.picture}
-          //   alt={user.name}
         />
       </button>
 
@@ -55,12 +53,12 @@ const AvatarMenu = ({}) => {
         leaveTo="opacity-0 scale-95"
       >
         <div className="origin-top-right absolute text-white right-0 w-48 py-2 mt-1 bg-gray-800 rounded shadow-md">
-          <Link href="/profile">
+          <Link href="/account/nickname">
             <a className="block px-4 py-2 text-white hover:bg-green-500 hover:text-green">
-              Profile
+              nickname
             </a>
           </Link>
-          <Link href="/api/logout">
+          <Link href="/">
             <a className="block px-4 py-2 text-white-100 hover:bg-green-500 hover:text-green-100">
               Logout
             </a>
