@@ -16,7 +16,6 @@ export const fetchCurentUser = async () => {
     console.log(res.status);
     return res.data[0];
   } else {
-    console.log(localStorage.getItem("access_token"));
     return null;
   }
 };
