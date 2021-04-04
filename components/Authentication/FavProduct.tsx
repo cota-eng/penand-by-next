@@ -33,7 +33,7 @@ const FavProduct: React.FC = () => {
     <>
       <p>fav</p>
       {favProducts &&
-        favProducts.map((favProduct) => (
+        favProducts.map((favProduct: FAVPRODUCT) => (
           <p key={favProduct.product.id}>{favProduct.product.name}</p>
         ))}
     </>
