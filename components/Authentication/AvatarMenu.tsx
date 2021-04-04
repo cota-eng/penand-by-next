@@ -63,6 +63,16 @@ const AvatarMenu = ({}) => {
               Logout
             </a>
           </Link>
+          <Link href="/account/likes">
+            <a className="block px-4 py-2 text-white-100 hover:bg-green-500 hover:text-green-100">
+              Likes
+            </a>
+          </Link>
+          <Link href="/account/review">
+            <a className="block px-4 py-2 text-white-100 hover:bg-green-500 hover:text-green-100">
+              Review
+            </a>
+          </Link>
         </div>
       </Transition>
     </div>
