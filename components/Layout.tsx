@@ -24,8 +24,8 @@ const Layout: React.FC<TITLE> = ({
         <NavBar />
       </div>
       <div className="flex min-h-screen">
-        <SideBar/>
-        <main className="w-full px-10  lg:w-4/5 xl:w-4/5  bg-gray-200  w-screen">
+        <SideBar />
+        <main className="px-10  lg:w-4/5 xl:w-4/5  bg-gray-200  w-full">
           {children}
         </main>
       </div>
