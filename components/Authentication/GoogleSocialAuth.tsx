@@ -4,13 +4,18 @@ import googleLogin from "../../lib/auth/googleLogin";
 import { useState } from "react";
 // import Cookies from "universal-cookie";
 // const cookies = new Cookies();
-
+import { useRouter } from "next/router";
+import useSnackBar from "../../hooks/useSnackBar";
 const GoogleSocialAuth: React.FC = () => {
-  const [error, setError] = useState(false);
-  const [errorText, setErrorText] = useState("");
+  const { isActive, message, openSnackBar } = useSnackBar();
+  const _showSnackbarHandler = (msg: string) => {
+    openSnackBar(msg);
+  };
+  const router = useRouter();
   const responseGoogle = async (response) => {
     const res = await googleLogin(response.accessToken);
     if (res.status === 200) {
+      _showSnackbarHandler("完了");
       localStorage.setItem(
         "access_token",
         JSON.stringify(res.data.access_token)
@@ -19,48 +24,24 @@ const GoogleSocialAuth: React.FC = () => {
         "refresh_token",
         JSON.stringify(res.data.refresh_token)
       );
+      //   router.back();
+      window.location.reload();
     } else {
-      console.log("not 200 OK");
+      _showSnackbarHandler("ログインに失敗しました");
     }
   };
   return (
     <div>
-      <div>
-        {error && (
-          <p>
-            <svg
-              className="animate-bounce w-6 h-6 text-gray-900"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </p>
-        )}
-        <h2 className="font-semibold mb-2 mx-auto mt-5 leading-tight text-3xl w-full text-gray-500">
-          グーグルアカウントでログインする
-        </h2>
-
-        <GoogleLogin
-          className="mx-auto "
-          clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
-          buttonText="LOGIN WITH GOOGLE"
-          onSuccess={responseGoogle}
-          isSignedIn={false}
-          onFailure={responseGoogle}
-          cookiePolicy={"single_host_origin"}
-          // redirectUri="https://www.google.com"
-        />
-        {/* <GoogleLogout
+      <GoogleLogin
+        className="mx-auto "
         clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
-        buttonText="Logout"
-        onLogoutSuccess={logout}
-      ></GoogleLogout> */}
-      </div>
+        buttonText="Googleログイン"
+        onSuccess={responseGoogle}
+        isSignedIn={false}
+        onFailure={responseGoogle}
+        cookiePolicy={"single_host_origin"}
+        // redirectUri="https://www.google.com"
+      />
     </div>
   );
 };
