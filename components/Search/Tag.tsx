@@ -4,6 +4,7 @@ interface TAGPROPS {
   setTag: (text: string) => void;
 }
 const Tag: React.FC<TAGPROPS> = ({ setTag }) => {
+  // TODO: async
   const tags = [
     { value: "", label: "なし" },
     { value: "wood", label: "木軸" },
