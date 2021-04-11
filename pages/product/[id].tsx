@@ -35,8 +35,11 @@ const ProductPage: React.FC<PRODUCT> = ({
   const color = CategoryColor[`${category.id}`];
   const router = useRouter();
   if (router.isFallback || !name) {
-    console.log(CategoryColor["1"]);
-    return <div>loading...</div>;
+    return (
+      <div>
+        loading...
+      </div>
+    );
   }
   // pen.tsxからのpropsを分解しているから、nameがないときはpenがないと同じはず
   return (
