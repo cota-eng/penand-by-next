@@ -19,6 +19,7 @@ export interface PRODUCT {
   rakuten_link_to_buy: string;
   mercari_link_to_buy: string;
   number_of_review: number;
+  number_of_fav: number;
   avarage_of_review_star: number;
   review: REVIEW[] | null | undefined;
 }
