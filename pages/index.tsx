@@ -1,19 +1,26 @@
 import Layout from "../components/Layout";
-import Top from "../components/Top";
-import { useEffect } from "react";
+// import Top from "../components/Top";
+import { useEffect, useState } from "react";
 import Router, { useRouter } from "next/router";
+import { textState } from "../states/textState";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
 
-const Home: React.FC = () => {
-  //   useEffect(() => {
-  //     const { pathname } = Router;
-  //     if (pathname == "/") {
-  //       Router.push("/pen");
-  //     }
-  //   });
+import { NextPage } from "next";
+import { useCurrentUser } from "../hooks/useCurrentUser";
+import Image from "next/image";
+import Hero from "../components/Hero";
+const Home: NextPage = () => {
+  const { isAuthChecking, currentUser } = useCurrentUser();
   return (
     <>
       <Layout title="home">
-        <Top />
+        <Hero />
       </Layout>
     </>
   );

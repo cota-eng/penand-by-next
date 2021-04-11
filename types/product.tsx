@@ -3,7 +3,7 @@ import { CATEGORY } from "./category";
 import { REVIEW } from "./review";
 import { TAG } from "./tag";
 
-export interface PEN {
+export interface PRODUCT {
   id: string;
   name: string;
   description: string;
@@ -19,6 +19,7 @@ export interface PEN {
   rakuten_link_to_buy: string;
   mercari_link_to_buy: string;
   number_of_review: number;
+  number_of_fav: number;
   avarage_of_review_star: number;
   review: REVIEW[] | null | undefined;
 }

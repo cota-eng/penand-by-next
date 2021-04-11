@@ -4,6 +4,7 @@ interface BRANDPROPS {
   setBrand: (text: string) => void;
 }
 const Brand: React.FC<BRANDPROPS> = ({ setBrand }) => {
+  // 手動で追加（asyncで受け取るのもあり）
   const categories = [
     { value: "", label: "なし" },
     { value: "1", label: "Uni" },

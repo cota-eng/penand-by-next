@@ -6,9 +6,9 @@ import { getFilteredPens } from "../lib/fetchSearchResult";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import { RESULTS } from "../types/results";
-import PenResult from "../components/PenResult";
-import { PEN } from "../types/pen";
-import Pen from "../components/Pen";
+import PenResult from "../components/ProductResult";
+import { PRODUCT } from "../types/product";
+import Product from "../components/Product";
 // async function fetcher(url: string): Promise<boolean | null | PEN[]> {
 //   const response = await fetch(url);
 //   return response.json();
@@ -29,7 +29,7 @@ const BrandSelect = dynamic(() => import("../components/Search/Brand"), {
 const Search: React.FC = () => {
   const [name, setName] = useState<string | undefined>(null);
   const [category, setCategory] = useState<string | undefined>(null);
-  const [tag, setTag] = useState<string | null | undefined>(null);
+  const [tag, setTag] = useState<string | undefined>(null);
   const [brand, setBrand] = useState<string | null | undefined>(null);
   const [minPrice, setMinPrice] = useState<string | undefined>(null);
   const [maxPrice, setMaxPrice] = useState<string | undefined>(null);
@@ -48,12 +48,12 @@ const Search: React.FC = () => {
   //     mutate();
   //   }, []);
   const router = useRouter();
-  const [pens, setPens] = useState<PEN[]>(null);
+  const [products, setProducts] = useState<PRODUCT[]>(null);
   const [isSearch, setIsSearch] = useState(false);
   useEffect(() => {
     if (isSearch) {
       try {
-        setPens(null);
+        setProducts(null);
         axios
           .get(
             `${process.env.NEXT_PUBLIC_API_URL}/api/search/?name=${
@@ -64,7 +64,7 @@ const Search: React.FC = () => {
               minPrice ? minPrice : ""
             }`
           )
-          .then((res) => setPens(res.data));
+          .then((res) => setProducts(res.data));
       } catch (e) {
         console.log("error");
       } finally {
@@ -174,8 +174,10 @@ const Search: React.FC = () => {
         <section className="text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto">
             <div className="flex flex-wrap -m-2">
-              {pens && pens.map((pen) => <Pen key={pen.id} {...pen} />)}
-              {pens === undefined && <h2>該当するペンはありませんでした</h2>}
+              {products && products.map((product) => <Product key={product.id} {...product} />)}
+              {products === undefined && (
+                <h2>該当するペンはありませんでした</h2>
+              )}
             </div>
           </div>
         </section>
