@@ -4,14 +4,18 @@ import Link from "next/link";
 
 interface TOTAL {
   totalCount: number;
+  now: string;
 }
-const Pagination: React.FC<TOTAL> = ({ totalCount }) => {
+const Pagination: React.FC<TOTAL> = ({ totalCount, now }) => {
   const PER_PAGE = 5;
-  const range = (start: number, end: number) =>
-    [...Array(end - start + 1)].map((_, i) => start + i);
+  //   const range = (start: number, end: number) =>
+  //     [...Array(end - start + 1)].map((_, i) => start + i);
+  const prev = Number(now) - 1;
+  const next = Number(now) + 1;
+  const last = Number(totalCount / PER_PAGE);
   return (
     <div>
-      <ul>
+      {/* <ul>
         {range(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
           <>
             {number !== 1 && (
@@ -26,14 +30,15 @@ const Pagination: React.FC<TOTAL> = ({ totalCount }) => {
             </li>
           </>
         ))}
-      </ul>
-      <div className="row">
-        <div className="w-full mx-auto">
-          <div className="sm:grid grid-cols-4 gap-5 mx-auto px-16">
-            <div className="col-start-1 col-end-3 my-2">
-              <a href="#">
-                <div className="h-full p-6 dark:bg-gray-800 bg-white hover:shadow-xl rounded border-b-4 border-red-500 shadow-md">
-                  <h3 className="text-2xl mb-3 font-semibold inline-flex">
+      </ul> */}
+      <div className="container w-full mx-auto mb-5">
+        <div className="flex justify-between px-2">
+          {prev === 0 && <div className="sm:w-1/4 w-2/5 my-2"></div>}
+          {prev !== 0 && (
+            <div className="sm:w-1/4 w-2/5 my-2">
+              <Link href={`/mechanical/page/${prev}`}>
+                <a>
+                  <div className="sm:h-full p-3 dark:bg-gray-800 bg-white hover:shadow-xl rounded border-b-4 border-red-500 shadow-md">
                     <svg
                       className="mr-2"
                       width="24"
@@ -47,19 +52,24 @@ const Pagination: React.FC<TOTAL> = ({ totalCount }) => {
                         fill="currentColor"
                       />
                     </svg>
-                    Prev
-                  </h3>
-                  <p className="text-lg">What is Lorem Ipsum?</p>
-                </div>
-              </a>
+                    <span className="text-2xl font-semibold inline-flex">
+                      Prev
+                    </span>
+                  </div>
+                </a>
+              </Link>
             </div>
-            <div className="col-end-5 col-span-2 my-2">
-              <a href="#">
-                <div className="h-full p-6 dark:bg-gray-800 bg-white hover:shadow-xl rounded border-b-4 border-red-500 shadow-md text-right">
-                  <h3 className="text-2xl mb-3 font-semibold inline-flex ">
-                    Next
+          )}
+          {next === totalCount / PER_PAGE && (
+            <div className="sm:w-1/4 w-2/5 my-2"></div>
+          )}
+          {next < last - 2 && (
+            <div className="sm:w-1/4 w-2/5  my-2">
+              <Link href={`/mechanical/page/${next}`}>
+                <a>
+                  <div className="sm:h-full p-3 dark:bg-gray-800 bg-white hover:shadow-xl rounded border-b-4 border-red-500 shadow-md text-right">
                     <svg
-                      className="ml-2"
+                      className="ml-auto mr-1 block"
                       width="24"
                       height="30"
                       viewBox="0 0 24 24"
@@ -71,12 +81,14 @@ const Pagination: React.FC<TOTAL> = ({ totalCount }) => {
                         fill="currentColor"
                       />
                     </svg>
-                  </h3>
-                  <p className="text-lg">Why do we use it?</p>
-                </div>
-              </a>
+                    <span className="text-2xl mb-1 font-semibold inline-flex ">
+                      Next
+                    </span>
+                  </div>
+                </a>
+              </Link>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
