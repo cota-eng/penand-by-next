@@ -3,8 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import AvatarMenu from "./Authentication/AvatarMenu";
 import { useCurrentUser } from "../hooks/useCurrentUser";
+import { useSetRecoilState } from "recoil";
+import { loginModalState } from "../states/loginModalState";
 const NavBar = () => {
   const [avatar, setAvatar] = useState<string | null>(null);
+  const setIsOpen = useSetRecoilState(loginModalState);
   const { isAuthChecking, currentUser } = useCurrentUser();
   useEffect(() => {
     if (currentUser) {
@@ -82,8 +85,11 @@ const NavBar = () => {
         </Link>
         {currentUser && <AvatarMenu />}
         {!currentUser && (
-          <button className="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 ml-2 rounded ">
-            <Link href="/login">Login</Link>
+          <button
+            className="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 ml-2 rounded "
+            onClick={() => setIsOpen(true)}
+          >
+            Login
           </button>
         )}
       </div>
