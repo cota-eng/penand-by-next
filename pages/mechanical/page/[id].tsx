@@ -4,25 +4,32 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { PRODUCT } from "../../../types/product";
 import product from "../../product";
 import Layout from "../../../components/Layout";
+import Product from "../../../components/Product";
 
 interface STATICPROPS {
   products: PRODUCT[] | null;
   totalCount: number | null;
+  page: string | null;
 }
 
 const PER_PAGE = 5;
-const mechanical: NextPage<STATICPROPS> = ({ products, totalCount }) => {
+const mechanical: NextPage<STATICPROPS> = ({ products, totalCount, page }) => {
   return (
     <Layout title="ペンの一覧ページ">
-      <ul>
-        {products &&
-          products.map((product) => (
-            <li key={product.id}>
-              <p>{product.name}</p>
-            </li>
-          ))}
-      </ul>
-      <Pagination totalCount={totalCount} />
+      <div>
+        <section className="text-gray-600 body-font overflow-auto h-auto">
+          <div className="container px-5 py-24 mx-auto">
+            <div className="flex flex-wrap -m-2">
+              {products &&
+                products.map((product) => (
+                  <Product key={product.id} {...product} />
+                ))}
+            </div>
+            <div className="flex flex-wrap -m-2"></div>
+          </div>
+        </section>
+      </div>
+      <Pagination totalCount={totalCount} now={page} />
     </Layout>
   );
 };
@@ -50,6 +57,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       products: data.results,
       totalCount: data.count,
+      page: id,
     },
   };
 };
