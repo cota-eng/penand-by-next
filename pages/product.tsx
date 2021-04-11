@@ -20,14 +20,14 @@ const product: NextPage<STATICPROPS> = ({ products }) => {
   return (
     <Layout title="ペンの一覧ページ">
       <div className="overflow-hidden">
-        <h2 className="font-semibold mb-2 mx-auto text-center mt-5 text-3xl w-full text-gray-500">
+        <h2 className="font-semibold mb-2 mx-auto text-center mt-5 pt-10 text-3xl w-full text-gray-500">
           ペンの一覧ページ
         </h2>
-        <div>description</div>
+        <h3>description</h3>
       </div>
       <div>
         <section className="text-gray-600 body-font overflow-auto h-auto">
-          <div className="container px-5 py-24 mx-auto">
+          <div className="container sm:px-5 px-2  pb-24 pt-5 mx-auto">
             <div className="flex flex-wrap -m-2">
               {products &&
                 products.map((product) => (
@@ -35,7 +35,6 @@ const product: NextPage<STATICPROPS> = ({ products }) => {
                   <Product key={product.id} {...product} />
                 ))}
             </div>
-            <div className="flex flex-wrap -m-2"></div>
           </div>
         </section>
       </div>
