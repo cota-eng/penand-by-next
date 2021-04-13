@@ -32,9 +32,7 @@ const Layout: React.FC<TITLE> = ({
       <div className="flex min-h-screen">
         {isOpen && <LoginModal />}
         <SideBar />
-        <main className="sm:px-10 px-5  lg:w-4/5 xl:w-4/5  bg-white  w-full">
-          {children}
-        </main>
+        <main className=" lg:w-4/5 xl:w-4/5  bg-white  w-full">{children}</main>
       </div>
       <Footer />
     </>
