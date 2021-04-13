@@ -16,7 +16,7 @@ const favorite: NextPage = () => {
   }
   return (
     <Layout title="setting">
-      <FavProduct />
+      <FavProduct currentUser={currentUser} />
     </Layout>
   );
 };
