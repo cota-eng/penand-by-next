@@ -14,7 +14,7 @@ const Hero = () => {
   const setIsModalOpen = useSetRecoilState(loginModalState);
   return (
     <>
-      <div className="pt-24 mx-auto">
+      <div className="pt-24 px-10 mx-auto">
         <button onClick={_showSnackbarHandler}>
           Click To Open To Snackbar
         </button>
@@ -29,12 +29,17 @@ const Hero = () => {
             <p className="leading-normal text-2xl mb-8">
               「より役に立つ文房具レビューのできるサイトです」
             </p>
-            <button
-              className="mx-auto lg:mx-0 text-center w-40  bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
-              onClick={() => setIsModalOpen(true)}
-            >
-              LOGIN
-            </button>
+            <div className="flex">
+              <button
+                className="mx-10  text-center w-40  bg-blue-100 text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Login
+              </button>
+              <button className="mx-10  text-center w-40  bg-gray-50 text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                <Link href="/about">About</Link>
+              </button>
+            </div>
           </div>
           <div className="w-full md:w-3/5 py-6 text-center">
             <img className="w-full md:w-4/5 z-50" />
