@@ -2,7 +2,6 @@ import { NextPage } from "next";
 import Pagination from "../../../components/Pagination";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { PRODUCT } from "../../../types/product";
-import product from "../../product";
 import Layout from "../../../components/Layout";
 import Product from "../../../components/Product";
 
