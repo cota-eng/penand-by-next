@@ -17,7 +17,7 @@ const nickname: NextPage = () => {
   }
   return (
     <Layout title="setting">
-      <Nickname />
+      <Nickname currentUser={currentUser} />
     </Layout>
   );
 };
