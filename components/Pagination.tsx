@@ -2,11 +2,13 @@ import { useState } from "react";
 import Router from "next/router";
 import Link from "next/link";
 
-interface TOTAL {
+interface Props {
+  category: string;
+  brand: string;
   totalCount: number;
   now: string;
 }
-const Pagination: React.FC<TOTAL> = ({ totalCount, now }) => {
+const Pagination: React.FC<Props> = ({ totalCount, now, category, brand }) => {
   const PER_PAGE = 5;
   //   const range = (start: number, end: number) =>
   //     [...Array(end - start + 1)].map((_, i) => start + i);
@@ -36,7 +38,7 @@ const Pagination: React.FC<TOTAL> = ({ totalCount, now }) => {
           {prev === 0 && <div className="sm:w-1/4 w-2/5 my-2"></div>}
           {prev !== 0 && (
             <div className="sm:w-1/4 w-2/5 my-2">
-              <Link href={`/mechanical/page/${prev}`}>
+              <Link href={`/category/${category}/brand/${brand}/page/${prev}`}>
                 <a>
                   <div className="sm:h-full p-3 dark:bg-gray-800 bg-white hover:shadow-xl rounded border-b-4 border-red-500 shadow-md">
                     <svg
@@ -65,7 +67,7 @@ const Pagination: React.FC<TOTAL> = ({ totalCount, now }) => {
           )}
           {next < last - 2 && (
             <div className="sm:w-1/4 w-2/5  my-2">
-              <Link href={`/mechanical/page/${next}`}>
+              <Link href={`/category/${category}/brand/${brand}/page/${next}`}>
                 <a>
                   <div className="sm:h-full p-3 dark:bg-gray-800 bg-white hover:shadow-xl rounded border-b-4 border-red-500 shadow-md text-right">
                     <svg
