@@ -1,4 +1,4 @@
-export default [
+export  const brands =  [
   {
     name: "カランダッシュ",
     slug: "carandache",
