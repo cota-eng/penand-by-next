@@ -6,13 +6,15 @@ import Footer from "./Footer";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import dynamic from "next/dynamic";
+import { CURRENTUSER } from "../types/currentUser";
 const LoginModal = dynamic(() => import("./LoginModal"), {
   ssr: false,
 });
-interface TITLE {
+interface Props {
   title: string;
+//   currentUser:CURRENTUSER|null|undefined
 }
-const Layout: React.FC<TITLE> = ({
+const Layout: React.FC<Props> = ({
   children,
   title = "penandへようこそ｜文房具専門のレビューサイト",
 }) => {

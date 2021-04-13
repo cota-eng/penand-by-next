@@ -17,7 +17,6 @@ import Image from "next/image";
 import Hero from "../components/Hero";
 import News from "../components/News";
 const Home: NextPage = () => {
-  const { isAuthChecking, currentUser } = useCurrentUser();
   return (
     <>
       <Layout title="home">

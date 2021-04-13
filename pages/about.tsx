@@ -12,7 +12,6 @@ import {
 } from "recoil";
 
 import { NextPage } from "next";
-import { useCurrentUser } from "../hooks/useCurrentUser";
 import Image from "next/image";
 import Hero from "../components/Hero";
 const ABOUT: NextPage = () => {
