@@ -19,7 +19,7 @@ const CategoryDetail: React.FC<CATEGORY> = ({ name, slug }) => {
         カテゴリの紹介文。 カテゴリの紹介文。 カテゴリの紹介文。
         カテゴリの紹介文。 カテゴリの紹介文。 カテゴリの紹介文。
       </p>
-      <Link href={`/category/${slug}/`}>
+      <Link href={`/category/${slug}/brand`}>
         <a className="text-indigo-500 inline-flex items-center mt-3">
           {name}のブランド別に見る
           <svg
