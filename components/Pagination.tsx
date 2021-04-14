@@ -9,7 +9,7 @@ interface Props {
   now: string;
 }
 const Pagination: React.FC<Props> = ({ totalCount, now, category, brand }) => {
-  const PER_PAGE = 5;
+  const PER_PAGE = 12;
   //   const range = (start: number, end: number) =>
   //     [...Array(end - start + 1)].map((_, i) => start + i);
   const prev = Number(now) - 1;
