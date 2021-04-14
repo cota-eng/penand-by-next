@@ -15,12 +15,13 @@ import { NextPage } from "next";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import Image from "next/image";
 import Hero from "../components/Hero";
+import News from "../components/News";
 const Home: NextPage = () => {
-  const { isAuthChecking, currentUser } = useCurrentUser();
   return (
     <>
       <Layout title="home">
         <Hero />
+        <News />
       </Layout>
     </>
   );

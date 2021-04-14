@@ -12,7 +12,7 @@ interface STATICPROPS {
 }
 
 const brand: NextPage<STATICPROPS> = ({ brands }) => {
-  useRequireLogin();
+//   useRequireLogin();
   return (
     <>
       <Layout title="ブランドの一覧ページ">

@@ -12,15 +12,13 @@ import {
 } from "recoil";
 
 import { NextPage } from "next";
-import { useCurrentUser } from "../hooks/useCurrentUser";
 import Image from "next/image";
 import Hero from "../components/Hero";
 const ABOUT: NextPage = () => {
-  const { isAuthChecking, currentUser } = useCurrentUser();
   return (
     <>
-      <Layout title="ABOUT">
-        <Hero />
+      <Layout title="About This Site">
+        <h2>このサイトについて</h2>
       </Layout>
     </>
   );
