@@ -75,9 +75,14 @@ const ProductPage: React.FC<PRODUCT> = ({
                 </a>
               </div>
               <div className="">
-                <p>{description}</p>
-                <p>価格：{price}円</p>
+                <p className="mt-10">{description}</p>
+                <p className="mt-10">価格：{price}円</p>
                 <p>**0円の場合、価格データがまだありません。</p>
+                <p className="mt-5">
+                  <Link href={`${image_src}`}>
+                    <a>出典</a>
+                  </Link>
+                </p>
               </div>
             </div>
           </div>
