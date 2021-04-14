@@ -57,7 +57,6 @@ const Nickname: React.FC<Props> = ({currentUser}) => {
             },
           }
         );
-        console.log(res);
         setNickname(res.data["nickname"]);
         setTwitterAccount(res.data["twitter_account"]);
       };
