@@ -26,9 +26,7 @@ const Category: NextPage<STATICPROPS> = ({ categories }) => {
                   Category List
                 </h1>
                 <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
-                  Street art subway tile salvia four dollar toast bitters
-                  selfies quinoa yuccie synth meditation iPhone intelligentsia
-                  prism tofu. Viral gochujang bitters dreamcatcher.
+                  カテゴリ一覧です。それぞれのカテゴリに分類されるブランドの商品を閲覧することができます。
                 </p>
               </div>
             </div>
