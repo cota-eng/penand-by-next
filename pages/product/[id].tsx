@@ -120,7 +120,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const product = await getProductData(context.params.id as string);
   return {
     props: { ...product },
-    revalidate: 10,
+    // revalidate: 10,
   };
 };
 
