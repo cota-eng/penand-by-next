@@ -5,11 +5,7 @@ import AvatarMenu from "./Authentication/AvatarMenu";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import { useSetRecoilState } from "recoil";
 import { loginModalState } from "../states/loginModalState";
-import { CURRENTUSER } from "../types/currentUser";
-interface Props {
-  currentUser: CURRENTUSER;
-}
-const NavBar: React.FC = () => {
+const NavBar = () => {
   const [avatar, setAvatar] = useState<string | null>(null);
   const setIsOpen = useSetRecoilState(loginModalState);
   const { isAuthChecking, currentUser } = useCurrentUser();
@@ -22,9 +18,9 @@ const NavBar: React.FC = () => {
   }, []);
   return (
     <header className="z-50 fixed bg-gray-400 w-screen text-gray-600 body-font">
-      <div className="container mx-auto p-5 flex flex-wrap space  justify-items-center md:flex-row items-center">
+      <div className="container mx-auto p-5 flex flex-wrap  md:flex-row items-center">
         <Link href="/">
-          <a className=" flex flex-row   title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+          <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
             <svg
               className="w-6 h-6"
               fill="none"
@@ -39,18 +35,26 @@ const NavBar: React.FC = () => {
                 d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
               />
             </svg>
-            <span className="ml-3 text-white text-xl">Bista</span>
+            <span className="ml-3 text-white text-xl">Dista</span>
           </a>
         </Link>
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-          {/* <Link href="/brand">
+          <Link href="/product">
+            <a
+              data-testid="context-nav"
+              className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+            >
+              Pen
+            </a>
+          </Link>
+          <Link href="/brand">
             <a
               data-testid="context-nav"
               className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
             >
               brand
             </a>
-          </Link> */}
+          </Link>
           <Link href="/category">
             <a
               data-testid="context-nav"

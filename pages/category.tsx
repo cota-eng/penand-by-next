@@ -1,9 +1,9 @@
-import Layout from "../../components/Layout";
+import Layout from "../components/Layout";
 import Link from "next/link";
 import { GetStaticProps } from "next";
-import { getAllCategories } from "../../lib/fetchCategory";
-import { CATEGORY } from "../../types/category";
-import CategoryDetail from "../../components/CategoryDetail";
+import { getAllCategories } from "../lib/fetchCategory";
+import { CATEGORY } from "../types/category";
+import CategoryDetail from "../components/CategoryDetail";
 import { NextPage } from "next";
 
 interface STATICPROPS {
