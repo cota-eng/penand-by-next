@@ -1,6 +1,4 @@
 import React from "react";
-import { brands } from "../constants/brands";
-import { categories } from "../constants/categories";
 
 const SideBar: React.FC = () => {
   return (
@@ -11,16 +9,21 @@ const SideBar: React.FC = () => {
       <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
         カテゴリ
       </h2>
-      {categories &&
-        categories.map((category) => (
-          <p key={category.slug}>{category.name}</p>
-        ))}
-
+      <p>シャーペン</p>
+      <p>ボールペン</p>
+      <p>万年筆</p>
+      <p>消しゴム</p>
+      <p>シャーペン</p>
+      <p>シャーペン</p>
       <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
         ブランド
       </h2>
-      {brands && brands.map((brand) => <p key={brand.slug}>{brand.name}</p>)}
-
+      <p>ブランド</p>
+      <p>ブランド</p>
+      <p>ブランド</p>
+      <p>ブランド</p>
+      <p>ブランド</p>
+      <p>ブランド</p>
       <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
         タグ
       </h2>

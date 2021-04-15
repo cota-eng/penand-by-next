@@ -11,15 +11,16 @@ const googleLogin = async (accesstoken: string) => {
       access_token: accesstoken,
     }
   );
-  return res;
-  //   if (res.status === 200) {
-  //     localStorage.setItem("access_token", JSON.stringify(res.data.access_token));
-  //     localStorage.setItem(
-  //       "refresh_token",
-  //       JSON.stringify(res.data.refresh_token)
-  //     );
-  //   } else {
-  //   }
+  return res
+//   if (res.status === 200) {
+//     localStorage.setItem("access_token", JSON.stringify(res.data.access_token));
+//     localStorage.setItem(
+//       "refresh_token",
+//       JSON.stringify(res.data.refresh_token)
+//     );
+//   } else {
+//     console.log("not 200 OK");
+//   }
 };
 
 export default googleLogin;

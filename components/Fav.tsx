@@ -30,6 +30,7 @@ const Fav: React.FC<FAVPROPS> = ({ id }) => {
       `${process.env.NEXT_PUBLIC_API_URL}/api/fav/${id}/fav/`,
       requestOptions
     );
+    console.log(res);
     // TODO: error handling
     // TODO: forbit to keep pushing
     // 200 =>
@@ -53,6 +54,7 @@ const Fav: React.FC<FAVPROPS> = ({ id }) => {
             },
           })
           .then((res) => setIsFav(res.data["result"]));
+        console.log("first fetch fav");
       };
       fetchFav();
     }
