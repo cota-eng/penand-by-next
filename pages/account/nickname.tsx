@@ -6,28 +6,10 @@ import { useRequireLogin } from "../../hooks/useRequireLogin";
 const nickname: NextPage = () => {
   //   useRequireLogin();
   const { isAuthChecking, currentUser } = useCurrentUser();
-
-  if (!isAuthChecking) {
-    return (
-      <Layout title="Now Login...">
-        <div className="flex justify-center h-full">
-          <div className="m-auto">
-            <ClipLoader size={100} />
-          </div>
-        </div>
-      </Layout>
-    );
+  if (isAuthChecking) {
+    return <Layout title="Now Login...">LOGIN</Layout>;
   }
-  return (
-    <Layout title="setting">
-      <div className="flex justify-center h-full">
-        <div className="m-auto">
-          <Nickname currentUser={currentUser} />
-        </div>
-      </div>
-    </Layout>
-  );
-
+  return <Layout title="setting"><Nickname/></Layout>;
 };
 
 export default nickname;
