@@ -11,13 +11,21 @@ const nickname: NextPage = () => {
   if (!isAuthChecking) {
     return (
       <Layout title="Now Login...">
-        <ClipLoader />
+        <div className="flex justify-center h-full">
+          <div className="m-auto">
+            <ClipLoader size={100} />
+          </div>
+        </div>
       </Layout>
     );
   }
   return (
     <Layout title="setting">
-      <Nickname currentUser={currentUser} />
+      <div className="flex justify-center h-full">
+        <div className="m-auto">
+          <Nickname currentUser={currentUser} />
+        </div>
+      </div>
     </Layout>
   );
 };
