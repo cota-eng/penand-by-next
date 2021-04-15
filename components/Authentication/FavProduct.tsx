@@ -2,13 +2,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { useRequireLogin } from "../../hooks/useRequireLogin";
-import { CURRENTUSER } from "../../types/currentUser";
 import { FAVPRODUCT } from "../../types/fav";
-interface Props {
-  currentUser: CURRENTUSER;
-}
-const FavProduct: React.FC<Props> = ({ currentUser }) => {
+
+const FavProduct: React.FC = () => {
   // ログイン必須、CSR、1つ1つをProductCompへ代入
+  const { isAuthChecking, currentUser } = useCurrentUser();
   const [favProducts, setFavProducts] = useState<FAVPRODUCT[] | null>();
   useRequireLogin();
   useEffect(() => {

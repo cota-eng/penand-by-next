@@ -8,7 +8,7 @@ export interface PRODUCT {
   name: string;
   description: string;
   category: CATEGORY;
-  price: number;
+  price_yen: number;
   brand: BRAND;
   tag: TAG[] | null;
   image: string;

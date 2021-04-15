@@ -6,15 +6,13 @@ import Footer from "./Footer";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import dynamic from "next/dynamic";
-import { CURRENTUSER } from "../types/currentUser";
 const LoginModal = dynamic(() => import("./LoginModal"), {
   ssr: false,
 });
-interface Props {
+interface TITLE {
   title: string;
-//   currentUser:CURRENTUSER|null|undefined
 }
-const Layout: React.FC<Props> = ({
+const Layout: React.FC<TITLE> = ({
   children,
   title = "penandへようこそ｜文房具専門のレビューサイト",
 }) => {
@@ -34,7 +32,9 @@ const Layout: React.FC<Props> = ({
       <div className="flex min-h-screen">
         {isOpen && <LoginModal />}
         <SideBar />
-        <main className=" lg:w-4/5 xl:w-4/5  bg-white  w-full">{children}</main>
+        <main className="sm:px-10 px-5  lg:w-4/5 xl:w-4/5  bg-white  w-full">
+          {children}
+        </main>
       </div>
       <Footer />
     </>

@@ -1,17 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { PROFILE } from "../../types/profile";
 import ClipLoader from "react-spinners/ClipLoader";
-import { CURRENTUSER } from "../../types/currentUser";
 type Inputs = {
   nickname: string;
   twitter_account: string;
 };
-interface Props {
-  currentUser: CURRENTUSER;
-}
-const Nickname: React.FC<Props> = ({currentUser}) => {
+
+const Nickname: React.FC = () => {
+  const { isAuthChecking, currentUser } = useCurrentUser();
   const [nickname, setNickname] = useState<string | null | undefined>("");
   const [twitterAccount, setTwitterAccount] = useState<
     string | null | undefined
@@ -57,7 +56,6 @@ const Nickname: React.FC<Props> = ({currentUser}) => {
             },
           }
         );
-        console.log(res);
         setNickname(res.data["nickname"]);
         setTwitterAccount(res.data["twitter_account"]);
       };

@@ -1,6 +1,5 @@
 import fetch from "node-fetch";
 import { PRODUCT } from "../types/product";
-import { RESULTS } from "../types/results";
 
 export const getAllProducts = async () => {
   const res = await fetch(
@@ -43,21 +42,7 @@ export const getCategoryBrandId = async () => {
   //   });
 };
 
-export const getCategoryBrandFilteredProductData = async (
-  category_slug: string,
-  brand_slug: string,
-  id: string
-) => {
-  const res = await fetch(
-    new URL(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/category/${category_slug}/brand/${brand_slug}/?page=${id}`
-    )
-  );
-  const products = await res.json();
-  return products;
-};
-
-export const getCategoryBrandFilteredProductPageData = async (
+export const getCategoryBrandFilterdProductData = async (
   category_slug: string,
   brand_slug: string
 ) => {
@@ -66,24 +51,6 @@ export const getCategoryBrandFilteredProductPageData = async (
       `${process.env.NEXT_PUBLIC_API_URL}/api/category/${category_slug}/brand/${brand_slug}/`
     )
   );
-  const data: RESULTS = await res.json();
-  // 1~page数の配列
-  const range = (start: number, end: number) =>
-    [...Array(end - start + 1)].map((_, i) => start + i);
-  const params = range(1, Math.ceil(data.count / 12)).map((id) => ({
-    category_slug: category_slug,
-    brand_slug: brand_slug,
-    id:id.toString(),
-  }));
-  return  {
-    params,
-  };
-  //   const paths = range(1, Math.ceil(data.count / 12)).map((id) => ({
-  //     params: {
-  //       category_slug: category_slug,
-  //       brand_slug: brand_slug,
-  //       id: id.toString(),
-  //     },
-  //   }));
-//   return paths;
+  const products = await res.json();
+  return products;
 };
