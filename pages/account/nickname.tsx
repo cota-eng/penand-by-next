@@ -10,7 +10,7 @@ const nickname: NextPage = () => {
   const { isAuthChecking, currentUser } = useCurrentUser();
   if (!isAuthChecking) {
     return (
-      <Layout title="Now Login...">
+      <Layout title="Now Login">
         <ClipLoader />
       </Layout>
     );
