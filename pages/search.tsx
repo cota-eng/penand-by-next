@@ -9,6 +9,10 @@ import { RESULTS } from "../types/results";
 import PenResult from "../components/ProductResult";
 import { PRODUCT } from "../types/product";
 import Product from "../components/Product";
+// async function fetcher(url: string): Promise<boolean | null | PEN[]> {
+//   const response = await fetch(url);
+//   return response.json();
+// }
 import axios from "axios";
 
 import Autosuggest from "react-autosuggest";
@@ -16,16 +20,6 @@ import { suggest } from "../constants/suggest";
 import { SUGGESTINPUT } from "../types/suggestInput";
 import Link from "next/link";
 
-const getSuggestions = (value: string): SUGGESTINPUT[] => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-
-  return inputLength === 0
-    ? []
-    : suggest.filter(
-        (product) => product.name.slice(0, inputLength) === inputValue
-      );
-};
 const Search: React.FC = () => {
   const [value, setValue] = useState("");
   const router = useRouter();
@@ -73,22 +67,39 @@ const Search: React.FC = () => {
     onChange,
   };
 
+  //   const { data: RESULTS, error, mutate } = useSWR(
+  //   const { data, error, mutate } = useSWR<PEN[]>(, fetcher
+  //   );
   //   useEffect(() => {
-  //     if (isSearch) {
-  //       try {
-  //         setProducts(null);
-  //         axios
-  //           .get(`${process.env.NEXT_PUBLIC_API_URL}/api/search/?name=${name}`)
-  //           .then((res) => setProducts(res.data));
-  //       } catch (e) {
-  //         () => setIsSearch(false);
-  //       } finally {
-  //         () => setIsSearch(false);
-  //       }
-  //     }
-  //   }, [isSearch]);
-
+  //     mutate();
+  //   }, []);
+  const router = useRouter();
+  const [products, setProducts] = useState<PRODUCT[]>(null);
+  const [isSearch, setIsSearch] = useState(false);
+  useEffect(() => {
+    if (isSearch) {
+      try {
+        setProducts(null);
+        axios
+          .get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/search/?name=${
+              name ? name : ""
+            }&tag=${tag ? tag : ""}&category=${
+              category ? category : ""
+            }&brand=${brand ? brand : ""}&lte=${maxPrice ? maxPrice : ""}&gte=${
+              minPrice ? minPrice : ""
+            }`
+          )
+          .then((res) => setProducts(res.data));
+      } catch (e) {
+        console.log("error");
+      } finally {
+        () => setIsSearch(false);
+      }
+    }
+  }, [isSearch]);
   if (router.isFallback) {
+    //   if (router.isFallback || !pens) {
     return <div>loading...</div>;
   }
   //   if (error) return <div>failed to load</div>;
@@ -143,8 +154,11 @@ const Search: React.FC = () => {
                 </svg>
               </div>
 
+
               <div className="py-3 text-sm">
-                {/* <TagSelect setTag={setTag} /> */}
+                <CategorySelect setCategory={setCategory} />
+                <TagSelect setTag={setTag} />
+                <BrandSelect setBrand={setBrand} />
               </div>
             </div>
           </div>
@@ -217,6 +231,7 @@ const Search: React.FC = () => {
           background-color: #ddd;
         }
       `}</style>
+
     </Layout>
   );
 };

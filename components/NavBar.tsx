@@ -5,11 +5,7 @@ import AvatarMenu from "./Authentication/AvatarMenu";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import { useSetRecoilState } from "recoil";
 import { loginModalState } from "../states/loginModalState";
-import { CURRENTUSER } from "../types/currentUser";
-interface Props {
-  currentUser: CURRENTUSER;
-}
-const NavBar: React.FC = () => {
+const NavBar = () => {
   const [avatar, setAvatar] = useState<string | null>(null);
   const setIsOpen = useSetRecoilState(loginModalState);
   const { isAuthChecking, currentUser } = useCurrentUser();
@@ -20,6 +16,7 @@ const NavBar: React.FC = () => {
       setAvatar(null);
     }
   }, []);
+
     return (
       <>
         <header className="z-50 fixed bg-gray-300 w-screen text-gray-600 body-font">
@@ -55,6 +52,7 @@ const NavBar: React.FC = () => {
                 </a>
               </Link>
             </nav>
+
 
             {currentUser && <AvatarMenu />}
             {!currentUser && (
