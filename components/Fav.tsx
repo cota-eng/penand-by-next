@@ -4,17 +4,14 @@ import { useState, useEffect } from "react";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import { useSetRecoilState } from "recoil";
 import { loginModalState } from "../states/loginModalState";
-
 interface FAVPROPS {
   id: string;
 }
-
 const Fav: React.FC<FAVPROPS> = ({ id }) => {
   const [isFav, setIsFav] = useState(false);
   //   const [isModalOpen, setisModalOpen] = useState(false);
   const setIsOpen = useSetRecoilState(loginModalState);
   const { isAuthChecking, currentUser } = useCurrentUser();
-
   const favChange = async () => {
     const requestOptions = {
       method: "POST",
@@ -57,7 +54,6 @@ const Fav: React.FC<FAVPROPS> = ({ id }) => {
       fetchFav();
     }
   }, []);
-
   return (
     <>
       <div>
@@ -85,5 +81,4 @@ const Fav: React.FC<FAVPROPS> = ({ id }) => {
     </>
   );
 };
-
 export default Fav;

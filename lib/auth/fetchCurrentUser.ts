@@ -1,6 +1,5 @@
 import axios from "axios";
 import { CURRENTUSER } from "../../types/currentUser";
-
 export const fetchCurentUser = async () => {
   const res = await axios.get<CURRENTUSER | null | undefined>(
     `${process.env.NEXT_PUBLIC_API_URL}/api/whoami/`,

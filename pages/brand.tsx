@@ -6,13 +6,12 @@ import { BRAND } from "../types/brand";
 import BrandDetail from "../components/BrandDetail";
 import { NextPage } from "next";
 import { useRequireLogin } from "../hooks/useRequireLogin";
-
 interface STATICPROPS {
   brands: BRAND[];
 }
 
 const brand: NextPage<STATICPROPS> = ({ brands }) => {
-  useRequireLogin();
+  //   useRequireLogin();
   return (
     <>
       <Layout title="ブランドの一覧ページ">
@@ -38,9 +37,7 @@ const brand: NextPage<STATICPROPS> = ({ brands }) => {
     </>
   );
 };
-
 export default brand;
-
 export const getStaticProps: GetStaticProps = async () => {
   const brands = await getAllBrands();
   return {

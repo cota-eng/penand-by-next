@@ -9,17 +9,21 @@ import { RESULTS } from "../types/results";
 import PenResult from "../components/ProductResult";
 import { PRODUCT } from "../types/product";
 import Product from "../components/Product";
-// async function fetcher(url: string): Promise<boolean | null | PEN[]> {
-//   const response = await fetch(url);
-//   return response.json();
-// }
 import axios from "axios";
 
 import Autosuggest from "react-autosuggest";
 import { suggest } from "../constants/suggest";
 import { SUGGESTINPUT } from "../types/suggestInput";
 import Link from "next/link";
-
+const getSuggestions = (value: string): SUGGESTINPUT[] => {
+  const inputValue = value.trim().toLowerCase();
+  const inputLength = inputValue.length;
+  return inputLength === 0
+    ? []
+    : suggest.filter(
+        (product) => product.name.slice(0, inputLength) === inputValue
+      );
+};
 const Search: React.FC = () => {
   const [value, setValue] = useState("");
   const router = useRouter();
@@ -28,7 +32,6 @@ const Search: React.FC = () => {
 
   const getSuggestionValue = (suggestion: SUGGESTINPUT): string => {
     const { name } = suggestion;
-
     return name;
   };
 
@@ -50,56 +53,34 @@ const Search: React.FC = () => {
   ) => {
     if (event) setValue(newValue);
   };
-
   const onSuggestionsFetchRequested = ({ value }: { value: string }) => {
     const suggestions: SUGGESTINPUT[] = getSuggestions(value);
     setSuggestions(suggestions);
   };
-
   // Autosuggest will call this function every time you need to clear suggestions.
   const onSuggestionsClearRequested = () => {
     setSuggestions([]);
   };
-
   const inputProps = {
     placeholder: "商品名で検索",
     value,
     onChange,
   };
-
-  //   const { data: RESULTS, error, mutate } = useSWR(
-  //   const { data, error, mutate } = useSWR<PEN[]>(, fetcher
-  //   );
   //   useEffect(() => {
-  //     mutate();
-  //   }, []);
-  const router = useRouter();
-  const [products, setProducts] = useState<PRODUCT[]>(null);
-  const [isSearch, setIsSearch] = useState(false);
-  useEffect(() => {
-    if (isSearch) {
-      try {
-        setProducts(null);
-        axios
-          .get(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/search/?name=${
-              name ? name : ""
-            }&tag=${tag ? tag : ""}&category=${
-              category ? category : ""
-            }&brand=${brand ? brand : ""}&lte=${maxPrice ? maxPrice : ""}&gte=${
-              minPrice ? minPrice : ""
-            }`
-          )
-          .then((res) => setProducts(res.data));
-      } catch (e) {
-        console.log("error");
-      } finally {
-        () => setIsSearch(false);
-      }
-    }
-  }, [isSearch]);
+  //     if (isSearch) {
+  //       try {
+  //         setProducts(null);
+  //         axios
+  //           .get(`${process.env.NEXT_PUBLIC_API_URL}/api/search/?name=${name}`)
+  //           .then((res) => setProducts(res.data));
+  //       } catch (e) {
+  //         () => setIsSearch(false);
+  //       } finally {
+  //         () => setIsSearch(false);
+  //       }
+  //     }
+  //   }, [isSearch]);
   if (router.isFallback) {
-    //   if (router.isFallback || !pens) {
     return <div>loading...</div>;
   }
   //   if (error) return <div>failed to load</div>;
@@ -154,11 +135,8 @@ const Search: React.FC = () => {
                 </svg>
               </div>
 
-
               <div className="py-3 text-sm">
-                <CategorySelect setCategory={setCategory} />
-                <TagSelect setTag={setTag} />
-                <BrandSelect setBrand={setBrand} />
+                {/* <TagSelect setTag={setTag} /> */}
               </div>
             </div>
           </div>
@@ -171,7 +149,6 @@ const Search: React.FC = () => {
         .react-autosuggest__container {
           position: relative;
         }
-
         .react-autosuggest__input {
           width: 200px;
           height: 30px;
@@ -182,25 +159,20 @@ const Search: React.FC = () => {
           border-radius: 4px;
           -webkit-appearance: none;
         }
-
         .react-autosuggest__input--focused {
           outline: none;
         }
-
         .react-autosuggest__input::-ms-clear {
           display: none;
         }
-
         .react-autosuggest__input--open {
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0;
         }
-
         .react-autosuggest__suggestions-container {
           display: none;
           margin: 2rem auto;
         }
-
         .react-autosuggest__suggestions-container--open {
           display: block;
           position: relative;
@@ -215,25 +187,20 @@ const Search: React.FC = () => {
           border-bottom-right-radius: 4px;
           z-index: 2;
         }
-
         .react-autosuggest__suggestions-list {
           margin: 0;
           padding: 0;
           list-style-type: none;
         }
-
         .react-autosuggest__suggestion {
           cursor: pointer;
           padding: 10px 20px;
         }
-
         .react-autosuggest__suggestion--highlighted {
           background-color: #ddd;
         }
       `}</style>
-
     </Layout>
   );
 };
-
 export default Search;

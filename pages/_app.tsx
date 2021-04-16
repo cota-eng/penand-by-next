@@ -13,7 +13,6 @@ import {
 import { currentUserState } from "../states/currentUserState";
 import { fetchCurentUser } from "../lib/auth/fetchCurrentUser";
 import { CURRENTUSER } from "../types/currentUser";
-
 function AppInit() {
   const setCurrentUser = useSetRecoilState(currentUserState);
   useEffect(() => {
@@ -28,7 +27,6 @@ function AppInit() {
   }, []);
   return null;
 }
-
 function MyApp({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
     // if (router.pathname === "/login") return;
@@ -41,5 +39,4 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     </RecoilRoot>
   );
 }
-
 export default MyApp;

@@ -9,17 +9,14 @@ import Tag from "../../components/Tag";
 import ReviewTop from "../../components/Review/ReviewTop";
 import dynamic from "next/dynamic";
 import Fav from "../../components/Fav";
-
 const MyChart = dynamic(() => import("../../components/Review/ReviewDetail"), {
   ssr: false,
 });
-
 const CategoryColor: { [key: string]: string } = {
   "1": "red",
   "2": "blue",
   "3": "green",
 };
-
 const ProductPage: React.FC<PRODUCT> = ({
   id,
   name,
@@ -27,7 +24,7 @@ const ProductPage: React.FC<PRODUCT> = ({
   image_src,
   description,
   category,
-  price_yen,
+  price,
   brand,
   tag,
   created_at,
@@ -37,11 +34,7 @@ const ProductPage: React.FC<PRODUCT> = ({
   const color = CategoryColor[`${category.id}`];
   const router = useRouter();
   if (router.isFallback || !name) {
-    return (
-      <div>
-        loading...
-      </div>
-    );
+    return <div>loading...</div>;
   }
   // pen.tsxからのpropsを分解しているから、nameがないときはpenがないと同じはず
   return (
@@ -57,7 +50,6 @@ const ProductPage: React.FC<PRODUCT> = ({
                          hover:opacity-100`}
             >
               カテゴリ：{category.name}
-              {category.id}
             </span>
             <Fav id={id} />
             {tag && tag.map((t) => <Tag key={t.id} {...t} />)}
@@ -92,10 +84,7 @@ const ProductPage: React.FC<PRODUCT> = ({
             </div>
           </div>
         </section>
-        <p>{description}</p>
-        <p>{price_yen}円</p>
-
-        <Link href="/pen">
+        {/* <Link href="/pen">
           <div className="flex cursor-pointer mt-12">
             <svg
               className="w-6 h-6"
@@ -113,8 +102,8 @@ const ProductPage: React.FC<PRODUCT> = ({
             </svg>
             <a className="text-lg">Home</a>
           </div>
-        </Link>
-        <ReviewTop />
+        </Link> */}
+        {/* <ReviewTop /> */}
         {review && review.map((rev) => <MyChart key={rev.id} {...rev} />)}
         <hr />
         <ReviewForm id={id} />
@@ -122,7 +111,6 @@ const ProductPage: React.FC<PRODUCT> = ({
     </div>
   );
 };
-
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllProductIds();
   // TODO:このエンドポイントをReview含まないものにする（クエリ少ない方で負担軽減）
@@ -132,13 +120,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
     // fallback false => access unexist id => return 404
   };
 };
-
 export const getStaticProps: GetStaticProps = async (context) => {
   const product = await getProductData(context.params.id as string);
   return {
     props: { ...product },
-    revalidate: 10,
+    // revalidate: 10,
   };
 };
-
 export default ProductPage;

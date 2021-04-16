@@ -3,10 +3,10 @@ import Nickname from "../../components/Authentication/Nickname";
 import Layout from "../../components/Layout";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { useRequireLogin } from "../../hooks/useRequireLogin";
+import ClipLoader from "react-spinners/ClipLoader";
 const nickname: NextPage = () => {
   //   useRequireLogin();
   const { isAuthChecking, currentUser } = useCurrentUser();
-
   if (!isAuthChecking) {
     return (
       <Layout title="Now Login...">
@@ -27,7 +27,5 @@ const nickname: NextPage = () => {
       </div>
     </Layout>
   );
-
 };
-
 export default nickname;

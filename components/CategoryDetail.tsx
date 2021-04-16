@@ -1,7 +1,9 @@
+import { Link } from "@material-ui/core";
 import React from "react";
 import { CATEGORY } from "../types/category";
+import { brands } from "../constants/brands";
 
-const CategoryDetail: React.FC<CATEGORY> = ({ name }) => {
+const CategoryDetail: React.FC<CATEGORY> = ({ name, slug }) => {
   return (
     <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
       {/* <div className="rounded-lg h-64 overflow-hidden">
@@ -15,12 +17,12 @@ const CategoryDetail: React.FC<CATEGORY> = ({ name }) => {
         {name}
       </h2>
       <p className="text-base leading-relaxed mt-2">
-        Swag shoivdigoitch literally meditation subway tile tumblr cold-pressed.
-        Gastropub street art beard dreamcatcher neutra, ethical XOXO
-        lumbersexual.
+        カテゴリの紹介文。 カテゴリの紹介文。 カテゴリの紹介文。
+        カテゴリの紹介文。 カテゴリの紹介文。 カテゴリの紹介文。
       </p>
+      {/* <Link href={`/category/${slug}/brand`}> */}
       <a className="text-indigo-500 inline-flex items-center mt-3">
-        Learn More
+        {name}のブランド別に見る
         <svg
           fill="none"
           stroke="currentColor"
@@ -33,6 +35,15 @@ const CategoryDetail: React.FC<CATEGORY> = ({ name }) => {
           <path d="M5 12h14M12 5l7 7-7 7"></path>
         </svg>
       </a>
+      {/* </Link> */}
+      {brands &&
+        brands.map((brand) => (
+          <>
+            <Link href={`/category/${slug}/brand/${brand.slug}/page/1`}>
+              <p key={brand.slug}>{brand.name}</p>
+            </Link>
+          </>
+        ))}
     </div>
   );
 };
