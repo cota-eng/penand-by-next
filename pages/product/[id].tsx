@@ -24,7 +24,7 @@ const ProductPage: React.FC<PRODUCT> = ({
   image_src,
   description,
   category,
-  price_yen,
+  price,
   brand,
   tag,
   created_at,
@@ -86,7 +86,7 @@ const ProductPage: React.FC<PRODUCT> = ({
           </div>
         </section>
         <p>{description}</p>
-        <p>{price_yen}円</p>
+        <p>{price}円</p>
         <Link href="/pen">
           <div className="flex cursor-pointer mt-12">
             <svg
