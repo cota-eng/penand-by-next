@@ -40,17 +40,16 @@ const ProductPage: React.FC<PRODUCT> = ({
   return (
     <div>
       <Layout title={`${name}の詳細、レビューページ`}>
-        <section className="text-gray-600 body-font">
+        <section className="text-gray-600 body-font w-5/6 mx-auto">
           <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col w-3/4">
             <span
               className={`inline-block rounded-full text-white 
-                            bg-${color}-400 hover:bg-blue-500 duration-300 
+                            bg-${color}-400 hover:bg-${color}-500 duration-300 
                         text-xs font-bold 
                         mr-1 md:mr-2 mb-2 px-2 md:px-4 py-1 
                          hover:opacity-100`}
             >
               カテゴリ：{category.name}
-              {category.id}
             </span>
             <Fav id={id} />
             {tag && tag.map((t) => <Tag key={t.id} {...t} />)}
@@ -85,31 +84,12 @@ const ProductPage: React.FC<PRODUCT> = ({
             </div>
           </div>
         </section>
-        <p>{description}</p>
-        <p>{price}円</p>
-        <Link href="/pen">
-          <div className="flex cursor-pointer mt-12">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
-              />
-            </svg>
-            <a className="text-lg">Home</a>
-          </div>
-        </Link>
-        <ReviewTop />
-        {review && review.map((rev) => <MyChart key={rev.id} {...rev} />)}
-        <hr />
-        <ReviewForm id={id} />
+        <section className="mx-auto w-4/5">
+          <ReviewTop />
+          {review && review.map((rev) => <MyChart key={rev.id} {...rev} />)}
+          <hr />
+          <ReviewForm id={id} />
+        </section>
       </Layout>
     </div>
   );
