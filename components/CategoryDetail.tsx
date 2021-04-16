@@ -19,6 +19,7 @@ const CategoryDetail: React.FC<CATEGORY> = ({ name, slug }) => {
       <p className="text-base leading-relaxed mt-2">
         カテゴリの紹介文。 カテゴリの紹介文。 カテゴリの紹介文。
         カテゴリの紹介文。 カテゴリの紹介文。 カテゴリの紹介文。
+        カテゴリの紹介文。 カテゴリの紹介文。 カテゴリの紹介文。
       </p>
       {/* <Link href={`/category/${slug}/brand`}> */}
       <a className="text-indigo-500 inline-flex items-center mt-3">
