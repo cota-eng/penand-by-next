@@ -12,6 +12,7 @@ export const fetchCurentUser = async () => {
     }
   );
   if (res.status === 200) {
+    console.log(res.status);
     return res.data[0];
   } else {
     return null;

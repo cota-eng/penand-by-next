@@ -30,6 +30,7 @@ function AppInit() {
 function MyApp({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
     // if (router.pathname === "/login") return;
+    console.log("common func");
   }, [router.pathname]);
   return (
     <RecoilRoot>

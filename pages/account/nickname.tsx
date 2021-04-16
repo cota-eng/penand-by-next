@@ -27,5 +27,6 @@ const nickname: NextPage = () => {
       </div>
     </Layout>
   );
+
 };
 export default nickname;
