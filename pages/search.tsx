@@ -9,71 +9,79 @@ import { RESULTS } from "../types/results";
 import PenResult from "../components/ProductResult";
 import { PRODUCT } from "../types/product";
 import Product from "../components/Product";
-// async function fetcher(url: string): Promise<boolean | null | PEN[]> {
-//   const response = await fetch(url);
-//   return response.json();
-// }
 import axios from "axios";
-const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
-const CategorySelect = dynamic(() => import("../components/Search/Category"), {
-  ssr: false,
-});
-const TagSelect = dynamic(() => import("../components/Search/Tag"), {
-  ssr: false,
-});
-const BrandSelect = dynamic(() => import("../components/Search/Brand"), {
-  ssr: false,
-});
-
+import Autosuggest from "react-autosuggest";
+import { suggest } from "../constants/suggest";
+import { SUGGESTINPUT } from "../types/suggestInput";
+import Link from "next/link";
+const getSuggestions = (value: string): SUGGESTINPUT[] => {
+  const inputValue = value.trim().toLowerCase();
+  const inputLength = inputValue.length;
+  return inputLength === 0
+    ? []
+    : suggest.filter(
+        (product) => product.name.slice(0, inputLength) === inputValue
+      );
+};
 const Search: React.FC = () => {
-  const [name, setName] = useState<string | undefined>(null);
-  const [category, setCategory] = useState<string | undefined>(null);
-  const [tag, setTag] = useState<string | undefined>(null);
-  const [brand, setBrand] = useState<string | null | undefined>(null);
-  const [minPrice, setMinPrice] = useState<string | undefined>(null);
-  const [maxPrice, setMaxPrice] = useState<string | undefined>(null);
-  //   const resetKeyword = () => {
-  //     setTag(null);
-  //     setCategory(null);
-  //     setName("");
-  //     setMinPrice("0");
-  //     setMaxPrice("100000");
-  //   };
-
-  //   const { data: RESULTS, error, mutate } = useSWR(
-  //   const { data, error, mutate } = useSWR<PEN[]>(, fetcher
-  //   );
-  //   useEffect(() => {
-  //     mutate();
-  //   }, []);
+  const [value, setValue] = useState("");
   const router = useRouter();
-  const [products, setProducts] = useState<PRODUCT[]>(null);
   const [isSearch, setIsSearch] = useState(false);
-  useEffect(() => {
-    if (isSearch) {
-      try {
-        setProducts(null);
-        axios
-          .get(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/search/?name=${
-              name ? name : ""
-            }&tag=${tag ? tag : ""}&category=${
-              category ? category : ""
-            }&brand=${brand ? brand : ""}&lte=${maxPrice ? maxPrice : ""}&gte=${
-              minPrice ? minPrice : ""
-            }`
-          )
-          .then((res) => setProducts(res.data));
-      } catch (e) {
-        console.log("error");
-      } finally {
-        () => setIsSearch(false);
-      }
-    }
-  }, [isSearch]);
+  const [suggestions, setSuggestions] = useState<SUGGESTINPUT[]>([]);
+
+  const getSuggestionValue = (suggestion: SUGGESTINPUT): string => {
+    const { name } = suggestion;
+    return name;
+  };
+
+  const renderSuggestion = (suggestion: SUGGESTINPUT) => {
+    return (
+      <>
+        <div className="text-sm underline to-blue-200 text-left  mt-1">
+          <Link href={`product/${suggestion.pk}`}>
+            <a target="_blank">{suggestion.name}</a>
+          </Link>
+        </div>
+      </>
+    );
+  };
+
+  const onChange = (
+    event: React.BaseSyntheticEvent,
+    { newValue }: { newValue: string }
+  ) => {
+    if (event) setValue(newValue);
+  };
+  const onSuggestionsFetchRequested = ({ value }: { value: string }) => {
+    const suggestions: SUGGESTINPUT[] = getSuggestions(value);
+    setSuggestions(suggestions);
+  };
+  // Autosuggest will call this function every time you need to clear suggestions.
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
+  };
+  const inputProps = {
+    placeholder: "商品名で検索",
+    value,
+    onChange,
+  };
+
+  //   useEffect(() => {
+  //     if (isSearch) {
+  //       try {
+  //         setProducts(null);
+  //         axios
+  //           .get(`${process.env.NEXT_PUBLIC_API_URL}/api/search/?name=${name}`)
+  //           .then((res) => setProducts(res.data));
+  //       } catch (e) {
+  //         () => setIsSearch(false);
+  //       } finally {
+  //         () => setIsSearch(false);
+  //       }
+  //     }
+  //   }, [isSearch]);
   if (router.isFallback) {
-    //   if (router.isFallback || !pens) {
     return <div>loading...</div>;
   }
   //   if (error) return <div>failed to load</div>;
@@ -106,10 +114,9 @@ const Search: React.FC = () => {
                   placeholder="Search For Name"
                 />
               </div>
+
               <div className="py-3 text-sm">
-                <CategorySelect setCategory={setCategory} />
-                <TagSelect setTag={setTag} />
-                <BrandSelect setBrand={setBrand} />
+                {/* <TagSelect setTag={setTag} /> */}
               </div>
               <div className="flex items-center justify-center">
                 <div className="inline-flex items-center mt-2 w-1/3 mr-1 w-2/5 border border-gray-700">
@@ -182,8 +189,66 @@ const Search: React.FC = () => {
           </div>
         </section>
       </div>
+      <style jsx>{`
+        input {
+          width: full;
+        }
+        .react-autosuggest__container {
+          position: relative;
+        }
+        .react-autosuggest__input {
+          width: 200px;
+          height: 30px;
+          padding: 10px 20px;
+          font-weight: 300;
+          font-size: 16px;
+          border: 1px solid #aaa;
+          border-radius: 4px;
+          -webkit-appearance: none;
+        }
+        .react-autosuggest__input--focused {
+          outline: none;
+        }
+        .react-autosuggest__input::-ms-clear {
+          display: none;
+        }
+        .react-autosuggest__input--open {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+        .react-autosuggest__suggestions-container {
+          display: none;
+          margin: 2rem auto;
+        }
+        .react-autosuggest__suggestions-container--open {
+          display: block;
+          position: relative;
+          top: -1px;
+          width: 280px;
+          border: 1px solid #aaa;
+          background-color: #fff;
+          font-family: "Open Sans", sans-serif;
+          font-weight: 300;
+          font-size: 16px;
+          border-bottom-left-radius: 4px;
+          border-bottom-right-radius: 4px;
+          z-index: 2;
+        }
+        .react-autosuggest__suggestions-list {
+          margin: 0;
+          padding: 0;
+          list-style-type: none;
+        }
+        .react-autosuggest__suggestion {
+          cursor: pointer;
+          padding: 10px 20px;
+        }
+        .react-autosuggest__suggestion--highlighted {
+          background-color: #ddd;
+        }
+      `}</style>
+
     </Layout>
   );
 };
-
 export default Search;
