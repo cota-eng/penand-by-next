@@ -20,9 +20,11 @@ const CategoryColor: { [key: string]: string } = {
 const ProductPage: React.FC<PRODUCT> = ({
   id,
   name,
+  image,
+  image_src,
   description,
   category,
-  price,
+  price_yen,
   brand,
   tag,
   created_at,
@@ -37,30 +39,31 @@ const ProductPage: React.FC<PRODUCT> = ({
   // pen.tsxからのpropsを分解しているから、nameがないときはpenがないと同じはず
   return (
     <div>
-      <Layout title="レビュー}">
+      <Layout title={`${name}の詳細、レビューページ`}>
         <section className="text-gray-600 body-font">
-          <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+          <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col w-3/4">
             <span
               className={`inline-block rounded-full text-white 
                             bg-${color}-400 hover:bg-blue-500 duration-300 
                         text-xs font-bold 
                         mr-1 md:mr-2 mb-2 px-2 md:px-4 py-1 
-                        opacity-90 hover:opacity-100`}
+                         hover:opacity-100`}
             >
               カテゴリ：{category.name}
+              {category.id}
             </span>
             <Fav id={id} />
             {tag && tag.map((t) => <Tag key={t.id} {...t} />)}
             <img
               className="lg:w-6/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
-              alt="hero"
-              src="https://dummyimage.com/720x600"
+              alt={`${name}の画像`}
+              src={image}
             />
-            <div className="text-center  w-full">
+            <div className="text-center  ">
               <h1 className="title-font w-100 sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
                 {name}
               </h1>
-              <p className="mb-8 leading-relaxed">{brand.name}.</p>
+              <p className="mb-8 leading-relaxed">ブランド名：{brand.name}.</p>
               <div className="flex justify-center">
                 <a className="inline-flex text-white bg-gray-400 border-0 py-2 px-6  rounded text-lg">
                   掲載:{created_at}
@@ -69,10 +72,22 @@ const ProductPage: React.FC<PRODUCT> = ({
                   更新:{updated_at}
                 </a>
               </div>
+              <div className="">
+                <p className="mt-10">{description}</p>
+                <p className="mt-10">価格：{price}円</p>
+                <p>**0円の場合、価格データがまだありません。</p>
+                <p className="mt-5">
+                  <Link href={`${image_src}`}>
+                    <a>出典</a>
+                  </Link>
+                </p>
+              </div>
             </div>
           </div>
         </section>
-        {/* <Link href="/pen">
+        <p>{description}</p>
+        <p>{price_yen}円</p>
+        <Link href="/pen">
           <div className="flex cursor-pointer mt-12">
             <svg
               className="w-6 h-6"
@@ -90,8 +105,8 @@ const ProductPage: React.FC<PRODUCT> = ({
             </svg>
             <a className="text-lg">Home</a>
           </div>
-        </Link> */}
-        {/* <ReviewTop /> */}
+        </Link>
+        <ReviewTop />
         {review && review.map((rev) => <MyChart key={rev.id} {...rev} />)}
         <hr />
         <ReviewForm id={id} />
@@ -112,7 +127,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const product = await getProductData(context.params.id as string);
   return {
     props: { ...product },
-    // revalidate: 10,
+    revalidate: 10,
   };
 };
 export default ProductPage;
