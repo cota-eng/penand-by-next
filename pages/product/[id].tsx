@@ -1,14 +1,15 @@
 import Layout from "../../components/Layout";
-import { PRODUCT } from "../../types/product";
+import dynamic from "next/dynamic";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
-import { getAllProductIds, getProductData } from "../../lib/fetchProducts";
 import { useRouter } from "next/router";
 import ReviewForm from "../../components/Review/ReviewForm";
 import Tag from "../../components/Tag";
 import ReviewTop from "../../components/Review/ReviewTop";
-import dynamic from "next/dynamic";
 import Fav from "../../components/Fav";
+import { getAllProductIds, getProductData } from "../../lib/fetchProducts";
+import { PRODUCT } from "../../types/product";
+import RelatedProducts from "../../components/RelatedProducts";
 const MyChart = dynamic(() => import("../../components/Review/ReviewDetail"), {
   ssr: false,
 });
@@ -17,7 +18,10 @@ const CategoryColor: { [key: string]: string } = {
   "2": "blue",
   "3": "green",
 };
-const ProductPage: React.FC<PRODUCT> = ({
+interface ProductIncludeRelatedProps extends PRODUCT {
+  related: PRODUCT[];
+}
+const ProductPage: React.FC<ProductIncludeRelatedProps> = ({
   id,
   name,
   image,
@@ -30,6 +34,7 @@ const ProductPage: React.FC<PRODUCT> = ({
   created_at,
   updated_at,
   review,
+  related,
 }) => {
   const color = CategoryColor[`${category.id}`];
   const router = useRouter();
@@ -47,7 +52,7 @@ const ProductPage: React.FC<PRODUCT> = ({
                             bg-${color}-400 hover:bg-${color}-500 duration-300 
                         text-xs font-bold 
                         mr-1 md:mr-2 mb-2 px-2 md:px-4 py-1 
-                         hover:opacity-100`}
+                        `}
             >
               カテゴリ：{category.name}
             </span>
@@ -58,23 +63,23 @@ const ProductPage: React.FC<PRODUCT> = ({
               alt={`${name}の画像`}
               src={image}
             />
-            <div className="text-center  ">
-              <h1 className="title-font w-100 sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+            <div className="text-center">
+              <h1 className="title-font w-100 sm:text-2xl text-2xl mb-4 font-medium text-gray-900">
                 {name}
               </h1>
               <p className="mb-8 leading-relaxed">ブランド名：{brand.name}.</p>
               <div className="flex justify-center">
-                <a className="inline-flex text-white bg-gray-400 border-0 py-2 px-6  rounded text-lg">
+                {/* <a className="inline-flex text-white bg-gray-400 border-0 py-2 px-6  rounded ">
                   掲載:{created_at}
-                </a>
-                <a className="ml-4 inline-flex text-gray-400 bg-gray-100 border-0 py-2 px-6  rounded text-lg">
+                </a> */}
+                <a className="ml-4 inline-flex text-gray-400 bg-gray-100 border-0  p-2  rounded ">
                   更新:{updated_at}
                 </a>
               </div>
               <div className="">
                 <p className="mt-10">{description}</p>
                 <p className="mt-10">価格：{price}円</p>
-                <p>**0円の場合、価格データがまだありません。</p>
+                <p>0円の場合、価格データがまだありません。</p>
                 <p className="mt-5">
                   <Link href={`${image_src}`}>
                     <a>出典</a>
@@ -83,6 +88,9 @@ const ProductPage: React.FC<PRODUCT> = ({
               </div>
             </div>
           </div>
+        </section>
+        <section className="mx-auto w-full">
+          <RelatedProducts related={related} />
         </section>
         <section className="mx-auto w-4/5">
           <ReviewTop />
@@ -96,7 +104,6 @@ const ProductPage: React.FC<PRODUCT> = ({
 };
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllProductIds();
-  // TODO:このエンドポイントをReview含まないものにする（クエリ少ない方で負担軽減）
   return {
     paths,
     fallback: "blocking",
