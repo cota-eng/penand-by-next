@@ -5,6 +5,9 @@ const ReviewPen: React.FC = () => {
       <div>
         <div className="mx-auto bg-white shadow-lg rounded-lg my-32 px-4 py-4 max-w-sm ">
           <div className="mb-1 tracking-wide px-4 py-4">
+            <h2 className="text-gray-800 font-semibold mt-1 text-center">
+              サンプル
+            </h2>
             <h2 className="text-gray-800 font-semibold mt-1">
               67 Users reviews
             </h2>
@@ -79,10 +82,10 @@ const ReviewPen: React.FC = () => {
           <div className="w-full px-4">
             <h3 className="font-medium tracking-tight">Review this item</h3>
             <p className="text-gray-700 text-sm py-1">
-              give your opinion about this item.
+              この商品についてレニューを共有しよう！
             </p>
-            <button className="bg-gray-100 border border-gray-400 px-3 py-1 rounded  text-gray-800 mt-2">
-              write a review
+            <button className="bg-blue-100 border border-gray-400 px-3 py-1 rounded  text-gray-800 mt-2">
+              レビューする
             </button>
           </div>
         </div>
