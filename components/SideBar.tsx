@@ -9,22 +9,51 @@ const SideBar: React.FC = () => {
       <h2 className="font-semibold mb-2 text-3xl leading-tight sm:leading-normal">
         メニュー
       </h2>
-      <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
-        カテゴリ
-      </h2>
-      {categories &&
-        categories.map((category) => (
-          <p key={category.slug}>{category.name}</p>
-        ))}
+      <div className="">
+        <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
+          カテゴリ
+        </h2>
+        <ul className="">
+          {categories &&
+            categories.map((category) => (
+              <li
+                key={category.slug}
+                className="block p-1 text-gray-darker border-grey-lighter hover:border-purple-light hover:bg-gray-lighter border-r-4"
+              >
+                {category.name}
+              </li>
+            ))}
+        </ul>
 
-      <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
-        ブランド
-      </h2>
-      {brands && brands.map((brand) => <p key={brand.slug}>{brand.name}</p>)}
-      <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
-        タグ
-      </h2>
-      {tags && tags.map((tag) => <p key={tag.slug}>{tag.name}</p>)}
+        <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
+          ブランド
+        </h2>
+        <ul className="">
+          {brands &&
+            brands.map((brand) => (
+              <li
+                key={brand.slug}
+                className="block p-1 text-gray-darker border-grey-lighter hover:border-purple-light hover:bg-gray-lighter border-r-4"
+              >
+                {brand.name}
+              </li>
+            ))}
+        </ul>
+        <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
+          タグ
+        </h2>
+        <ul className="">
+          {tags &&
+            tags.map((tag) => (
+              <li
+                key={tag.slug}
+                className="block p-1 text-gray-darker border-grey-lighter hover:border-purple-light hover:bg-gray-lighter border-r-4"
+              >
+                {tag.name}
+              </li>
+            ))}
+        </ul>
+      </div>
     </aside>
   );
 };
