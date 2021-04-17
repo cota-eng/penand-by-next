@@ -49,7 +49,7 @@ const NavBar: React.FC = () => {
             <Link href="/category">
               <a
                 data-testid="context-nav"
-                className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+                className="text-gray-300 bg-gray-700 px-3 py-2 rounded"
               >
                 category
               </a>
@@ -86,7 +86,6 @@ const NavBar: React.FC = () => {
         </div>
       </header>
     </>
-
   );
 };
 
