@@ -54,6 +54,8 @@ export const getCategoryBrandFilteredProductData = async (
   return products;
 };
 
+const PER_PAGE = 12
+
 export const getCategoryBrandFilteredProductPageData = async (
   category_slug: string,
   brand_slug: string
@@ -67,7 +69,7 @@ export const getCategoryBrandFilteredProductPageData = async (
   // 1~page数の配列
   const range = (start: number, end: number) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
-  const params = range(1, Math.ceil(data.count / 12)).map((id) => ({
+  const params = range(1, Math.ceil(data.count / PER_PAGE)).map((id) => ({
     category_slug: category_slug,
     brand_slug: brand_slug,
     id: id.toString(),
