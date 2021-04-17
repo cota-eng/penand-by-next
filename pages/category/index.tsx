@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import Router, { useRouter } from "next/router";
 import { GetStaticProps, NextPage } from "next";
-import Image from "next/image";
 import Layout from "../../components/Layout";
 import { getAllCategories } from "../../lib/fetchCategory";
 import { CATEGORY } from "../../types/category";

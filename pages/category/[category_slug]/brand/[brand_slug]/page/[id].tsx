@@ -18,7 +18,6 @@ interface STATICPROPS {
   page: string | null;
 }
 
-const PER_PAGE = 5;
 
 const Detail: React.FC<STATICPROPS> = ({
   category,

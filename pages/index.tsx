@@ -2,7 +2,6 @@ import Layout from "../components/Layout";
 // import Top from "../components/Top";
 import { useEffect, useState } from "react";
 import Router, { useRouter } from "next/router";
-import { textState } from "../states/textState";
 import {
   RecoilRoot,
   atom,
