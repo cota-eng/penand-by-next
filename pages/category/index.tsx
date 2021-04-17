@@ -27,7 +27,6 @@ const Category: NextPage<STATICPROPS> = ({ categories }) => {
                   カテゴリ一覧です。それぞれのカテゴリに分類されるブランドの商品を閲覧することができます。
                 </p>
               </div>
-
             </div>
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
               {categories &&
