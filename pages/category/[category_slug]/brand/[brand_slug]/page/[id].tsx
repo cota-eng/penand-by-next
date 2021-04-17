@@ -31,8 +31,9 @@ const Detail: React.FC<STATICPROPS> = ({
     <Layout title="ペンの一覧ページ">
       <div>
         <section className="text-gray-600 body-font overflow-auto h-auto">
+          {/* <h2>{}</h2> */}
           <div className="container px-5 py-24 mx-auto">
-            <div className="flex flex-wrap -m-2">
+            <div className="flex flex-wrap ">
               {products &&
                 products.map((product) => (
                   <Product key={product.id} {...product} />
