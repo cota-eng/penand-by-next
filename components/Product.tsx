@@ -20,7 +20,7 @@ const Product: React.FC<PRODUCT> = ({
               src={image}
             ></img>
             <div className="flex flex-col m-auto">
-              <h3 className="text-gray-900 title-font font-medium mb-1">
+              <h3 className="text-gray-900 title-font font-medium mb-1 text-left">
                 {name}
               </h3>
               <div className="">
