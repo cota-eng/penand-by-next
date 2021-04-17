@@ -36,7 +36,9 @@ const Detail: React.FC<STATICPROPS> = ({
             <div className="flex flex-wrap ">
               {products &&
                 products.map((product) => (
-                  <Product key={product.id} {...product} />
+                  <div className="p-2 lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer ">
+                    <Product key={product.id} {...product} />
+                  </div>
                 ))}
             </div>
             <div className="flex flex-wrap -m-2"></div>
