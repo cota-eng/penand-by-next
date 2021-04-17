@@ -10,7 +10,6 @@ import PenResult from "../components/ProductResult";
 import { PRODUCT } from "../types/product";
 import Product from "../components/Product";
 import axios from "axios";
-
 import Autosuggest from "react-autosuggest";
 import { suggest } from "../constants/suggest";
 import { SUGGESTINPUT } from "../types/suggestInput";
