@@ -7,13 +7,16 @@ interface Props {
 }
 const RelatedProducts: React.FC<Props> = ({ related }) => {
   return (
-    <div>
-      <h2 className="text-center text-gray-800 text-xl">Related</h2>
-      {related &&
-        related.map((product: PRODUCT) => (
-          //   <p key={product.id}>{product.name}</p>
-          <Product {...product} />
-        ))}
+    <div className="bg-green-50 w-full px-5 py-10">
+      <h2 className="text-center text-gray-800 text-xl my-5">Related</h2>
+      <div className="">
+        {related &&
+          related.map((product: PRODUCT) => (
+            <div className="p-2 inline-block lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer ">
+              <Product {...product} />
+            </div>
+          ))}
+      </div>
     </div>
   );
 };
