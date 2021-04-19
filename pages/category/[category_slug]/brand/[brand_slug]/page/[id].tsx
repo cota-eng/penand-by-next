@@ -18,7 +18,6 @@ interface STATICPROPS {
   page: string | null;
 }
 
-
 const Detail: React.FC<STATICPROPS> = ({
   category,
   brand,
