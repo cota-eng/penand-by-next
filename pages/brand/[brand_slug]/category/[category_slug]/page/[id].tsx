@@ -1,13 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-// import { getCategoryBrandFilteredProductData } from "../../../../../../lib/fetchProducts";
 import { PRODUCT } from "../../../../../../types/product";
 import { RESULTS } from "../../../../../../types/results";
 import Layout from "../../../../../../components/Layout";
 import Product from "../../../../../../components/Product";
 import Pagination from "../../../../../../components/Pagination";
-import { categories } from "../../../../../../constants/categories";
-import { brands } from "../../../../../../constants/brands";
-import Category from "../../../../../../components/Search/Category";
 import { slugs } from "../../../../../../constants/slugs";
 import { getBrandCategoryFilteredProductData } from "../../../../../../lib/fetchProducts";
 
