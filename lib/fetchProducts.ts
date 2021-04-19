@@ -54,6 +54,22 @@ export const getCategoryBrandFilteredProductData = async (
   return products;
 };
 
+export const getBrandCategoryFilteredProductData = async (
+  category_slug: string,
+  brand_slug: string,
+  id: string
+) => {
+  const res = await fetch(
+    new URL(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/brand/${brand_slug}/category/${category_slug}/?page=${id}`
+    )
+  );
+  const products = await res.json();
+  return products;
+};
+
+
+
 const PER_PAGE = 12
 
 export const getCategoryBrandFilteredProductPageData = async (
