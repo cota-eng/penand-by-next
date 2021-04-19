@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { PRODUCT } from "../types/product";
+import Image from "next/image";
+
 const Product: React.FC<PRODUCT> = ({
   id,
   name,
@@ -14,11 +16,13 @@ const Product: React.FC<PRODUCT> = ({
       <Link href={`/product/${id}`}>
         {/* <div className="p-2 lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer "> */}
         <div className="h-full  flex items-center bg-blue-50 border-gray-500 text-center hover:border-gray-700  border sm:p-4 p-2 rounded-lg ">
-          <img
-            alt={`${name}の画像`}
+          <Image
             className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mb-1 mr-2"
             src={image}
-          ></img>
+            quality={50}
+            width={500}
+            height={500}
+          />
           <div className="flex flex-col m-auto">
             <h3 className="text-gray-900 title-font font-medium mb-1 text-left">
               {name.length >= 20 && name.substring(0, 20) + "..."}

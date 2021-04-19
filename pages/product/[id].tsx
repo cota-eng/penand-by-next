@@ -9,6 +9,7 @@ import ReviewTop from "../../components/Review/ReviewTop";
 import Fav from "../../components/Fav";
 import { getAllProductIds, getProductData } from "../../lib/fetchProducts";
 import { PRODUCT } from "../../types/product";
+import Image from "next/image";
 import RelatedProducts from "../../components/RelatedProducts";
 const MyChart = dynamic(() => import("../../components/Review/ReviewDetail"), {
   ssr: false,
@@ -58,10 +59,17 @@ const ProductPage: React.FC<ProductIncludeRelatedProps> = ({
             </span>
             <Fav id={id} />
             {tag && tag.map((t) => <Tag key={t.id} {...t} />)}
-            <img
+            {/* <img
               className="lg:w-6/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
               alt={`${name}の画像`}
               src={image}
+            /> */}
+            <Image
+              className="lg:w-6/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
+              src={image}
+              quality={50}
+              width={500}
+              height={500}
             />
             <div className="text-center">
               <h1 className="title-font w-100 sm:text-2xl text-2xl mb-4 font-medium text-gray-900">
