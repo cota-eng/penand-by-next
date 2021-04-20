@@ -20,8 +20,8 @@ const Product: React.FC<PRODUCT> = ({
             className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mb-1 mr-2"
             src={image}
             quality={50}
-            width={500}
-            height={500}
+            width={80}
+            height={80}
           />
           <div className="flex flex-col m-auto">
             <h3 className="text-gray-900 title-font font-medium mb-1 text-left">
