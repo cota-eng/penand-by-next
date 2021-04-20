@@ -68,8 +68,8 @@ const ProductPage: React.FC<ProductIncludeRelatedProps> = ({
               className="lg:w-6/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
               src={image}
               quality={50}
-              width={500}
-              height={500}
+              width={800}
+              height={800}
             />
             <div className="text-center">
               <h1 className="title-font w-100 sm:text-2xl text-2xl mb-4 font-medium text-gray-900">
