@@ -28,7 +28,6 @@ const Search: React.FC = () => {
       params: { name: name, page: 1 },
     })
       .then((res) => {
-        console.log(res);
         setProducts(() => {
           return [...res.data.results];
         });
@@ -62,7 +61,7 @@ const Search: React.FC = () => {
       <div className="w-full max-w-screen-xl  ">
         <div className="flex flex-col mx-auto  px-3 py-10">
           <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900 text-center">
-            SEARCH{page}
+            SEARCH
           </h1>
           <div className="min-w-screen flex items-center justify-center px-5 py-5">
             <div className="w-full mx-auto rounded-xl bg-gray-100 shadow-lg p-10 text-gray-800 relative overflow-hidden resize-x min-w-80 max-w-3xl">
