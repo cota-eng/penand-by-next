@@ -17,23 +17,26 @@ const Search: React.FC = () => {
   const [products, setProducts] = useState<PRODUCT[]>([]);
   const [isFetching, setIsFetching] = useState(false);
   const [page, setPage] = useState(1);
-  const [HasMore, setHasMore] = useState(true);
+  const [HasMore, setHasMore] = useState(false);
   //   const [isFirstSearch, setIsFirstSearch] = useState(true);
   const firstLoad = () => {
     setProducts([]);
+    setPage(() => 1);
     axios({
       method: "GET",
       url: `${process.env.NEXT_PUBLIC_API_URL}/api/search`,
       params: { name: name, page: 1 },
-    }).then((res) => {
-      setProducts(() => {
-        return [...res.data.results];
-      });
-      setPage((prevPageNumber) => prevPageNumber + 1);
-      setHasMore(res.data.results.length > 0);
-      setIsFetching(false);
-    });
-    //   .then(() => setIsFirstSearch(false));
+    })
+      .then((res) => {
+        console.log(res);
+        setProducts(() => {
+          return [...res.data.results];
+        });
+        setPage((prevPageNumber) => prevPageNumber + 1);
+        setHasMore(res.data.next);
+        setIsFetching(false);
+      })
+      .catch(() => setIsFetching(false));
   };
   const loadMore = () => {
     setIsFetching(true);
@@ -46,7 +49,7 @@ const Search: React.FC = () => {
         return [...prevProducts, ...res.data.results];
       });
       setPage((prevPageNumber) => prevPageNumber + 1);
-      setHasMore(res.data.results.length > 0);
+      setHasMore(res.data.next);
       setIsFetching(false);
     });
   };
@@ -59,7 +62,7 @@ const Search: React.FC = () => {
       <div className="w-full max-w-screen-xl  ">
         <div className="flex flex-col mx-auto  px-3 py-10">
           <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900 text-center">
-            SEARCH
+            SEARCH{page}
           </h1>
           <div className="min-w-screen flex items-center justify-center px-5 py-5">
             <div className="w-full mx-auto rounded-xl bg-gray-100 shadow-lg p-10 text-gray-800 relative overflow-hidden resize-x min-w-80 max-w-3xl">
@@ -101,15 +104,26 @@ const Search: React.FC = () => {
               </div>
             </div>
           </div>
-          <div>
-            {products.map((item, index) => {
-              return <div key={index}>{item.name}</div>;
-            })}
-            {isFetching && <p>Fetching items...</p>}
-            {!isFetching && HasMore && (
-              <button onClick={loadMore}>Load more</button>
-            )}
-          </div>
+          <section className="text-gray-600 body-font overflow-auto h-auto">
+            {/* <h2>{}</h2> */}
+            <div className="container px-5 py-24 mx-auto">
+              <div className="flex flex-wrap ">
+                {products &&
+                  products.map((item, index) => (
+                    <div className="p-2 lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer ">
+                      <Product key={index} {...item} />
+                    </div>
+                  ))}
+                {!products && <p>nothing</p>}
+                {isFetching && <p>Fetching items...</p>}
+                {!isFetching && HasMore ? (
+                  <button onClick={loadMore}>Load more</button>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </Layout>
