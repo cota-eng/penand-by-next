@@ -20,7 +20,8 @@ const Search: React.FC = () => {
   const [page, setPage] = useState(1);
   const [HasMore, setHasMore] = useState(false);
   //   const [isFirstSearch, setIsFirstSearch] = useState(true);
-  const firstLoad = () => {
+  const firstLoad = (e: React.FormEvent) => {
+    e.preventDefault();
     setIsFetching(true);
     setProducts([]);
     setPage(() => 1);
@@ -46,12 +47,18 @@ const Search: React.FC = () => {
       url: `${process.env.NEXT_PUBLIC_API_URL}/api/search`,
       params: { name: name, page: page },
     }).then((res) => {
-      setProducts((prevProducts) => {
-        return [...prevProducts, ...res.data.results];
-      });
-      setPage((prevPageNumber) => prevPageNumber + 1);
-      setHasMore(res.data.next);
-      setIsFetching(false);
+      if (res.data.count !== 0) {
+        setProducts((prevProducts) => {
+          return [...prevProducts, ...res.data.results];
+        });
+        setPage((prevPageNumber) => prevPageNumber + 1);
+        setHasMore(res.data.next);
+        setIsFetching(false);
+      } else {
+        setProducts([]);
+        setHasMore(false);
+        setIsFetching(false);
+      }
     });
   };
   const router = useRouter();
@@ -68,32 +75,34 @@ const Search: React.FC = () => {
           <div className="min-w-screen flex items-center justify-center px-5 py-5">
             <div className="w-full mx-auto rounded-xl bg-gray-100 shadow-lg p-10 text-gray-800 relative overflow-hidden resize-x min-w-80 max-w-3xl">
               <div className="relative mt-1">
-                <input
-                  type="text"
-                  className="w-full pl-3 pr-10 py-2 border-2 bg-gray-50 focus:bg-white border-gray-200 rounded-xl hover:border-gray-300 focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="キーワードを入力..."
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <button
-                  className="block w-7 h-7 text-center text-xl leading-0 absolute top-2 right-2 text-gray-400 focus:outline-none hover:text-gray-900 transition-colors"
-                  onClick={firstLoad}
-                >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
+                <form onSubmit={firstLoad}>
+                  <input
+                    type="text"
+                    className="w-full pl-3 pr-10 py-2 border-2 bg-gray-50 focus:bg-white border-gray-200 rounded-xl hover:border-gray-300 focus:outline-none focus:border-blue-500 transition-colors"
+                    placeholder="キーワードを入力..."
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <button
+                    className="block w-7 h-7 text-center text-xl leading-0 absolute top-2 right-2 text-gray-400 focus:outline-none hover:text-gray-900 transition-colors"
+                    type="submit"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </button>
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </button>
+                </form>
               </div>
               <div className="absolute top-0 left-0 w-full h-2 flex">
                 <div className="h-2 bg-blue-500 flex-1"></div>
@@ -109,12 +118,19 @@ const Search: React.FC = () => {
             <div className="container px-5 pb-24 mx-auto">
               <div className="flex flex-wrap ">
                 {products &&
-                  products.map((item, index) => (
-                    <div className="p-2 lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer ">
-                      <Product key={index} {...item} />
+                  products.map((product, index) => (
+                    <div
+                      key={index}
+                      className="p-2 lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer "
+                    >
+                      <Product {...product} />
                     </div>
                   ))}
-                {!products && <p>何も見つかりませんでした。</p>}
+                {products.length === 0 && !isFetching && (
+                  <div className="mx-auto mt-5">
+                    <p>何も見つかりませんでした。</p>
+                  </div>
+                )}
                 {isFetching && (
                   <div className="mx-auto mt-5">
                     <ClipLoader />
