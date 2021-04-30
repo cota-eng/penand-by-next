@@ -19,7 +19,7 @@ const Product: React.FC<PRODUCT> = ({
           <Image
             className="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mb-1 mr-2"
             src={image}
-            quality={50}
+            quality={80}
             width={80}
             height={80}
           />
