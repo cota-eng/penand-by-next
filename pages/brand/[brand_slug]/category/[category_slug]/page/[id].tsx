@@ -30,9 +30,12 @@ const Detail: React.FC<STATICPROPS> = ({
           <div className="container px-5 py-24 mx-auto">
             <div className="flex flex-wrap ">
               {products &&
-                products.map((product) => (
-                  <div className="p-2 lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer ">
-                    <Product key={product.id} {...product} />
+                products.map((product, index) => (
+                  <div
+                    key={index}
+                    className="p-2 lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer "
+                  >
+                    <Product {...product} />
                   </div>
                 ))}
             </div>
