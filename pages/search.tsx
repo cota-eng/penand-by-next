@@ -11,6 +11,7 @@ import { PRODUCT } from "../types/product";
 import Product from "../components/Product";
 import axios from "axios";
 import Link from "next/link";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Search: React.FC = () => {
   const [name, setName] = useState<string | null>("");
@@ -20,6 +21,7 @@ const Search: React.FC = () => {
   const [HasMore, setHasMore] = useState(false);
   //   const [isFirstSearch, setIsFirstSearch] = useState(true);
   const firstLoad = () => {
+    setIsFetching(true);
     setProducts([]);
     setPage(() => 1);
     axios({
@@ -104,8 +106,7 @@ const Search: React.FC = () => {
             </div>
           </div>
           <section className="text-gray-600 body-font overflow-auto h-auto">
-            {/* <h2>{}</h2> */}
-            <div className="container px-5 py-24 mx-auto">
+            <div className="container px-5 pb-24 mx-auto">
               <div className="flex flex-wrap ">
                 {products &&
                   products.map((item, index) => (
@@ -113,10 +114,21 @@ const Search: React.FC = () => {
                       <Product key={index} {...item} />
                     </div>
                   ))}
-                {!products && <p>nothing</p>}
-                {isFetching && <p>Fetching items...</p>}
+                {!products && <p>何も見つかりませんでした。</p>}
+                {isFetching && (
+                  <div className="mx-auto mt-5">
+                    <ClipLoader />
+                  </div>
+                )}
                 {!isFetching && HasMore ? (
-                  <button onClick={loadMore}>Load more</button>
+                  <div className="mx-auto">
+                    <button
+                      onClick={loadMore}
+                      className="focus:outline-none transition mt-5 duration-500 ease-in-out px-20 py-2 rounded-xl border-2 border-solid border-gray-400 bg-white hover:bg-blue-100  "
+                    >
+                      <span>もっと見る</span>
+                    </button>
+                  </div>
                 ) : (
                   ""
                 )}
