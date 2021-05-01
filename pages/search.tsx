@@ -69,7 +69,7 @@ const Search: React.FC = () => {
     <Layout title="条件検索">
       <div className="w-full max-w-screen-xl  ">
         <div className="flex flex-col mx-auto  px-3 py-10">
-          <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900 text-center">
+          <h1 className="title-font sm:text-4xl text-3xl my-3 font-medium text-gray-900 text-center">
             SEARCH
           </h1>
           <div className="min-w-screen flex items-center justify-center px-5 py-5">
@@ -165,7 +165,7 @@ const Search: React.FC = () => {
                     >
                       <span>
                         <svg
-                          className="w-5 h-5 inline "
+                          className="w-5 h-5 inline mt-0.2 "
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
