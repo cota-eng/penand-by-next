@@ -2,6 +2,7 @@ import React from "react";
 import { brands } from "../constants/brands";
 import { categories } from "../constants/categories";
 import { tags } from "../constants/tags";
+import Link from "next/link";
 
 const SideBar: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const SideBar: React.FC = () => {
       </h2>
       <div className="">
         <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
-          カテゴリ
+          <Link href="category/">カテゴリ</Link>
         </h2>
         <ul className="">
           {categories &&
