@@ -18,7 +18,7 @@ const SideBar: React.FC = () => {
             categories.map((category) => (
               <li
                 key={category.slug}
-                className="block p-1 text-gray-darker border-grey-lighter hover:border-purple-light hover:bg-gray-lighter border-r-4"
+                className="block p-1 pl-3 text-gray-darker border-grey-lighter  rounded-sm hover:bg-gray-300 "
               >
                 {category.name}
               </li>
@@ -33,7 +33,7 @@ const SideBar: React.FC = () => {
             brands.map((brand) => (
               <li
                 key={brand.slug}
-                className="block p-1 text-gray-darker border-grey-lighter hover:border-purple-light hover:bg-gray-lighter border-r-4"
+                className="block p-1 pl-3 text-gray-darker border-grey-lighter rounded-sm hover:bg-gray-300  "
               >
                 {brand.name}
               </li>
@@ -47,7 +47,7 @@ const SideBar: React.FC = () => {
             tags.map((tag) => (
               <li
                 key={tag.slug}
-                className="block p-1 text-gray-darker border-grey-lighter hover:border-purple-light hover:bg-gray-lighter border-r-4"
+                className="block p-1 pl-3 text-gray-darker border-grey-lighter rounded-sm hover:bg-gray-300  "
               >
                 {tag.name}
               </li>
