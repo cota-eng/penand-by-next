@@ -140,9 +140,25 @@ const Search: React.FC = () => {
                   <div className="mx-auto">
                     <button
                       onClick={loadMore}
-                      className="focus:outline-none transition mt-5 duration-500 ease-in-out px-20 py-2 rounded-xl border-2 border-solid border-gray-400 bg-white hover:bg-blue-100  "
+                      className="focus:outline-none transition mt-5 duration-500 ease-in-out px-20 py-2 rounded-xl border-2 border-solid border-gray-400 bg-white hover:bg-blue-100 flex  "
                     >
-                      <span>もっと見る</span>
+                      <span>
+                        <svg
+                          className="w-5 h-5 inline "
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                          />
+                        </svg>
+                        もっと見る
+                      </span>
                     </button>
                   </div>
                 ) : (
