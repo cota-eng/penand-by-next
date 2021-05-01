@@ -2,6 +2,7 @@ import React from "react";
 import { brands } from "../constants/brands";
 import { categories } from "../constants/categories";
 import { tags } from "../constants/tags";
+import Link from "next/link";
 
 const SideBar: React.FC = () => {
   return (
@@ -11,14 +12,14 @@ const SideBar: React.FC = () => {
       </h2>
       <div className="">
         <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
-          カテゴリ
+          <Link href="category/">カテゴリ</Link>
         </h2>
         <ul className="">
           {categories &&
             categories.map((category) => (
               <li
                 key={category.slug}
-                className="block p-1 text-gray-darker border-grey-lighter hover:border-purple-light hover:bg-gray-lighter border-r-4"
+                className="block p-1 pl-3 text-gray-darker border-grey-lighter  rounded-sm hover:bg-gray-300 "
               >
                 {category.name}
               </li>
@@ -33,7 +34,7 @@ const SideBar: React.FC = () => {
             brands.map((brand) => (
               <li
                 key={brand.slug}
-                className="block p-1 text-gray-darker border-grey-lighter hover:border-purple-light hover:bg-gray-lighter border-r-4"
+                className="block p-1 pl-3 text-gray-darker border-grey-lighter rounded-sm hover:bg-gray-300  "
               >
                 {brand.name}
               </li>
@@ -47,7 +48,7 @@ const SideBar: React.FC = () => {
             tags.map((tag) => (
               <li
                 key={tag.slug}
-                className="block p-1 text-gray-darker border-grey-lighter hover:border-purple-light hover:bg-gray-lighter border-r-4"
+                className="block p-1 pl-3 text-gray-darker border-grey-lighter rounded-sm hover:bg-gray-300  "
               >
                 {tag.name}
               </li>
