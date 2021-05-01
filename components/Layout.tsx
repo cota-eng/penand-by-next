@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import { useRecoilValue } from "recoil";
 import { loginModalState } from "../states/loginModalState";
 import Footer from "./Footer";
@@ -16,7 +15,7 @@ interface Props {
 }
 const Layout: React.FC<Props> = ({
   children,
-  title = "penandへようこそ｜文房具専門のレビューサイト",
+  title = "Bistaへようこそ｜文房具専門のレビューサイト",
 }) => {
   const isOpen = useRecoilValue(loginModalState);
   return (
@@ -28,7 +27,7 @@ const Layout: React.FC<Props> = ({
       <Head>
         <meta property="og:title" content="My new title" key="title" />
       </Head>
-      <div className="flex justify-center items-center flex-col my-10">
+      <div className="z-10">
         <NavBar />
       </div>
       <div className="flex min-h-screen">
