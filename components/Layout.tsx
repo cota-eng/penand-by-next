@@ -27,12 +27,12 @@ const Layout: React.FC<Props> = ({
       <Head>
         <meta property="og:title" content="My new title" key="title" />
       </Head>
-      <div className="z-10">
-        <NavBar />
-      </div>
-      <div className="flex min-h-screen">
-        {isOpen && <LoginModal />}
-        <SideBar />
+      <NavBar />
+      <div className="flex min-h-screen ">
+        <div className="hidden lg:w-1/5 lg:block ">
+          {/* {isOpen && <LoginModal />} */}
+          <SideBar />
+        </div>
         <main className=" lg:w-4/5 xl:w-4/5  bg-white  w-full">{children}</main>
       </div>
       <Footer />
