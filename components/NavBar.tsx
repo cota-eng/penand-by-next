@@ -16,14 +16,15 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AvatarMenu from "./Authentication/AvatarMenu";
 import { useCurrentUser } from "../hooks/useCurrentUser";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState, useRecoilCallback } from "recoil";
 import { loginModalState } from "../states/loginModalState";
 import { CURRENTUSER } from "../types/currentUser";
+import MyModal from "./modal";
 const solutions = [
   {
     name: "Analytics",
@@ -106,9 +107,12 @@ function classNames(...classes) {
 }
 
 const NavBar: React.FC = () => {
+  const [dis, setDis] = useState(false);
   const [avatar, setAvatar] = useState<string | null>(null);
   const setIsOpen = useSetRecoilState(loginModalState);
+  //   const isOpen = useRecoilValue(loginModalState);
   const { isAuthChecking, currentUser } = useCurrentUser();
+  //   const loginModalOpen = useMemo(() => setIsOpen(true), [isOpen]);
   useEffect(() => {
     if (currentUser) {
       setAvatar(currentUser.avatar);
@@ -121,11 +125,11 @@ const NavBar: React.FC = () => {
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+            <div className="flex justify-between items-center border-b-2 border-gray-100 py-6  md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <Link href="#">
                   <>
-                    <span className="sr-only">Workflow</span>
+                    {/* <span className="sr-only">Workflow</span> */}
                     <img
                       className="h-8 w-auto sm:h-10"
                       src="/logo.png"
@@ -137,6 +141,8 @@ const NavBar: React.FC = () => {
 
               <div className="md:hidden ml-auto ">
                 {currentUser && <AvatarMenu />}
+                {!currentUser && <MyModal />}
+                {/* {currentUser && <AvatarMenu />}
                 {!currentUser && (
                   <button
                     className="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 ml-2 rounded "
@@ -144,7 +150,7 @@ const NavBar: React.FC = () => {
                   >
                     Login
                   </button>
-                )}
+                )} */}
               </div>
               <div className="-mr-2 -my-2 md:hidden">
                 <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none ">
@@ -231,19 +237,6 @@ const NavBar: React.FC = () => {
                     </>
                   )}
                 </Popover>
-
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-500 hover:text-gray-900"
-                >
-                  Docs
-                </a>
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-500 hover:text-gray-900"
-                >
-                  About
-                </a>
 
                 <Popover className="relative">
                   {({ open }) => (
@@ -339,14 +332,41 @@ const NavBar: React.FC = () => {
                     </>
                   )}
                 </Popover>
+                <a
+                  href="#"
+                  className="text-base font-medium text-gray-500 hover:text-gray-900"
+                >
+                  Docs
+                </a>
+                <a
+                  href="#"
+                  className="text-base font-medium text-gray-500 hover:text-gray-900"
+                >
+                  About
+                </a>
               </Popover.Group>
-              <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+              {/* <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                 <a
                   href="#"
                   className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                 >
                   Sign up
                 </a>
+              </div> */}
+              {/* {dis ? (
+                <>
+                  <p>dis</p>
+                  <button onClick={() => setDis(false)}>aa</button>
+                </>
+              ) : (
+                <>
+                  <p>dis</p>
+                  <button onClick={() => setDis(true)}>bb</button>
+                </>
+              )} */}
+              <div className="md:block hidden ml-auto ">
+                {currentUser && <AvatarMenu />}
+                {!currentUser && <MyModal />}
               </div>
             </div>
           </div>
@@ -428,14 +448,18 @@ const NavBar: React.FC = () => {
                       </a>
                     ))}
                   </div>
-                  <div>
-                    <a
-                      href="#"
-                      className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                    >
-                      Sign up
-                    </a>
-                  </div>
+                  {/* <div className="md:hidden ml-auto "> */}
+                  {/* {currentUser && <AvatarMenu />}
+                    {!currentUser && <MyModal />} */}
+                  {/* {!currentUser && (
+                      <button
+                        className="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 ml-auto rounded "
+                        onClick={() => setIsOpen(true)}
+                      >
+                        Login
+                      </button>
+                    )} */}
+                  {/* </div> */}
                 </div>
               </div>
             </Popover.Panel>
