@@ -16,7 +16,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AvatarMenu from "./Authentication/AvatarMenu";
@@ -106,7 +106,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const NavBar: React.FC = () => {
+const NavBar: React.FC = React.memo(() => {
   const [dis, setDis] = useState(false);
   const [avatar, setAvatar] = useState<string | null>(null);
   const setIsOpen = useSetRecoilState(loginModalState);
@@ -468,5 +468,5 @@ const NavBar: React.FC = () => {
       )}
     </Popover>
   );
-};
+});
 export default NavBar;
