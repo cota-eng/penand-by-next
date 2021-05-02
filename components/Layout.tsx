@@ -28,7 +28,7 @@ const Layout: React.FC<Props> = ({
         <meta property="og:title" content="My new title" key="title" />
       </Head>
       <NavBar />
-      <div className="flex min-h-screen ">
+      <div className="flex pt-20 min-h-screen ">
         <div className="hidden lg:w-1/5 lg:block ">
           {/* {isOpen && <LoginModal />} */}
           <SideBar />

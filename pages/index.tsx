@@ -18,7 +18,7 @@ import Question from "../components/Question";
 const Home: NextPage = () => {
   return (
     <>
-      <Layout title="home">
+      <Layout title="トップ | Bista 文房具の専門サイト">
         <Hero />
         <News />
         <Question />

@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 import Router, { useRouter } from "next/router";
-import { GetStaticProps, NextPage } from "next";
-import Layout from "../../components/Layout";
-import { getAllBrands } from "../../lib/fetchBrand";
-import { BRAND } from "../../types/brand";
-import BrandDetail from "../../components/BrandDetail";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import Layout from "../../../components/Layout";
+import { getAllBrands } from "../../../lib/fetchBrand";
+import { BRAND } from "../../../types/brand";
+import BrandDetail from "../../../components/BrandDetail";
+import { brands } from "../../../constants/brands";
+import { categories } from "../../../constants/categories";
 interface STATICPROPS {
-  brands: BRAND[];
+  categories: BRAND[];
 }
-const Brand: NextPage<STATICPROPS> = ({ brands }) => {
+const Brand: NextPage<STATICPROPS> = ({ categories }) => {
   return (
     <>
       <Layout title="ブランドの一覧ページ">
@@ -28,10 +30,11 @@ const Brand: NextPage<STATICPROPS> = ({ brands }) => {
               </div>
             </div>
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
-              {brands &&
-                brands.map((brand, index) => (
+              {categories &&
+                categories.map((category, index) => (
                   <div key={index}>
-                    <BrandDetail {...brand} />
+                    <p>{category.name}</p>
+                    {/* <BrandDetail {...brand} /> */}
                   </div>
                 ))}
             </div>
@@ -42,12 +45,30 @@ const Brand: NextPage<STATICPROPS> = ({ brands }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const brands = await getAllBrands();
+// export const getStaticProps: GetStaticProps = async () => {
+//   const brands = await getAllBrands();
+//   return {
+//     props: {
+//       brands,
+//     },
+//   };
+// };
+export const getStaticPaths: GetStaticPaths = async () => {
+  const brandpaths = brands.map((brand) => brand.slug);
+  const patharray = brandpaths.map((slug) => ({
+    params: { brand_slug: slug },
+  }));
+
   return {
-    props: {
-      brands,
-    },
+    paths: patharray,
+    fallback: "blocking",
+  };
+  // fallback false => access unexist id => return 404
+};
+export const getStaticProps: GetStaticProps = async (context) => {
+  return {
+    props: { categories },
+    revalidate: 10,
   };
 };
 

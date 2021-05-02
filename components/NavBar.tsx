@@ -25,34 +25,35 @@ import { useRecoilValue, useSetRecoilState, useRecoilCallback } from "recoil";
 import { loginModalState } from "../states/loginModalState";
 import { CURRENTUSER } from "../types/currentUser";
 import MyModal from "./Modal";
-const solutions = [
+
+const categories = [
   {
-    name: "Analytics",
+    name: "mechanical",
     description:
       "Get a better understanding of where your traffic is coming from.",
-    href: "#",
+    href: "/category",
     icon: ChartBarIcon,
   },
   {
-    name: "Engagement",
+    name: "ballpoint",
     description: "Speak directly to your customers in a more meaningful way.",
-    href: "#",
+    href: "/brand",
     icon: CursorClickIcon,
   },
   {
-    name: "Security",
+    name: "hoge",
     description: "Your customers' data will be safe and secure.",
     href: "#",
     icon: ShieldCheckIcon,
   },
   {
-    name: "Integrations",
+    name: "hoge",
     description: "Connect with third-party tools that you're already using.",
     href: "#",
     icon: ViewGridIcon,
   },
   {
-    name: "Automations",
+    name: "hoge",
     description:
       "Build strategic funnels that will drive your customers to convert",
     href: "#",
@@ -63,7 +64,7 @@ const callsToAction = [
   { name: "Watch Demo", href: "#", icon: PlayIcon },
   { name: "Contact Sales", href: "#", icon: PhoneIcon },
 ];
-const resources = [
+const brands = [
   {
     name: "Help Center",
     description:
@@ -107,7 +108,6 @@ function classNames(...classes) {
 }
 
 const NavBar: React.FC = React.memo(() => {
-  const [dis, setDis] = useState(false);
   const [avatar, setAvatar] = useState<string | null>(null);
   const setIsOpen = useSetRecoilState(loginModalState);
   //   const isOpen = useRecoilValue(loginModalState);
@@ -121,36 +121,40 @@ const NavBar: React.FC = React.memo(() => {
     }
   }, []);
   return (
-    <Popover className="relative bg-white">
+    <Popover className="z-10 fixed w-full bg-white">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex justify-between items-center border-b-2 border-gray-100 py-6  md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
-                <Link href="#">
-                  <>
-                    {/* <span className="sr-only">Workflow</span> */}
-                    <img
-                      className="h-8 w-auto sm:h-10"
-                      src="/logo.png"
-                      alt=""
-                    />
-                  </>
+                <Link href="/">
+                  <img className="h-8 w-auto sm:h-10" src="/logo.png" alt="" />
                 </Link>
               </div>
 
               <div className="md:hidden ml-auto ">
                 {currentUser && <AvatarMenu />}
                 {!currentUser && <MyModal />}
-                {/* {currentUser && <AvatarMenu />}
-                {!currentUser && (
-                  <button
-                    className="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 ml-2 rounded "
-                    onClick={() => setIsOpen(true)}
-                  >
-                    Login
+              </div>
+              <div className="md:hidden ">
+                <Link href="/search">
+                  <button className="inline-flex items-center   text-base   w-6 h-6 text-center leading-0 ml-4 mt-1  text-gray-400 focus:outline-none hover:text-gray-900 transition-colors">
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
                   </button>
-                )} */}
+                </Link>
               </div>
               <div className="-mr-2 -my-2 md:hidden">
                 <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none ">
@@ -168,7 +172,7 @@ const NavBar: React.FC = React.memo(() => {
                           "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none "
                         )}
                       >
-                        <span>Solutions</span>
+                        <span>Categories</span>
                         <ChevronDownIcon
                           className={classNames(
                             open ? "text-gray-600" : "text-gray-400",
@@ -194,39 +198,41 @@ const NavBar: React.FC = React.memo(() => {
                         >
                           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                             <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                              {solutions.map((item) => (
+                              {categories.map((category) => (
                                 <a
-                                  key={item.name}
-                                  href={item.href}
+                                  key={category.name}
+                                  href={category.href}
                                   className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                                 >
-                                  <item.icon
+                                  <category.icon
                                     className="flex-shrink-0 h-6 w-6 text-indigo-600"
                                     aria-hidden="true"
                                   />
                                   <div className="ml-4">
                                     <p className="text-base font-medium text-gray-900">
-                                      {item.name}
+                                      {category.name}
                                     </p>
                                     <p className="mt-1 text-sm text-gray-500">
-                                      {item.description}
+                                      {category.description}
                                     </p>
                                   </div>
                                 </a>
                               ))}
                             </div>
                             <div className="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                              {callsToAction.map((item) => (
-                                <div key={item.name} className="flow-root">
+                              {callsToAction.map((category) => (
+                                <div key={category.name} className="flow-root">
                                   <a
-                                    href={item.href}
+                                    href={category.href}
                                     className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
                                   >
-                                    <item.icon
+                                    <category.icon
                                       className="flex-shrink-0 h-6 w-6 text-gray-400"
                                       aria-hidden="true"
                                     />
-                                    <span className="ml-3">{item.name}</span>
+                                    <span className="ml-3">
+                                      {category.name}
+                                    </span>
                                   </a>
                                 </div>
                               ))}
@@ -247,7 +253,7 @@ const NavBar: React.FC = React.memo(() => {
                           "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none "
                         )}
                       >
-                        <span>More</span>
+                        <span>Brands</span>
                         <ChevronDownIcon
                           className={classNames(
                             open ? "text-gray-600" : "text-gray-400",
@@ -273,7 +279,7 @@ const NavBar: React.FC = React.memo(() => {
                         >
                           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                             <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                              {resources.map((item) => (
+                              {brands.map((item) => (
                                 <a
                                   key={item.name}
                                   href={item.href}
@@ -368,6 +374,26 @@ const NavBar: React.FC = React.memo(() => {
                 {currentUser && <AvatarMenu />}
                 {!currentUser && <MyModal />}
               </div>
+              <div className="md:block hidden ">
+                <Link href="/search">
+                  <button className="inline-flex items-center border-0 py-1 px-3 focus:outline-none text-white-100 rounded text-base  md:mt-0">
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -386,15 +412,17 @@ const NavBar: React.FC = React.memo(() => {
               static
               className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
             >
-              <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+              <div className=" rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
                 <div className="pt-5 pb-6 px-5">
                   <div className="flex items-center justify-between">
                     <div>
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                        alt="Workflow"
-                      />
+                      <Link href="/">
+                        <img
+                          className="h-8 w-auto"
+                          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                          alt="Workflow"
+                        />
+                      </Link>
                     </div>
                     <div className="-mr-2">
                       <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none ">
@@ -405,18 +433,18 @@ const NavBar: React.FC = React.memo(() => {
                   </div>
                   <div className="mt-6">
                     <nav className="grid gap-y-8">
-                      {solutions.map((item) => (
+                      {categories.map((category) => (
                         <a
-                          key={item.name}
-                          href={item.href}
+                          key={category.name}
+                          href={category.href}
                           className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                         >
-                          <item.icon
+                          <category.icon
                             className="flex-shrink-0 h-6 w-6 text-indigo-600"
                             aria-hidden="true"
                           />
                           <span className="ml-3 text-base font-medium text-gray-900">
-                            {item.name}
+                            {category.name}
                           </span>
                         </a>
                       ))}
@@ -438,7 +466,7 @@ const NavBar: React.FC = React.memo(() => {
                     >
                       Docs
                     </a>
-                    {resources.map((item) => (
+                    {brands.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
