@@ -121,7 +121,7 @@ const NavBar: React.FC = React.memo(() => {
     }
   }, []);
   return (
-    <Popover className="relative bg-white">
+    <Popover className="z-10 relative bg-white">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -142,15 +142,26 @@ const NavBar: React.FC = React.memo(() => {
               <div className="md:hidden ml-auto ">
                 {currentUser && <AvatarMenu />}
                 {!currentUser && <MyModal />}
-                {/* {currentUser && <AvatarMenu />}
-                {!currentUser && (
-                  <button
-                    className="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 ml-2 rounded "
-                    onClick={() => setIsOpen(true)}
-                  >
-                    Login
+              </div>
+              <div className="md:hidden ">
+                <Link href="/search">
+                  <button className="inline-flex items-center   text-base   w-6 h-6 text-center leading-0 ml-4 mt-1  text-gray-400 focus:outline-none hover:text-gray-900 transition-colors">
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
                   </button>
-                )} */}
+                </Link>
               </div>
               <div className="-mr-2 -my-2 md:hidden">
                 <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none ">
@@ -368,6 +379,26 @@ const NavBar: React.FC = React.memo(() => {
                 {currentUser && <AvatarMenu />}
                 {!currentUser && <MyModal />}
               </div>
+              <div className="md:block hidden ">
+                <Link href="/search">
+                  <button className="inline-flex items-center border-0 py-1 px-3 focus:outline-none text-white-100 rounded text-base  md:mt-0">
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -386,7 +417,7 @@ const NavBar: React.FC = React.memo(() => {
               static
               className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
             >
-              <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+              <div className=" rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
                 <div className="pt-5 pb-6 px-5">
                   <div className="flex items-center justify-between">
                     <div>
