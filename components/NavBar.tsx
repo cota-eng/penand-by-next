@@ -27,16 +27,16 @@ import { CURRENTUSER } from "../types/currentUser";
 import MyModal from "./Modal";
 const solutions = [
   {
-    name: "Analytics",
+    name: "Categories",
     description:
       "Get a better understanding of where your traffic is coming from.",
-    href: "#",
+    href: "/category",
     icon: ChartBarIcon,
   },
   {
-    name: "Engagement",
+    name: "Brands",
     description: "Speak directly to your customers in a more meaningful way.",
-    href: "#",
+    href: "/brand",
     icon: CursorClickIcon,
   },
   {
@@ -107,7 +107,6 @@ function classNames(...classes) {
 }
 
 const NavBar: React.FC = React.memo(() => {
-  const [dis, setDis] = useState(false);
   const [avatar, setAvatar] = useState<string | null>(null);
   const setIsOpen = useSetRecoilState(loginModalState);
   //   const isOpen = useRecoilValue(loginModalState);
@@ -121,21 +120,18 @@ const NavBar: React.FC = React.memo(() => {
     }
   }, []);
   return (
-    <Popover className="z-10 relative bg-white">
+    <Popover className="z-10 fixed w-full bg-white">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex justify-between items-center border-b-2 border-gray-100 py-6  md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
-                <Link href="#">
-                  <>
-                    {/* <span className="sr-only">Workflow</span> */}
+                <Link href="/">
                     <img
                       className="h-8 w-auto sm:h-10"
                       src="/logo.png"
                       alt=""
                     />
-                  </>
                 </Link>
               </div>
 
@@ -421,11 +417,13 @@ const NavBar: React.FC = React.memo(() => {
                 <div className="pt-5 pb-6 px-5">
                   <div className="flex items-center justify-between">
                     <div>
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                        alt="Workflow"
-                      />
+                      <Link href="/">
+                        <img
+                          className="h-8 w-auto"
+                          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                          alt="Workflow"
+                        />
+                      </Link>
                     </div>
                     <div className="-mr-2">
                       <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none ">
