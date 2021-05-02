@@ -5,6 +5,8 @@ import Layout from "../../components/Layout";
 import { getAllCategories } from "../../lib/fetchCategory";
 import { CATEGORY } from "../../types/category";
 import CategoryDetail from "../../components/CategoryDetail";
+import { categories } from "../../constants/categories";
+
 interface STATICPROPS {
   categories: CATEGORY[];
 }
@@ -29,8 +31,8 @@ const Category: NextPage<STATICPROPS> = ({ categories }) => {
             </div>
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
               {categories &&
-                categories.map((category) => (
-                  <CategoryDetail key={category.id} {...category} />
+                categories.map((category, index) => (
+                  <CategoryDetail key={index} {...category} />
                   //   <p key={category.id}>{category.name}</p>
                 ))}
             </div>
@@ -42,10 +44,11 @@ const Category: NextPage<STATICPROPS> = ({ categories }) => {
 };
 export default Category;
 export const getStaticProps: GetStaticProps = async () => {
-  const categories = await getAllCategories();
+  //   const categories = await getAllCategories();
+  // categories
   return {
     props: {
-      categories,
+      categories: categories,
     },
   };
 };
