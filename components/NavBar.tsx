@@ -25,34 +25,35 @@ import { useRecoilValue, useSetRecoilState, useRecoilCallback } from "recoil";
 import { loginModalState } from "../states/loginModalState";
 import { CURRENTUSER } from "../types/currentUser";
 import MyModal from "./Modal";
-const solutions = [
+
+const categories = [
   {
-    name: "Categories",
+    name: "mechanical",
     description:
       "Get a better understanding of where your traffic is coming from.",
     href: "/category",
     icon: ChartBarIcon,
   },
   {
-    name: "Brands",
+    name: "ballpoint",
     description: "Speak directly to your customers in a more meaningful way.",
     href: "/brand",
     icon: CursorClickIcon,
   },
   {
-    name: "Security",
+    name: "hoge",
     description: "Your customers' data will be safe and secure.",
     href: "#",
     icon: ShieldCheckIcon,
   },
   {
-    name: "Integrations",
+    name: "hoge",
     description: "Connect with third-party tools that you're already using.",
     href: "#",
     icon: ViewGridIcon,
   },
   {
-    name: "Automations",
+    name: "hoge",
     description:
       "Build strategic funnels that will drive your customers to convert",
     href: "#",
@@ -63,7 +64,7 @@ const callsToAction = [
   { name: "Watch Demo", href: "#", icon: PlayIcon },
   { name: "Contact Sales", href: "#", icon: PhoneIcon },
 ];
-const resources = [
+const brands = [
   {
     name: "Help Center",
     description:
@@ -127,11 +128,7 @@ const NavBar: React.FC = React.memo(() => {
             <div className="flex justify-between items-center border-b-2 border-gray-100 py-6  md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <Link href="/">
-                    <img
-                      className="h-8 w-auto sm:h-10"
-                      src="/logo.png"
-                      alt=""
-                    />
+                  <img className="h-8 w-auto sm:h-10" src="/logo.png" alt="" />
                 </Link>
               </div>
 
@@ -175,7 +172,7 @@ const NavBar: React.FC = React.memo(() => {
                           "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none "
                         )}
                       >
-                        <span>Solutions</span>
+                        <span>Categories</span>
                         <ChevronDownIcon
                           className={classNames(
                             open ? "text-gray-600" : "text-gray-400",
@@ -201,39 +198,41 @@ const NavBar: React.FC = React.memo(() => {
                         >
                           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                             <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                              {solutions.map((item) => (
+                              {categories.map((category) => (
                                 <a
-                                  key={item.name}
-                                  href={item.href}
+                                  key={category.name}
+                                  href={category.href}
                                   className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                                 >
-                                  <item.icon
+                                  <category.icon
                                     className="flex-shrink-0 h-6 w-6 text-indigo-600"
                                     aria-hidden="true"
                                   />
                                   <div className="ml-4">
                                     <p className="text-base font-medium text-gray-900">
-                                      {item.name}
+                                      {category.name}
                                     </p>
                                     <p className="mt-1 text-sm text-gray-500">
-                                      {item.description}
+                                      {category.description}
                                     </p>
                                   </div>
                                 </a>
                               ))}
                             </div>
                             <div className="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                              {callsToAction.map((item) => (
-                                <div key={item.name} className="flow-root">
+                              {callsToAction.map((category) => (
+                                <div key={category.name} className="flow-root">
                                   <a
-                                    href={item.href}
+                                    href={category.href}
                                     className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
                                   >
-                                    <item.icon
+                                    <category.icon
                                       className="flex-shrink-0 h-6 w-6 text-gray-400"
                                       aria-hidden="true"
                                     />
-                                    <span className="ml-3">{item.name}</span>
+                                    <span className="ml-3">
+                                      {category.name}
+                                    </span>
                                   </a>
                                 </div>
                               ))}
@@ -254,7 +253,7 @@ const NavBar: React.FC = React.memo(() => {
                           "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none "
                         )}
                       >
-                        <span>More</span>
+                        <span>Brands</span>
                         <ChevronDownIcon
                           className={classNames(
                             open ? "text-gray-600" : "text-gray-400",
@@ -280,7 +279,7 @@ const NavBar: React.FC = React.memo(() => {
                         >
                           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                             <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                              {resources.map((item) => (
+                              {brands.map((item) => (
                                 <a
                                   key={item.name}
                                   href={item.href}
@@ -434,18 +433,18 @@ const NavBar: React.FC = React.memo(() => {
                   </div>
                   <div className="mt-6">
                     <nav className="grid gap-y-8">
-                      {solutions.map((item) => (
+                      {categories.map((category) => (
                         <a
-                          key={item.name}
-                          href={item.href}
+                          key={category.name}
+                          href={category.href}
                           className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                         >
-                          <item.icon
+                          <category.icon
                             className="flex-shrink-0 h-6 w-6 text-indigo-600"
                             aria-hidden="true"
                           />
                           <span className="ml-3 text-base font-medium text-gray-900">
-                            {item.name}
+                            {category.name}
                           </span>
                         </a>
                       ))}
@@ -467,7 +466,7 @@ const NavBar: React.FC = React.memo(() => {
                     >
                       Docs
                     </a>
-                    {resources.map((item) => (
+                    {brands.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
