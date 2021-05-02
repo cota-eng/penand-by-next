@@ -24,7 +24,7 @@ import { useCurrentUser } from "../hooks/useCurrentUser";
 import { useRecoilValue, useSetRecoilState, useRecoilCallback } from "recoil";
 import { loginModalState } from "../states/loginModalState";
 import { CURRENTUSER } from "../types/currentUser";
-import MyModal from "./modal";
+import MyModal from "./Modal";
 const solutions = [
   {
     name: "Analytics",
