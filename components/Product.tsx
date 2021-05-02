@@ -7,7 +7,7 @@ const Product: React.FC<PRODUCT> = React.memo(
   ({ id, name, category, image, number_of_fav, number_of_review }) => {
     return (
       <>
-        <Link href={`/product/${id}`}>
+        <Link href={`/products/${id}`}>
           {/* <div className="p-2 lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer "> */}
           <div className="h-full  flex items-center bg-blue-50 border-gray-500 text-center hover:border-gray-700  border sm:p-4 p-2 rounded-lg ">
             <Image
