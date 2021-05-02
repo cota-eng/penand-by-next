@@ -14,12 +14,14 @@ import { useCurrentUser } from "../hooks/useCurrentUser";
 import Image from "next/image";
 import Hero from "../components/Hero";
 import News from "../components/News";
+import Question from "../components/Question";
 const Home: NextPage = () => {
   return (
     <>
       <Layout title="home">
         <Hero />
         <News />
+        <Question />
       </Layout>
     </>
   );
