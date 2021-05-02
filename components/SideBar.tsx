@@ -4,9 +4,9 @@ import { categories } from "../constants/categories";
 import { tags } from "../constants/tags";
 import Link from "next/link";
 
-const SideBar: React.FC = () => {
+const SideBar: React.FC = React.memo(() => {
   return (
-    <aside className="h-screen sticky top-0 pt-10 pl-10 overflow-auto hidden w-0 lg:w-1/5 lg:block xl:w-1/5  bg-gray-100">
+    <aside className="h-screen sticky top-0 pt-10 pl-10 overflow-y-auto   bg-gray-100">
       <h2 className="font-semibold mb-2 text-3xl leading-tight sm:leading-normal">
         メニュー
       </h2>
@@ -57,6 +57,6 @@ const SideBar: React.FC = () => {
       </div>
     </aside>
   );
-};
+});
 
 export default SideBar;

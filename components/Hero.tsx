@@ -5,6 +5,7 @@ import Link from "next/link";
 import LoginModal from "./LoginModal";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { loginModalState } from "../states/loginModalState";
+import MyModal from "./modal";
 const Hero = () => {
   const { isActive, message, openSnackBar } = useSnackBar();
   const _showSnackbarHandler = () => {
