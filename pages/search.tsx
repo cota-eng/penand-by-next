@@ -46,7 +46,7 @@ const Search: React.FC = () => {
       })
       .catch(() => setIsFetching(false));
   };
-  const loadMore = () => {
+  const loadMore = useCallback(() => {
     setIsFetching(true);
     axios({
       method: "GET",
@@ -66,7 +66,7 @@ const Search: React.FC = () => {
         setIsFetching(false);
       }
     });
-  };
+  }, []);
 
   const router = useRouter();
   if (router.isFallback) {
@@ -80,7 +80,7 @@ const Search: React.FC = () => {
           <h1 className="title-font sm:text-4xl text-3xl my-3 font-medium text-gray-900 text-center">
             SEARCH
           </h1>
-          <div className="min-w-screen flex items-center justify-center px-5 py-5">
+          <div className="z-0 min-w-screen flex items-center justify-center px-5 py-5">
             <div className="w-full mx-auto rounded-xl bg-gray-100 shadow-lg p-10 text-gray-800 relative overflow-hidden resize-x min-w-80 max-w-3xl">
               <div className="relative mt-1">
                 <form onSubmit={firstLoad}>
@@ -161,7 +161,7 @@ const Search: React.FC = () => {
                     >
                       <span>
                         <svg
-                          className="w-5 h-5 inline mt-0.2 "
+                          className="w-6 h-6 inline mb-1 mr-2 gray-400 "
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
