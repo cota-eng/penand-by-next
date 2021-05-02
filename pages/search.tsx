@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { SEARCH } from "../types/search";
 import { getFilteredPens } from "../lib/fetchSearchResult";
@@ -12,6 +12,7 @@ import Product from "../components/Product";
 import axios from "axios";
 import Link from "next/link";
 import ClipLoader from "react-spinners/ClipLoader";
+import SearchResultList from "../components/SearchResultList";
 
 const Search: React.FC = () => {
   const [name, setName] = useState<string | null>("");
@@ -19,7 +20,12 @@ const Search: React.FC = () => {
   const [isFetching, setIsFetching] = useState(false);
   const [page, setPage] = useState(1);
   const [HasMore, setHasMore] = useState(false);
-  //   const [isFirstSearch, setIsFirstSearch] = useState(true);
+  const resetName = () => {
+    setName("");
+    setProducts([]);
+    setHasMore(false);
+    setIsFetching(false);
+  };
   const firstLoad = (e: React.FormEvent) => {
     e.preventDefault();
     setIsFetching(true);
@@ -61,10 +67,12 @@ const Search: React.FC = () => {
       }
     });
   };
+
   const router = useRouter();
   if (router.isFallback) {
     return <div>loading...</div>;
   }
+
   return (
     <Layout title="条件検索">
       <div className="w-full max-w-screen-xl  ">
@@ -105,7 +113,7 @@ const Search: React.FC = () => {
                     </button>
                     <a
                       className="block w-7 h-7 text-center text-xl leading-0 absolute top-2.5 right-3 text-gray-400 focus:outline-none hover:text-gray-900 transition-colors"
-                      onClick={() => setName("")}
+                      onClick={resetName}
                     >
                       <svg
                         className="w-6 h-6"
@@ -138,20 +146,8 @@ const Search: React.FC = () => {
           <section className="text-gray-600 body-font overflow-auto h-auto">
             <div className="container px-5 pb-24 mx-auto">
               <div className="flex flex-wrap ">
-                {products &&
-                  products.map((product, index) => (
-                    <div
-                      key={index}
-                      className="p-2 lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer "
-                    >
-                      <Product {...product} />
-                    </div>
-                  ))}
-                {products.length === 0 && !isFetching && (
-                  <div className="mx-auto mt-5">
-                    <p>何も見つかりませんでした。</p>
-                  </div>
-                )}
+                <SearchResultList products={products} isFetching={isFetching} />
+
                 {isFetching && (
                   <div className="mx-auto mt-5">
                     <ClipLoader />
