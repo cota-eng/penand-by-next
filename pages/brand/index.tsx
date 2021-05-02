@@ -29,8 +29,10 @@ const Brand: NextPage<STATICPROPS> = ({ brands }) => {
             </div>
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
               {brands &&
-                brands.map((brand) => (
-                  <BrandDetail key={brand.id} {...brand} />
+                brands.map((brand, index) => (
+                  <div key={index}>
+                    <BrandDetail {...brand} />
+                  </div>
                 ))}
             </div>
           </div>
