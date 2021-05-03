@@ -9,7 +9,7 @@ const Product: React.FC<PRODUCT> = React.memo(
       <>
         <Link href={`/products/${id}`}>
           {/* <div className="h-full  flex items-center bg-blue-50 border-gray-500 text-center hover:border-gray-700  border sm:p-4 p-2 rounded-lg "></div> */}
-          <div className="max-w-2xl bg-blue-50 border-1SS border-gray-300 px-5 py-3 rounded-md tracking-wide shadow-lg">
+          <div className="max-w-2xl bg-blue-50 border-1SS border-gray-300 px-5 py-3 rounded-md tracking-wide shadow-lg m-2">
             <div className="flex">
               <Image
                 className="rounded-md border-2 border-gray-300"
