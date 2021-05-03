@@ -3,17 +3,16 @@ import Link from "next/link";
 import { BRAND } from "../types/brand";
 import Image from "next/image";
 
-interface Props extends BRAND {
-  category: string;
-}
+// interface Props extends BRAND {
+//   brand: string;
+// }
 
-const BrandDetail: React.FC<Props> = ({
+const Brand: React.FC<BRAND> = ({
   name,
   official_site_link,
   slug,
   img_path,
   description,
-  category,
 }) => {
   return (
     <div className="p-4 md:w-1/3 ">
@@ -32,7 +31,8 @@ const BrandDetail: React.FC<Props> = ({
           </h1>
           <p className="leading-relaxed mb-3">{description}</p>
           <div className="flex items-center flex-wrap  ">
-            <Link href={`/category/${category}/brand/${slug}/page/1`}>
+            <Link href={`/brand/${slug}`}>
+              {/* <Link href={`/brand/${brand}/category/${slug}/page/1`}> */}
               <a className="bg-blue-500 rounded-lg font-bold text-white text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mx-auto">
                 このブランドを見る
               </a>
@@ -94,4 +94,4 @@ const BrandDetail: React.FC<Props> = ({
     </div>
   );
 };
-export default BrandDetail;
+export default Brand;

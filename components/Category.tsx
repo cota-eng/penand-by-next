@@ -4,19 +4,12 @@ import { CATEGORY } from "../types/category";
 import { brands } from "../constants/brands";
 import { slugs } from "../constants/category-brand-slug";
 import Image from "next/image";
-import { PropsOf } from "@headlessui/react/dist/types";
-import { PropsForFeatures } from "@headlessui/react/dist/utils/render";
 
-interface Props extends CATEGORY {
-  brand: string;
-}
-
-const CategoryDetail: React.FC<Props> = ({
+const CategoryList: React.FC<CATEGORY> = ({
   name,
   slug,
   description,
   img_path,
-  brand,
 }) => {
   return (
     <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
@@ -33,9 +26,9 @@ const CategoryDetail: React.FC<Props> = ({
       {/* Next/Image で書き換えたい */}
       <img className="my-5" src={img_path} />
       <p className="text-base leading-relaxed mt-2">{description}</p>
-      <Link href={`/brand/${brand}/category/${slug}/page/1`}>
+      <Link href={`category/${slug}`}>
         <a className="text-indigo-500 inline-flex items-center mt-3">
-          {name}を見る
+          {name}のブランド別に見る
           <svg
             fill="none"
             stroke="currentColor"
@@ -62,4 +55,4 @@ const CategoryDetail: React.FC<Props> = ({
   );
 };
 
-export default CategoryDetail;
+export default CategoryList;
