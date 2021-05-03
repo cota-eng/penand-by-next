@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { GetStaticProps, NextPage } from "next";
 import Layout from "../../components/Layout";
-import { getAllCategories } from "../../lib/fetchCategory";
 import { CATEGORY } from "../../types/category";
-import CategoryDetail from "../../components/CategoryDetail";
 import { categories } from "../../constants/categories";
+import CategoryList from "../../components/Category";
 
 interface STATICPROPS {
   categories: CATEGORY[];
@@ -32,7 +31,7 @@ const Category: NextPage<STATICPROPS> = ({ categories }) => {
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
               {categories &&
                 categories.map((category, index) => (
-                  <CategoryDetail key={index} {...category} />
+                  <CategoryList key={index} {...category} />
                   //   <p key={category.id}>{category.name}</p>
                 ))}
             </div>
