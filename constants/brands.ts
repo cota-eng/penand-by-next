@@ -10,7 +10,7 @@ export const brands: ConstBrand[] = [
   {
     name: "カランダッシュ",
     slug: "carandache",
-    img_path: "/brand/caran-d-ache.png",
+    img_path: "/brand/carandache.png",
     official_site_link: "https://www.carandache.com/jp/",
     description:
       "ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。",
@@ -19,7 +19,7 @@ export const brands: ConstBrand[] = [
     name: "ファーバーカステル",
     slug: "faber-castell",
     official_site_link: "https://www.faber-castell.jp/",
-    img_path: "/brand/faber-castell-2.png",
+    img_path: "/brand/faber-castell.png",
     description:
       "ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。",
   },
@@ -35,7 +35,7 @@ export const brands: ConstBrand[] = [
     name: "オート",
     slug: "ohto",
     official_site_link: "https://ohto.co.jp/",
-    img_path: "/brand/OHTO.png",
+    img_path: "/brand/ohto.png",
     description:
       "ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。",
   },
@@ -51,7 +51,7 @@ export const brands: ConstBrand[] = [
     name: "トンボ",
     slug: "tombow",
     official_site_link: "https://www.tombow.com/",
-    img_path: "/brand/tombow-pencil-logo.png",
+    img_path: "/brand/tombow.png",
     description:
       "ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。",
   },
@@ -59,7 +59,7 @@ export const brands: ConstBrand[] = [
     name: "ユニ",
     slug: "uni",
     official_site_link: "https://www.mpuni.co.jp/",
-    img_path: "/brand/uni-ball.png",
+    img_path: "/brand/uni.png",
     description:
       "ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。",
   },
@@ -67,7 +67,7 @@ export const brands: ConstBrand[] = [
     name: "ゼブラ",
     slug: "zebra",
     official_site_link: "https://www.zebra.co.jp/",
-    img_path: "/brand/zebra-pen-company-logo.png",
+    img_path: "/brand/zebra.png",
     description:
       "ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。ブランドの説明文。",
   },
