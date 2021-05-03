@@ -1,15 +1,9 @@
 import type { AppProps } from "next/app";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
+import * as gtag from "../lib/gtag";
 import "tailwindcss/tailwind.css";
-import {
-  RecoilRoot,
-  useSetRecoilState,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
-// import CharacterCounter from "../components/CharacterCounter";
+import { RecoilRoot, useSetRecoilState } from "recoil";
 import { currentUserState } from "../states/currentUserState";
 import { fetchCurentUser } from "../lib/auth/fetchCurrentUser";
 import { CURRENTUSER } from "../types/currentUser";
@@ -28,15 +22,22 @@ function AppInit() {
   return null;
 }
 function MyApp({ Component, pageProps, router }: AppProps) {
+  //   useEffect(() => {
+  //     // if (router.pathname === "/login") return;
+  //   }, [router.pathname]);
   useEffect(() => {
-    // if (router.pathname === "/login") return;
-    console.log("common func");
-  }, [router.pathname]);
+    const handleRouteChange = (url) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
   return (
     <RecoilRoot>
       <Component {...pageProps} />
       <AppInit />
-      {/* <CharacterCounter /> */}
     </RecoilRoot>
   );
 }
