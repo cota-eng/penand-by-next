@@ -4,9 +4,8 @@ import { GetStaticProps, NextPage } from "next";
 import Layout from "../../components/Layout";
 import { getAllBrands } from "../../lib/fetchBrand";
 import { BRAND } from "../../types/brand";
-import BrandList from "../../components/Brand";
+import BrandList from "../../components/BrandList";
 import { brands } from "../../constants/brands";
-import BrandToCategoryDetail from "../../components/Brand";
 interface STATICPROPS {
   brands: BRAND[];
 }

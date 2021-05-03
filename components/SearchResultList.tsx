@@ -15,7 +15,7 @@ const SearchResultList: React.FC<Props> = React.memo(
           products.map((product, index) => (
             <div
               key={index}
-              className="p-2 lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer "
+              className="p-2 lg:w-1/2 md:w-1/2 sm:w-1/2 w-full cursor-pointer "
             >
               <Product {...product} />
             </div>

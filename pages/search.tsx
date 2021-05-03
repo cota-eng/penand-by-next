@@ -77,11 +77,11 @@ const Search: React.FC = () => {
     <Layout title="条件検索">
       <div className="w-full max-w-screen-xl  ">
         <div className="flex flex-col mx-auto  px-3 py-10">
-          <h1 className="title-font sm:text-4xl text-3xl my-3 font-medium text-gray-900 text-center">
-            SEARCH
-          </h1>
           <div className="z-0 min-w-screen flex items-center justify-center px-5 py-5">
             <div className="w-full mx-auto rounded-xl bg-gray-100 shadow-lg p-10 text-gray-800 relative overflow-hidden resize-x min-w-80 max-w-3xl">
+              <h1 className="title-font sm:text-4xl text-3xl mb-2 font-medium text-gray-900 text-center">
+                SEARCH
+              </h1>
               <div className="relative mt-1">
                 <form onSubmit={firstLoad}>
                   <input
@@ -144,7 +144,7 @@ const Search: React.FC = () => {
             </div>
           </div>
           <section className="text-gray-600 body-font overflow-auto h-auto">
-            <div className="container px-5 pb-24 mx-auto">
+            <div className="container px-4 pb-24 mx-auto">
               <div className="flex flex-wrap ">
                 <SearchResultList products={products} isFetching={isFetching} />
 

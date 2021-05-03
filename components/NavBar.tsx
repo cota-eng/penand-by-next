@@ -26,39 +26,38 @@ import { loginModalState } from "../states/loginModalState";
 import { CURRENTUSER } from "../types/currentUser";
 import MyModal from "./Modal";
 
-const categories = [
+const menues = [
   {
-    name: "mechanical",
-    description:
-      "Get a better understanding of where your traffic is coming from.",
+    name: "category",
+    description: "",
     href: "/category",
     icon: ChartBarIcon,
   },
   {
-    name: "ballpoint",
-    description: "Speak directly to your customers in a more meaningful way.",
+    name: "brand",
+    description: "",
     href: "/brand",
     icon: CursorClickIcon,
   },
   {
-    name: "hoge",
-    description: "Your customers' data will be safe and secure.",
-    href: "#",
+    name: "tag",
+    description: "",
+    href: "/tag",
     icon: ShieldCheckIcon,
   },
-  {
-    name: "hoge",
-    description: "Connect with third-party tools that you're already using.",
-    href: "#",
-    icon: ViewGridIcon,
-  },
-  {
-    name: "hoge",
-    description:
-      "Build strategic funnels that will drive your customers to convert",
-    href: "#",
-    icon: RefreshIcon,
-  },
+  //   {
+  //     name: "sdfhoge",
+  //     description: "",
+  //     href: "#",
+  //     icon: ViewGridIcon,
+  //   },
+  //   {
+  //     name: "hdfoge",
+  //     description:
+  //       "Build strategic funnels that will drive your customers to convert",
+  //     href: "#",
+  //     icon: RefreshIcon,
+  //   },
 ];
 const callsToAction = [
   { name: "Watch Demo", href: "#", icon: PlayIcon },
@@ -172,7 +171,7 @@ const NavBar: React.FC = React.memo(() => {
                           "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none "
                         )}
                       >
-                        <span>Categories</span>
+                        <span>Menu</span>
                         <ChevronDownIcon
                           className={classNames(
                             open ? "text-gray-600" : "text-gray-400",
@@ -198,41 +197,39 @@ const NavBar: React.FC = React.memo(() => {
                         >
                           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                             <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                              {categories.map((category) => (
+                              {menues.map((menu) => (
                                 <a
-                                  key={category.name}
-                                  href={category.href}
+                                  key={menu.name}
+                                  href={menu.href}
                                   className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                                 >
-                                  <category.icon
+                                  <menu.icon
                                     className="flex-shrink-0 h-6 w-6 text-indigo-600"
                                     aria-hidden="true"
                                   />
                                   <div className="ml-4">
                                     <p className="text-base font-medium text-gray-900">
-                                      {category.name}
+                                      {menu.name}
                                     </p>
                                     <p className="mt-1 text-sm text-gray-500">
-                                      {category.description}
+                                      {menu.description}
                                     </p>
                                   </div>
                                 </a>
                               ))}
                             </div>
                             <div className="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                              {callsToAction.map((category) => (
-                                <div key={category.name} className="flow-root">
+                              {callsToAction.map((menu) => (
+                                <div key={menu.name} className="flow-root">
                                   <a
-                                    href={category.href}
+                                    href={menu.href}
                                     className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
                                   >
-                                    <category.icon
+                                    <menu.icon
                                       className="flex-shrink-0 h-6 w-6 text-gray-400"
                                       aria-hidden="true"
                                     />
-                                    <span className="ml-3">
-                                      {category.name}
-                                    </span>
+                                    <span className="ml-3">{menu.name}</span>
                                   </a>
                                 </div>
                               ))}
@@ -244,7 +241,7 @@ const NavBar: React.FC = React.memo(() => {
                   )}
                 </Popover>
 
-                <Popover className="relative">
+                {/* <Popover className="relative">
                   {({ open }) => (
                     <>
                       <Popover.Button
@@ -305,21 +302,6 @@ const NavBar: React.FC = React.memo(() => {
                                 <h3 className="text-sm tracking-wide font-medium text-gray-500 uppercase">
                                   Recent Posts
                                 </h3>
-                                {/* <ul className="mt-4 space-y-4">
-                                  {recentPosts.map((post) => (
-                                    <li
-                                      key={post.id}
-                                      className="text-base truncate"
-                                    >
-                                      <a
-                                        href={post.href}
-                                        className="font-medium text-gray-900 hover:text-gray-700"
-                                      >
-                                        {post.name}
-                                      </a>
-                                    </li>
-                                  ))}
-                                </ul> */}
                               </div>
                               <div className="mt-5 text-sm">
                                 <a
@@ -337,7 +319,7 @@ const NavBar: React.FC = React.memo(() => {
                       </Transition>
                     </>
                   )}
-                </Popover>
+                </Popover> */}
                 <a
                   href="#"
                   className="text-base font-medium text-gray-500 hover:text-gray-900"
@@ -433,18 +415,18 @@ const NavBar: React.FC = React.memo(() => {
                   </div>
                   <div className="mt-6">
                     <nav className="grid gap-y-8">
-                      {categories.map((category) => (
+                      {menues.map((menu) => (
                         <a
-                          key={category.name}
-                          href={category.href}
+                          key={menu.name}
+                          href={menu.href}
                           className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                         >
-                          <category.icon
+                          <menu.icon
                             className="flex-shrink-0 h-6 w-6 text-indigo-600"
                             aria-hidden="true"
                           />
                           <span className="ml-3 text-base font-medium text-gray-900">
-                            {category.name}
+                            {menu.name}
                           </span>
                         </a>
                       ))}

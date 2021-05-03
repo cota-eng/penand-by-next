@@ -27,7 +27,7 @@ const Brand: NextPage<STATICPROPS> = ({ categories }) => {
                   Brand List
                 </h1>
                 <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
-                  ブランド一覧です。それぞれのブランドに分類されるカテゴリの商品を閲覧することができます。
+                  カテゴリ一覧です。それぞれのブランドに分類されるカテゴリの商品を閲覧することができます。
                 </p>
               </div>
             </div>

@@ -7,7 +7,7 @@ import Image from "next/image";
 //   brand: string;
 // }
 
-const Brand: React.FC<BRAND> = ({
+const BrandList: React.FC<BRAND> = ({
   name,
   official_site_link,
   slug,
@@ -94,4 +94,4 @@ const Brand: React.FC<BRAND> = ({
     </div>
   );
 };
-export default Brand;
+export default BrandList;
