@@ -41,19 +41,19 @@ const categories = [
     icon: CursorClickIcon,
   },
   {
-    name: "hoge",
+    name: "hfoge",
     description: "Your customers' data will be safe and secure.",
     href: "#",
     icon: ShieldCheckIcon,
   },
   {
-    name: "hoge",
+    name: "sdfhoge",
     description: "Connect with third-party tools that you're already using.",
     href: "#",
     icon: ViewGridIcon,
   },
   {
-    name: "hoge",
+    name: "hdfoge",
     description:
       "Build strategic funnels that will drive your customers to convert",
     href: "#",
