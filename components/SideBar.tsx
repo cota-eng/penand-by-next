@@ -12,7 +12,7 @@ const SideBar: React.FC = React.memo(() => {
       </h2>
       <div className="">
         <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
-          <Link href="category/">カテゴリ</Link>
+          カテゴリ
         </h2>
         <ul className="">
           {categories &&
@@ -51,17 +51,15 @@ const SideBar: React.FC = React.memo(() => {
         <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
           タグ
         </h2>
-        <ul className="">
-          {tags &&
-            tags.map((tag) => (
-              <li
-                key={tag.slug}
-                className="block p-1 pl-3 text-gray-darker border-grey-lighter rounded-sm hover:bg-gray-300  "
-              >
-                {tag.name}
-              </li>
-            ))}
-        </ul>
+        {tags &&
+          tags.map((tag) => (
+            <a
+              key={tag.slug}
+              className="block p-1 pl-3 text-gray-darker border-grey-lighter rounded-sm hover:bg-gray-300  "
+            >
+              {tag.name}
+            </a>
+          ))}
       </div>
     </aside>
   );
