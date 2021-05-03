@@ -1,10 +1,12 @@
 import { useEffect } from "react";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { GetStaticProps, NextPage } from "next";
 import Layout from "../../components/Layout";
 import { getAllBrands } from "../../lib/fetchBrand";
 import { BRAND } from "../../types/brand";
-import BrandDetail from "../../components/BrandDetail";
+import BrandList from "../../components/Brand";
+import { brands } from "../../constants/brands";
+import BrandToCategoryDetail from "../../components/Brand";
 interface STATICPROPS {
   brands: BRAND[];
 }
@@ -23,16 +25,14 @@ const Brand: NextPage<STATICPROPS> = ({ brands }) => {
                   Brand List
                 </h1>
                 <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
-                  ブランド一覧です。それぞれのブランドに分類されるカテゴリの商品を閲覧することができます。
+                  カテゴリ一覧です。それぞれのブランドに分類されるカテゴリの商品を閲覧することができます。
                 </p>
               </div>
             </div>
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
               {brands &&
                 brands.map((brand, index) => (
-                  <div key={index}>
-                    <BrandDetail {...brand} />
-                  </div>
+                  <BrandList key={index} {...brand} />
                 ))}
             </div>
           </div>
@@ -43,7 +43,7 @@ const Brand: NextPage<STATICPROPS> = ({ brands }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const brands = await getAllBrands();
+  //   const brands = await getAllBrands();
   return {
     props: {
       brands,
