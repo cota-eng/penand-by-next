@@ -31,16 +31,19 @@ const BrandDetail: React.FC<Props> = ({
             {name}
           </h1>
           <p className="leading-relaxed mb-3">{description}</p>
-          <div className="flex items-center flex-wrap ">
+          <div className="flex items-center flex-wrap  ">
             <Link href={`/category/${category}/brand/${slug}/page/1`}>
-              <a className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">
-                このブランドのペンを見る
+              <a className="bg-blue-500 rounded-lg font-bold text-white text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mx-auto">
+                このブランドを見る
               </a>
             </Link>
           </div>
-          <div>
-            <a href={official_site_link}>
-              <a>公式サイト</a>
+          <div className="flex">
+            <a
+              className="mt-5 bg-gray-400 rounded-lg font-bold text-white text-center py-3 px-4 transition duration-300 ease-in-out hover:bg-gray-600 mx-auto"
+              href={official_site_link}
+            >
+              公式サイト
               <svg
                 className="w-6 h-6 inline-block"
                 fill="none"
