@@ -30,7 +30,7 @@ const Search: React.FC = () => {
     e.preventDefault();
     setIsFetching(true);
     setProducts([]);
-    setPage(() => 1);
+    setPage(1);
     axios({
       method: "GET",
       url: `${process.env.NEXT_PUBLIC_API_URL}/api/search`,
@@ -40,13 +40,13 @@ const Search: React.FC = () => {
         setProducts(() => {
           return [...res.data.results];
         });
-        setPage((prevPageNumber) => prevPageNumber + 1);
+        setPage((pre) => pre + 1);
         setHasMore(res.data.next);
         setIsFetching(false);
       })
       .catch(() => setIsFetching(false));
   };
-  const loadMore = useCallback(() => {
+  const loadMore = () => {
     setIsFetching(true);
     axios({
       method: "GET",
@@ -57,7 +57,7 @@ const Search: React.FC = () => {
         setProducts((prevProducts) => {
           return [...prevProducts, ...res.data.results];
         });
-        setPage((prevPageNumber) => prevPageNumber + 1);
+        setPage((pre) => pre + 1);
         setHasMore(res.data.next);
         setIsFetching(false);
       } else {
@@ -66,7 +66,7 @@ const Search: React.FC = () => {
         setIsFetching(false);
       }
     });
-  }, []);
+  };
 
   const router = useRouter();
   if (router.isFallback) {
@@ -89,7 +89,9 @@ const Search: React.FC = () => {
                     className="w-full pl-3 pr-10 py-2 border-2 bg-gray-50 focus:bg-white border-gray-200 rounded-xl hover:border-gray-300 focus:outline-none focus:border-blue-500 transition-colors"
                     placeholder="キーワードを入力..."
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setName(e.target.value)
+                    }
                   />
                   <div className="">
                     <button
@@ -146,8 +148,21 @@ const Search: React.FC = () => {
           <section className="text-gray-600 body-font overflow-auto h-auto">
             <div className="container px-4 pb-24 mx-auto">
               <div className="flex flex-wrap ">
-                <SearchResultList products={products} isFetching={isFetching} />
-
+                {/* <SearchResultList products={products} isFetching={isFetching} /> */}
+                {products &&
+                  products.map((product, index) => (
+                    <div
+                      key={index}
+                      className="p-2 lg:w-1/2 md:w-1/2 sm:w-1/2 w-full cursor-pointer "
+                    >
+                      <Product {...product} />
+                    </div>
+                  ))}
+                {products.length === 0 && !isFetching && (
+                  <div className="mx-auto mt-5">
+                    <p>何も見つかりませんでした。</p>
+                  </div>
+                )}
                 {isFetching && (
                   <div className="mx-auto mt-5">
                     <ClipLoader />
