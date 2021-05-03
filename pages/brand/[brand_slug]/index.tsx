@@ -7,10 +7,12 @@ import { BRAND } from "../../../types/brand";
 import BrandDetail from "../../../components/BrandDetail";
 import { brands } from "../../../constants/brands";
 import { categories } from "../../../constants/categories";
+import CategoryDetail from "../../../components/CategoryDetail";
 interface STATICPROPS {
   categories: BRAND[];
 }
 const Brand: NextPage<STATICPROPS> = ({ categories }) => {
+  const router = useRouter();
   return (
     <>
       <Layout title="ブランドの一覧ページ">
@@ -32,10 +34,11 @@ const Brand: NextPage<STATICPROPS> = ({ categories }) => {
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
               {categories &&
                 categories.map((category, index) => (
-                  <div key={index}>
-                    <p>{category.name}</p>
-                    {/* <BrandDetail {...brand} /> */}
-                  </div>
+                  <CategoryDetail
+                    key={index}
+                    brand={router.query.brand_slug as string}
+                    {...category}
+                  />
                 ))}
             </div>
           </div>
