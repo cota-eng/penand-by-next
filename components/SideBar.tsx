@@ -16,13 +16,17 @@ const SideBar: React.FC = React.memo(() => {
         </h2>
         <ul className="">
           {categories &&
-            categories.map((category) => (
-              <li
-                key={category.slug}
-                className="block p-1 pl-3 text-gray-darker border-grey-lighter  rounded-sm hover:bg-gray-300 "
-              >
-                {category.name}
-              </li>
+            categories.map((category, index) => (
+              <Link href={`/category/${category.slug}`}>
+                <a>
+                  <li
+                    key={index}
+                    className="block p-1 pl-3 mr-3 text-gray-darker border-grey-lighter  rounded-sm hover:bg-gray-300 "
+                  >
+                    {category.name}
+                  </li>
+                </a>
+              </Link>
             ))}
         </ul>
 
@@ -31,13 +35,17 @@ const SideBar: React.FC = React.memo(() => {
         </h2>
         <ul className="">
           {brands &&
-            brands.map((brand) => (
-              <li
-                key={brand.slug}
-                className="block p-1 pl-3 text-gray-darker border-grey-lighter rounded-sm hover:bg-gray-300  "
-              >
-                {brand.name}
-              </li>
+            brands.map((brand, index) => (
+              <Link href={`/brand/${brand.slug}`}>
+                <a>
+                  <li
+                    key={index}
+                    className="block p-1 pl-3 mr-3 text-gray-darker border-grey-lighter rounded-sm hover:bg-gray-300  "
+                  >
+                    {brand.name}
+                  </li>
+                </a>
+              </Link>
             ))}
         </ul>
         <h2 className="font-semibold mb-2 mt-5 text-xl leading-tight sm:leading-normal">
