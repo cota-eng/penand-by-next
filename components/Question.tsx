@@ -4,8 +4,8 @@ import { ChevronUpIcon } from "@heroicons/react/solid";
 
 const Question: React.FC = () => {
   return (
-    <div className="w-full px-4 pt-16 pb-10">
-      <div className="w-full max-w-md p-2 mx-auto bg-white rounded-2xl">
+    <div className="w-full px-4 pt-16 pb-20 bg-gray-50">
+      <div className="w-full max-w-md p-2 mx-auto  rounded-2xl">
         <h3 className="font-semibold text-3xl my-5">よくある質問</h3>
         <Disclosure>
           {({ open }) => (
