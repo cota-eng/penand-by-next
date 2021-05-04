@@ -12,15 +12,16 @@ const Product: React.FC<PRODUCT> = React.memo(
           <div className="max-w-2xl bg-blue-50 border-1SS border-gray-300 px-5 py-3 rounded-md tracking-wide shadow-lg m-2">
             <div className="flex">
               <Image
-                className="rounded-md border-2 border-gray-300"
+                className="rounded-md border-2 w-1/2 border-gray-300"
                 src={image}
                 quality={80}
                 width={140}
                 height={140}
+                layout="fixed"
               />
 
-              <div className="flex flex-col justify-between ml-5 w-1/2">
-                <h3 className=" font-semibold mb-2 max-w-1/2">
+              <div className="flex flex-col justify-between ml-3 w-1/2">
+                <h3 className=" font-semibold mb-2">
                   {name.length >= MAX_LENGTH &&
                     name.substring(0, MAX_LENGTH) + "..."}
                   {name.length < MAX_LENGTH && name}
