@@ -2,7 +2,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { loginModalState } from "../states/loginModalState";
-// const [isOpen, setisOpen] = useRecoilState(loginModalState);
 export default function MyModal() {
   const [open, setOpen] = useRecoilState(loginModalState);
   const cancelButtonRef = useRef();
@@ -25,8 +24,8 @@ export default function MyModal() {
         Log in
       </button>
       <Transition
-        // beforeEnter={openModal}
-        // afterLeave={closeModal}
+        beforeEnter={openModal}
+        afterLeave={closeModal}
         show={open}
         as={Fragment}
       >

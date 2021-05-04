@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useRecoilValue } from "recoil";
-import { loginModalState } from "../states/loginModalState";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
@@ -8,10 +7,10 @@ import dynamic from "next/dynamic";
 import AnotherModal from "./AnotherModal";
 import { CURRENTUSER } from "../types/currentUser";
 import ScrollToTop from "./ScrollToTop";
-import MyModal from "./Modal";
-const LoginModal = dynamic(() => import("./LoginModal"), {
-  ssr: false,
-});
+// import MyModal from "./Modal";
+// const LoginModal = dynamic(() => import("./LoginModal"), {
+//   ssr: false,
+// });
 interface Props {
   title: string;
   //   currentUser:CURRENTUSER|null|undefined
@@ -20,9 +19,8 @@ const Layout: React.FC<Props> = ({
   children,
   title = "Bistaへようこそ｜文房具専門のレビューサイト",
 }) => {
-  const isOpen = useRecoilValue(loginModalState);
   return (
-    <div>
+    <div className="">
       <Head>
         <title>{title}</title>
         <meta property="og:title" content="My page title" key="title" />
@@ -35,10 +33,7 @@ const Layout: React.FC<Props> = ({
         <main className=" lg:w-4/5   bg-white  w-full">{children}</main>
       </div>
       <ScrollToTop />
-      {/* {isOpen && <LoginModal />} */}
-      {/* <MyModal /> */}
       <Footer />
-      <AnotherModal />
     </div>
   );
 };

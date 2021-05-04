@@ -121,8 +121,8 @@ const NavBar: React.FC = React.memo(() => {
     }
   }, []);
   return (
-    <div >
-        <Popover className="z-10  fixed w-full bg-white">
+    <div>
+      <Popover className="z-10  fixed w-full bg-white">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -141,9 +141,9 @@ const NavBar: React.FC = React.memo(() => {
                   {currentUser && <AvatarMenu />}
                   {!currentUser && <MyModal />}
                 </div> */}
-                <div className=" ml-auto ">
+                {/* <div className=" ml-auto ">
                   <Fav id="10" />
-                </div>
+                </div> */}
                 <div className="md:hidden ">
                   <Link href="/search">
                     <button className="inline-flex items-center   text-base   w-6 h-6 text-center leading-0 ml-4 mt-1  text-gray-400 focus:outline-none hover:text-gray-900 transition-colors">
