@@ -6,6 +6,7 @@ import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import dynamic from "next/dynamic";
 import { CURRENTUSER } from "../types/currentUser";
+import ScrollToTop from "./ScrollToTop";
 const LoginModal = dynamic(() => import("./LoginModal"), {
   ssr: false,
 });
@@ -35,6 +36,7 @@ const Layout: React.FC<Props> = ({
         </div>
         <main className=" lg:w-4/5 xl:w-4/5  bg-white  w-full">{children}</main>
       </div>
+      <ScrollToTop />
       <Footer />
     </>
   );
