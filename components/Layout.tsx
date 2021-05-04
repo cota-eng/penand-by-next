@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import dynamic from "next/dynamic";
+import AnotherModal from "./AnotherModal";
 import { CURRENTUSER } from "../types/currentUser";
 import ScrollToTop from "./ScrollToTop";
 const LoginModal = dynamic(() => import("./LoginModal"), {
@@ -20,25 +21,23 @@ const Layout: React.FC<Props> = ({
 }) => {
   const isOpen = useRecoilValue(loginModalState);
   return (
-    <>
+    <div>
       <Head>
         <title>{title}</title>
         <meta property="og:title" content="My page title" key="title" />
       </Head>
-      <Head>
-        <meta property="og:title" content="My new title" key="title" />
-      </Head>
       <NavBar />
       <div className="flex pt-20 min-h-screen ">
-        <div className="hidden lg:w-1/5 lg:block ">
-          {/* {isOpen && <LoginModal />} */}
+        <div className="hidden w-0  lg:w-1/5 lg:block ">
           <SideBar />
         </div>
-        <main className=" lg:w-4/5 xl:w-4/5  bg-white  w-full">{children}</main>
+        <main className=" lg:w-4/5   bg-white  w-full">{children}</main>
       </div>
       <ScrollToTop />
+      {isOpen && <LoginModal />}
       <Footer />
-    </>
+      <AnotherModal />
+    </div>
   );
 };
 export default Layout;
