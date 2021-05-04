@@ -8,6 +8,7 @@ import dynamic from "next/dynamic";
 import AnotherModal from "./AnotherModal";
 import { CURRENTUSER } from "../types/currentUser";
 import ScrollToTop from "./ScrollToTop";
+import MyModal from "./Modal";
 const LoginModal = dynamic(() => import("./LoginModal"), {
   ssr: false,
 });
@@ -34,7 +35,8 @@ const Layout: React.FC<Props> = ({
         <main className=" lg:w-4/5   bg-white  w-full">{children}</main>
       </div>
       <ScrollToTop />
-      {isOpen && <LoginModal />}
+      {/* {isOpen && <LoginModal />} */}
+      {/* <MyModal /> */}
       <Footer />
       <AnotherModal />
     </div>
