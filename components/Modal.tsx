@@ -1,8 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef, useEffect, useState } from "react";
-
+import { useRecoilState } from "recoil";
+import { loginModalState } from "../states/loginModalState";
+// const [isOpen, setisOpen] = useRecoilState(loginModalState);
 export default function MyModal() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useRecoilState(loginModalState);
   const cancelButtonRef = useRef();
 
   const closeModal = () => {
@@ -15,19 +17,22 @@ export default function MyModal() {
 
   return (
     <>
-      <div>
-        <button
-          type="button"
-          onClick={openModal}
-          className="px-4 py-3 text-sm font-medium  bg-blue-200 text-gray-800  rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Log in
-        </button>
-      </div>
-      <Transition show={open} as={Fragment}>
+      <button
+        type="button"
+        onClick={openModal}
+        className="px-4 py-3 text-sm font-medium  bg-blue-200 text-gray-800  rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+      >
+        Log in
+      </button>
+      <Transition
+        // beforeEnter={openModal}
+        // afterLeave={closeModal}
+        show={open}
+        as={Fragment}
+      >
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0  z-10 overflow-y-auto "
           initialFocus={cancelButtonRef}
           static
           open={open}
@@ -56,11 +61,11 @@ export default function MyModal() {
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
+              enterFrom="opacity-0 scale-90"
               enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
+              leave="ease-in duration-300"
               leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
+              leaveTo="opacity-0 scale-90"
             >
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                 <Dialog.Title
@@ -90,7 +95,7 @@ export default function MyModal() {
         </Dialog>
       </Transition>
       {open && (
-        <div className="opacity-25 pl-0 ml-0 fixed inset-0 z-10 bg-black"></div>
+        <div className="opacity-20   fixed inset-0 overflow-y-scroll z-10 bg-black"></div>
       )}
     </>
   );
