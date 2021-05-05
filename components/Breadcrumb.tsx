@@ -9,7 +9,7 @@ interface Props {
 }
 const Breadcrumb: React.FC<Props> = ({ breads }) => {
   return (
-    <nav className="text-black font-bold ml-10 my-8" aria-label="Breadcrumb">
+    <nav className="text-black font-bold ml-5 mt-8" aria-label="Breadcrumb">
       <ol className="list-none p-0 inline-flex">
         <li className="flex items-center">
           <Link href="/">
