@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const SideBar: React.FC = React.memo(() => {
   return (
+    // <aside className="h-screen sticky top-0 pt-10 pl-10 overflow-y-auto   bg-gray-100">
     <aside className="h-screen sticky top-0 pt-10 pl-10 overflow-y-auto   bg-gray-100">
       <h2 className="font-semibold mb-2 text-3xl leading-tight sm:leading-normal">
         メニュー

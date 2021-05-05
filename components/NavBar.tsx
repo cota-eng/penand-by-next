@@ -109,7 +109,7 @@ function classNames(...classes) {
 
 const NavBar: React.FC = React.memo(() => {
   const [avatar, setAvatar] = useState<string | null>(null);
-  const setIsOpen = useSetRecoilState(loginModalState);
+  const setOpen = useSetRecoilState(loginModalState);
   //   const isOpen = useRecoilValue(loginModalState);
   const { isAuthChecking, currentUser } = useCurrentUser();
   //   const loginModalOpen = useMemo(() => setIsOpen(true), [isOpen]);
@@ -120,9 +120,12 @@ const NavBar: React.FC = React.memo(() => {
       setAvatar(null);
     }
   }, []);
+  const openModal = () => {
+    setOpen(true);
+  };
   return (
-    <div>
-      <Popover className="z-10  fixed w-full bg-white">
+    <div className="">
+      <Popover className="z-10 top-0 fixed w-full bg-white">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -137,10 +140,18 @@ const NavBar: React.FC = React.memo(() => {
                   </Link>
                 </div>
 
-                {/* <div className="md:hidden ml-auto ">
+                <div className="md:hidden ml-auto ">
                   {currentUser && <AvatarMenu />}
-                  {!currentUser && <MyModal />}
-                </div> */}
+                  {!currentUser && (
+                    <button
+                      type="button"
+                      onClick={openModal}
+                      className="px-4 py-3 text-sm font-medium  bg-blue-200 text-gray-800  rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                    >
+                      Log in
+                    </button>
+                  )}
+                </div>
                 <div className=" ml-auto ">
                   <Fav id="10" />
                 </div>
@@ -342,28 +353,18 @@ const NavBar: React.FC = React.memo(() => {
                     About
                   </a>
                 </Popover.Group>
-                {/* <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-                <a
-                  href="#"
-                  className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                >
-                  Sign up
-                </a>
-              </div> */}
-                {/* {dis ? (
-                <>
-                  <p>dis</p>
-                  <button onClick={() => setDis(false)}>aa</button>
-                </>
-              ) : (
-                <>
-                  <p>dis</p>
-                  <button onClick={() => setDis(true)}>bb</button>
-                </>
-              )} */}
+
                 <div className="md:block hidden ml-auto ">
-                  {/* {currentUser && <AvatarMenu />}
-                  {!currentUser && <MyModal />} */}
+                  {currentUser && <AvatarMenu />}
+                  {!currentUser && (
+                    <button
+                      type="button"
+                      onClick={openModal}
+                      className="px-4 py-3 text-sm font-medium  bg-blue-200 text-gray-800  rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                    >
+                      Log in
+                    </button>
+                  )}
                 </div>
                 <div className="md:block hidden ">
                   <Link href="/search">
