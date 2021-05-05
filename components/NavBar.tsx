@@ -141,9 +141,9 @@ const NavBar: React.FC = React.memo(() => {
                   {currentUser && <AvatarMenu />}
                   {!currentUser && <MyModal />}
                 </div> */}
-                {/* <div className=" ml-auto ">
+                <div className=" ml-auto ">
                   <Fav id="10" />
-                </div> */}
+                </div>
                 <div className="md:hidden ">
                   <Link href="/search">
                     <button className="inline-flex items-center   text-base   w-6 h-6 text-center leading-0 ml-4 mt-1  text-gray-400 focus:outline-none hover:text-gray-900 transition-colors">
@@ -362,8 +362,8 @@ const NavBar: React.FC = React.memo(() => {
                 </>
               )} */}
                 <div className="md:block hidden ml-auto ">
-                  {currentUser && <AvatarMenu />}
-                  {!currentUser && <MyModal />}
+                  {/* {currentUser && <AvatarMenu />}
+                  {!currentUser && <MyModal />} */}
                 </div>
                 <div className="md:block hidden ">
                   <Link href="/search">
