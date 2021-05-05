@@ -13,8 +13,16 @@ import axios from "axios";
 import Link from "next/link";
 import ClipLoader from "react-spinners/ClipLoader";
 import SearchResultList from "../components/SearchResultList";
+import { BREADCRUMB } from "../types/breadcrumb";
+import Breadcrumb from "../components/Breadcrumb";
 
 const Search: React.FC = () => {
+  const breads: BREADCRUMB[] = [
+    {
+      name: "search",
+      slug: "/search",
+    },
+  ];
   const [name, setName] = useState<string | null>("");
   const [products, setProducts] = useState<PRODUCT[]>([]);
   const [isFetching, setIsFetching] = useState(false);
@@ -75,6 +83,7 @@ const Search: React.FC = () => {
 
   return (
     <Layout title="条件検索">
+      <Breadcrumb breads={breads} />
       <div className="w-full max-w-screen-xl  ">
         <div className="flex flex-col mx-auto  px-3 py-10">
           <div className="z-0 min-w-screen flex items-center justify-center px-5 py-5">

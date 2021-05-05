@@ -8,14 +8,28 @@ import BrandDetail from "../../../components/BrandDetail";
 import { brands } from "../../../constants/brands";
 import { categories } from "../../../constants/categories";
 import CategoryDetail from "../../../components/CategoryDetail";
+import { BREADCRUMB } from "../../../types/breadcrumb";
+import Breadcrumb from "../../../components/Breadcrumb";
 interface STATICPROPS {
   categories: BRAND[];
 }
 const Brand: NextPage<STATICPROPS> = ({ categories }) => {
   const router = useRouter();
+  const brand_slug = router.query.brand_slug as string;
+  const breads: BREADCRUMB[] = [
+    {
+      name: "brand",
+      slug: "/brand",
+    },
+    {
+      name: `${brand_slug}`,
+      slug: `/brand/${brand_slug}`,
+    },
+  ];
   return (
     <>
       <Layout title="ブランドの一覧ページ">
+        <Breadcrumb breads={breads} />
         <section className="text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto">
             <div className="flex flex-col">
@@ -36,7 +50,7 @@ const Brand: NextPage<STATICPROPS> = ({ categories }) => {
                 categories.map((category, index) => (
                   <CategoryDetail
                     key={index}
-                    brand={router.query.brand_slug as string}
+                    brand={brand_slug}
                     {...category}
                   />
                 ))}

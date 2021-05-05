@@ -6,6 +6,8 @@ import Product from "../../../../../../components/Product";
 import Pagination from "../../../../../../components/Pagination";
 import { slugs } from "../../../../../../constants/slugs";
 import { getBrandCategoryFilteredProductData } from "../../../../../../lib/fetchProducts";
+import { BREADCRUMB } from "../../../../../../types/breadcrumb";
+import Breadcrumb from "../../../../../../components/Breadcrumb";
 
 interface STATICPROPS {
   category: string;
@@ -22,8 +24,35 @@ const Detail: React.FC<STATICPROPS> = ({
   totalCount,
   page,
 }) => {
+  const breads: BREADCRUMB[] = [
+    {
+      name: "brand",
+      slug: `/brand`,
+    },
+    {
+      name: `${brand}`,
+      slug: `/brand/${brand}`,
+    },
+    {
+      name: "category",
+      slug: "/category",
+    },
+    {
+      name: `${category}`,
+      slug: `/category/${category}`,
+    },
+    {
+      name: "page",
+      slug: `//brand/${brand}/category/${category}page/1`,
+    },
+    {
+      name: `${page}`,
+      slug: `/brand/${brand}/category/${category}/page/${page}`,
+    },
+  ];
   return (
     <Layout title="ペンの一覧ページ">
+      <Breadcrumb breads={breads} />
       <div>
         <section className="text-gray-600 body-font overflow-auto h-auto">
           <div className="container px-5 py-20 mx-auto">
