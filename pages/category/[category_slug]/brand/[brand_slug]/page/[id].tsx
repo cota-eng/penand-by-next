@@ -9,8 +9,10 @@ import { categories } from "../../../../../../constants/categories";
 import { brands } from "../../../../../../constants/brands";
 import Category from "../../../../../../components/Search/Category";
 import { slugs } from "../../../../../../constants/slugs";
+import Breadcrumb from "../../../../../../components/Breadcrumb";
+import { BREADCRUMB } from "../../../../../../types/breadcrumb";
 
-interface STATICPROPS {
+interface Props {
   category: string;
   brand: string;
   products: PRODUCT[] | null;
@@ -18,15 +20,42 @@ interface STATICPROPS {
   page: string | null;
 }
 
-const Detail: React.FC<STATICPROPS> = ({
+const Detail: React.FC<Props> = ({
   category,
   brand,
   products,
   totalCount,
   page,
 }) => {
+  const breads: BREADCRUMB[] = [
+    {
+      name: "category",
+      slug: "/category",
+    },
+    {
+      name: `${category}`,
+      slug: `/category/${category}`,
+    },
+    {
+      name: "brand",
+      slug: `/${brand}`,
+    },
+    {
+      name: `${brand}`,
+      slug: `/brand/${brand}`,
+    },
+    {
+      name: "page",
+      slug: `/category/${category}/brand/${brand}/page/1`,
+    },
+    {
+      name: `${page}`,
+      slug: `/category/${category}/brand/${brand}/page/${page}`,
+    },
+  ];
   return (
     <Layout title="ペンの一覧ページ">
+      <Breadcrumb breads={breads} />
       <div>
         <section className="text-gray-600 body-font overflow-auto h-auto">
           <div className="container px-5 py-20 mx-auto">
