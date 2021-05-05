@@ -7,14 +7,13 @@ import dynamic from "next/dynamic";
 import AnotherModal from "./AnotherModal";
 import { CURRENTUSER } from "../types/currentUser";
 import ScrollToTop from "./ScrollToTop";
-// import MyModal from "./Modal";
-// const LoginModal = dynamic(() => import("./LoginModal"), {
-//   ssr: false,
-// });
+import LoginModal from "./LoginModal";
+import MyModal from "./Modal";
 interface Props {
   title: string;
   //   currentUser:CURRENTUSER|null|undefined
 }
+
 const Layout: React.FC<Props> = ({
   children,
   title = "Bistaへようこそ｜文房具専門のレビューサイト",
@@ -32,6 +31,8 @@ const Layout: React.FC<Props> = ({
         </div>
         <main className=" lg:w-4/5   bg-white  w-full">{children}</main>
       </div>
+      {/* <LoginModal /> */}
+      <MyModal />
       <ScrollToTop />
       <Footer />
     </div>
