@@ -38,7 +38,7 @@ const Detail: React.FC<Props> = ({
     },
     {
       name: "brand",
-      slug: `/${brand}`,
+      slug: `/brand`,
     },
     {
       name: `${brand}`,
