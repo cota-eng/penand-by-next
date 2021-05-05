@@ -5,14 +5,23 @@ import Layout from "../../components/Layout";
 import { CATEGORY } from "../../types/category";
 import { categories } from "../../constants/categories";
 import CategoryList from "../../components/Category";
+import { BREADCRUMB } from "../../types/breadcrumb";
+import Breadcrumb from "../../components/Breadcrumb";
 
 interface STATICPROPS {
   categories: CATEGORY[];
 }
 const Category: NextPage<STATICPROPS> = ({ categories }) => {
+  const breads: BREADCRUMB[] = [
+    {
+      name: "category",
+      slug: "/category",
+    },
+  ];
   return (
     <>
       <Layout title="カテゴリの一覧ページ">
+        <Breadcrumb breads={breads} />
         <section className="text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto">
             <div className="flex flex-col">
