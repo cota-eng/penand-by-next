@@ -1,5 +1,4 @@
 import React from "react";
-import product from "../pages/product";
 import { PRODUCT } from "../types/product";
 import Product from "./Product";
 interface Props {
