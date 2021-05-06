@@ -22,6 +22,7 @@ const Search: React.FC = () => {
     },
   ];
   const [name, setName] = useState<string | null>("");
+  const [isSearched, setIsSearched] = useState(false);
   const [products, setProducts] = useState<PRODUCT[]>([]);
   const [isFetching, setIsFetching] = useState(false);
   const [page, setPage] = useState(1);
@@ -29,6 +30,7 @@ const Search: React.FC = () => {
   const resetName = () => {
     setName("");
     setProducts([]);
+    setIsSearched(false);
     setHasMore(false);
     setIsFetching(false);
   };
@@ -37,6 +39,7 @@ const Search: React.FC = () => {
     setIsFetching(true);
     setProducts([]);
     setPage(1);
+    setIsSearched(true);
     axios({
       method: "GET",
       url: `${process.env.NEXT_PUBLIC_API_URL}/api/search`,
@@ -152,11 +155,17 @@ const Search: React.FC = () => {
               </div>
             </div>
           </div>
-          <section className="text-gray-600 body-font overflow-auto h-auto">
+          <section className="text-gray-600 body-font  h-auto">
             <div className="container px-4 pb-24 mx-auto">
-              <div className="flex">{!name && <SearchTag />}</div>
-              <div className="flex flex-wrap ">
-                {/* <SearchResultList products={products} isFetching={isFetching} /> */}
+              {!isSearched && (
+                <h3 className="text-center text-2xl font-bold my-4">
+                  タグ一覧
+                </h3>
+              )}
+              <div className="flex flex-wrap">
+                {!isSearched && <SearchTag />}
+              </div>
+              <div className="flex flex-wrap space-between mx-auto ">
                 {products &&
                   products.map((product, index) => (
                     <div
