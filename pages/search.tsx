@@ -2,19 +2,17 @@ import Layout from "../components/Layout";
 import React, { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { SEARCH } from "../types/search";
-import { getFilteredPens } from "../lib/fetchSearchResult";
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import { RESULTS } from "../types/results";
 import PenResult from "../components/ProductResult";
 import { PRODUCT } from "../types/product";
 import Product from "../components/Product";
 import axios from "axios";
 import Link from "next/link";
 import ClipLoader from "react-spinners/ClipLoader";
-import SearchResultList from "../components/SearchResultList";
 import { BREADCRUMB } from "../types/breadcrumb";
 import Breadcrumb from "../components/Breadcrumb";
+import SearchTag from "../components/SearchTag";
 
 const Search: React.FC = () => {
   const breads: BREADCRUMB[] = [
@@ -87,7 +85,7 @@ const Search: React.FC = () => {
       <div className="w-full max-w-screen-xl  ">
         <div className="flex flex-col mx-auto  px-3 py-10">
           <div className="z-0 min-w-screen flex items-center justify-center px-5 py-5">
-            <div className="w-full mx-auto rounded-xl bg-gray-100 shadow-lg p-10 text-gray-800 relative overflow-hidden resize-x min-w-80 max-w-3xl">
+            <div className="w-full mx-auto rounded-xl bg-gray-100 shadow-lg p-10 text-gray-800 relative overflow-hidden  ">
               <h1 className="title-font sm:text-4xl text-3xl mb-2 font-medium text-gray-900 text-center">
                 SEARCH
               </h1>
@@ -156,6 +154,7 @@ const Search: React.FC = () => {
           </div>
           <section className="text-gray-600 body-font overflow-auto h-auto">
             <div className="container px-4 pb-24 mx-auto">
+              <div className="flex">{!name && <SearchTag />}</div>
               <div className="flex flex-wrap ">
                 {/* <SearchResultList products={products} isFetching={isFetching} /> */}
                 {products &&
@@ -167,11 +166,11 @@ const Search: React.FC = () => {
                       <Product {...product} />
                     </div>
                   ))}
-                {products.length === 0 && !isFetching && (
+                {/* {products.length === 0 && !isFetching && (
                   <div className="mx-auto mt-5">
                     <p>何も見つかりませんでした。</p>
                   </div>
-                )}
+                )} */}
                 {isFetching && (
                   <div className="mx-auto mt-5">
                     <ClipLoader />
