@@ -2,134 +2,153 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-gray-800 pt-4 pb-8 xl:pt-8">
-      <div className="max-w-screen-lg xl:max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 text-gray-400 dark:text-gray-300">
-        <ul className="text-lg font-light pb-8 flex flex-wrap justify-center">
-          <li className="w-1/2 md:w-1/3 lg:w-1/3">
-            <div className="text-center">
-              <h2 className="text-gray-500 dark:text-gray-200 text-md uppercase mb-4">
-                Components
-              </h2>
-              <ul>
-                <li className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
-                  <a href="#">Elements</a>
-                </li>
-                <li className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
-                  <a href="#">Forms</a>
-                </li>
-                <li className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
-                  <a href="#">Commerces</a>
-                </li>
-                <li className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
-                  <a href="#">Navigation</a>
-                </li>
-              </ul>
+    <footer className="bg-white dark:bg-gray-800">
+      <div className="container px-6 py-4 mx-auto">
+        <div className="lg:flex">
+          <div className="w-full -mx-6 lg:w-2/5">
+            <div className="px-6">
+              <div>
+                <a
+                  href="#"
+                  className="text-xl font-bold text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
+                >
+                  Bista
+                </a>
+              </div>
+
+              <p className="max-w-md mt-2 text-gray-500 dark:text-gray-400">
+                文房具のレビューサイト
+              </p>
+
+              <div className="flex mt-4 -mx-2">
+                <a
+                  href="#"
+                  className="mx-2 text-gray-700 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400"
+                  aria-label="Linkden"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 512 512">
+                    <path d="M444.17,32H70.28C49.85,32,32,46.7,32,66.89V441.61C32,461.91,49.85,480,70.28,480H444.06C464.6,480,480,461.79,480,441.61V66.89C480.12,46.7,464.6,32,444.17,32ZM170.87,405.43H106.69V205.88h64.18ZM141,175.54h-.46c-20.54,0-33.84-15.29-33.84-34.43,0-19.49,13.65-34.42,34.65-34.42s33.85,14.82,34.31,34.42C175.65,160.25,162.35,175.54,141,175.54ZM405.43,405.43H341.25V296.32c0-26.14-9.34-44-32.56-44-17.74,0-28.24,12-32.91,23.69-1.75,4.2-2.22,9.92-2.22,15.76V405.43H209.38V205.88h64.18v27.77c9.34-13.3,23.93-32.44,57.88-32.44,42.13,0,74,27.77,74,87.64Z" />
+                  </svg>
+                </a>
+
+                <a
+                  href="#"
+                  className="mx-2 text-gray-700 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400"
+                  aria-label="Facebook"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 512 512">
+                    <path d="M455.27,32H56.73A24.74,24.74,0,0,0,32,56.73V455.27A24.74,24.74,0,0,0,56.73,480H256V304H202.45V240H256V189c0-57.86,40.13-89.36,91.82-89.36,24.73,0,51.33,1.86,57.51,2.68v60.43H364.15c-28.12,0-33.48,13.3-33.48,32.9V240h67l-8.75,64H330.67V480h124.6A24.74,24.74,0,0,0,480,455.27V56.73A24.74,24.74,0,0,0,455.27,32Z" />
+                  </svg>
+                </a>
+
+                <a
+                  href="#"
+                  className="mx-2 text-gray-700 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400"
+                  aria-label="Twitter"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 512 512">
+                    <path d="M496,109.5a201.8,201.8,0,0,1-56.55,15.3,97.51,97.51,0,0,0,43.33-53.6,197.74,197.74,0,0,1-62.56,23.5A99.14,99.14,0,0,0,348.31,64c-54.42,0-98.46,43.4-98.46,96.9a93.21,93.21,0,0,0,2.54,22.1,280.7,280.7,0,0,1-203-101.3A95.69,95.69,0,0,0,36,130.4C36,164,53.53,193.7,80,211.1A97.5,97.5,0,0,1,35.22,199v1.2c0,47,34,86.1,79,95a100.76,100.76,0,0,1-25.94,3.4,94.38,94.38,0,0,1-18.51-1.8c12.51,38.5,48.92,66.5,92.05,67.3A199.59,199.59,0,0,1,39.5,405.6,203,203,0,0,1,16,404.2,278.68,278.68,0,0,0,166.74,448c181.36,0,280.44-147.7,280.44-275.8,0-4.2-.11-8.4-.31-12.5A198.48,198.48,0,0,0,496,109.5Z" />
+                  </svg>
+                </a>
+              </div>
             </div>
-          </li>
-          <li className="w-1/2 md:w-1/3 lg:w-1/3">
-            <div className="text-center">
-              <h2 className="text-gray-500 dark:text-gray-200 text-md uppercase mb-4">
-                Contacts
-              </h2>
-              <ul>
-                <li className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
-                  <a href="#">Github</a>
-                </li>
-                <li className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
-                  <a href="#">Facebook</a>
-                </li>
-                <li className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
-                  <a href="#">Twitter</a>
-                </li>
-                <li className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
-                  <a href="#">LinkedIn</a>
-                </li>
-              </ul>
+          </div>
+
+          <div className="mt-6 lg:mt-0 lg:flex-1">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
+              <div>
+                <h3 className="text-gray-700 uppercase dark:text-white">
+                  Link
+                </h3>
+                <a
+                  href="/"
+                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                >
+                  Top
+                </a>
+                <a
+                  href="/about"
+                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                >
+                  About
+                </a>
+                <a
+                  href="#"
+                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                >
+                  Example
+                </a>
+              </div>
+
+              <div>
+                <h3 className="text-gray-700 uppercase dark:text-white">
+                  Category
+                </h3>
+                <a
+                  href="/category/mechanical"
+                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                >
+                  Mechanical
+                </a>
+                <a
+                  href="/category/ballpoint"
+                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                >
+                  Ballpoint
+                </a>
+                <a
+                  href="/category/fountain"
+                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                >
+                  Fountain
+                </a>
+              </div>
+
+              <div>
+                <h3 className="text-gray-700 uppercase dark:text-white">
+                  Brands
+                </h3>
+                <a
+                  href="#"
+                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                >
+                  Uni
+                </a>
+                <a
+                  href="#"
+                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                >
+                  Zebra
+                </a>
+                <a
+                  href="#"
+                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                >
+                  Ohto
+                </a>
+              </div>
+
+              <div>
+                <h3 className="text-gray-700 uppercase dark:text-white">
+                  Contact
+                </h3>
+                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
+                  contact
+                </span>
+                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
+                  example@email.com
+                </span>
+              </div>
             </div>
-          </li>
-          <li className="w-1/2 md:w-1/3 lg:w-1/3">
-            <div className="text-center">
-              <h2 className="text-gray-500 dark:text-gray-200 text-md uppercase mb-4">
-                Categories
-              </h2>
-              <ul>
-                <li className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
-                  <a href="#">Settings</a>
-                </li>
-                <li className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
-                  <a href="#">Themes</a>
-                </li>
-                <li className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
-                  <a href="#">Plugins</a>
-                </li>
-                <li className="mb-4 hover:text-gray-800 dark:hover:text-white transition-colors duration-200">
-                  <a href="#">LinkedIn</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-        <div className="pt-8 flex border-t border-gray-200 max-w-xs mx-auto items-center justify-between">
-          <a href="#">
-            <svg
-              width="20"
-              height="20"
-              fill="currentColor"
-              className="text-xl hover:text-gray-800 dark:hover:text-white transition-colors duration-200"
-              viewBox="0 0 1792 1792"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"></path>
-            </svg>
-          </a>
-          <a href="#">
-            <svg
-              width="20"
-              height="20"
-              fill="currentColor"
-              className="text-xl hover:text-gray-800 dark:hover:text-white transition-colors duration-200"
-              viewBox="0 0 1792 1792"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"></path>
-            </svg>
-          </a>
-          <a href="#">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              className="text-xl hover:text-gray-800 dark:hover:text-white transition-colors duration-200"
-              viewBox="0 0 1792 1792"
-            >
-              <path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z"></path>
-            </svg>
-          </a>
-          <a href="#">
-            <svg
-              width="20"
-              height="20"
-              fill="currentColor"
-              className="text-xl hover:text-gray-800 dark:hover:text-white transition-colors duration-200"
-              viewBox="0 0 1792 1792"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"></path>
-            </svg>
-          </a>
-          <a href="#">
-            <svg
-              width="20"
-              height="20"
-              fill="currentColor"
-              className="text-xl hover:text-gray-800 dark:hover:text-white transition-colors duration-200"
-              viewBox="0 0 1792 1792"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M1551 1476q15-6 26-3t11 17.5-15 33.5q-13 16-44 43.5t-95.5 68-141 74-188 58-229.5 24.5q-119 0-238-31t-209-76.5-172.5-104-132.5-105-84-87.5q-8-9-10-16.5t1-12 8-7 11.5-2 11.5 4.5q192 117 300 166 389 176 799 90 190-40 391-135zm207-115q11 16 2.5 69.5t-28.5 102.5q-34 83-85 124-17 14-26 9t0-24q21-45 44.5-121.5t6.5-98.5q-5-7-15.5-11.5t-27-6-29.5-2.5-35 0-31.5 2-31 3-22.5 2q-6 1-13 1.5t-11 1-8.5 1-7 .5h-10l-3-.5-2-1.5-1.5-3q-6-16 47-40t103-30q46-7 108-1t76 24zm-394-443q0 31 13.5 64t32 58 37.5 46 33 32l13 11-227 224q-40-37-79-75.5t-58-58.5l-19-20q-11-11-25-33-38 59-97.5 102.5t-127.5 63.5-140 23-137.5-21-117.5-65.5-83-113-31-162.5q0-84 28-154t72-116.5 106.5-83 122.5-57 130-34.5 119.5-18.5 99.5-6.5v-127q0-65-21-97-34-53-121-53-6 0-16.5 1t-40.5 12-56 29.5-56 59.5-48 96l-294-27q0-60 22-119t67-113 108-95 151.5-65.5 190.5-24.5q100 0 181 25t129.5 61.5 81 83 45 86 12.5 73.5v589zm-672 21q0 86 70 133 66 44 139 22 84-25 114-123 14-45 14-101v-162q-59 2-111 12t-106.5 33.5-87 71-32.5 114.5z"></path>
-            </svg>
-          </a>
+          </div>
+        </div>
+
+        <hr className="h-px my-6 bg-gray-300 border-none dark:bg-gray-700" />
+
+        <div>
+          <p className="text-center text-gray-800 dark:text-white">
+            © Bista 2021 - All rights reserved
+          </p>
         </div>
       </div>
     </footer>

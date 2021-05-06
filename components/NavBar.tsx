@@ -25,7 +25,6 @@ import { useRecoilValue, useSetRecoilState, useRecoilCallback } from "recoil";
 import { loginModalState } from "../states/loginModalState";
 import { CURRENTUSER } from "../types/currentUser";
 import MyModal from "./Modal";
-import Fav from "./Fav";
 
 const menues = [
   {
@@ -151,9 +150,6 @@ const NavBar: React.FC = React.memo(() => {
                       Log in
                     </button>
                   )}
-                </div>
-                <div className=" ml-auto ">
-                  <Fav id="10" />
                 </div>
                 <div className="md:hidden ">
                   <Link href="/search">
