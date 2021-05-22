@@ -1,17 +1,27 @@
 import { useEffect } from "react";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { GetStaticProps, NextPage } from "next";
 import Layout from "../../components/Layout";
-import { getAllCategories } from "../../lib/fetchCategory";
 import { CATEGORY } from "../../types/category";
-import CategoryDetail from "../../components/CategoryDetail";
+import { categories } from "../../constants/categories";
+import CategoryList from "../../components/Category";
+import { BREADCRUMB } from "../../types/breadcrumb";
+import Breadcrumb from "../../components/Breadcrumb";
+
 interface STATICPROPS {
   categories: CATEGORY[];
 }
 const Category: NextPage<STATICPROPS> = ({ categories }) => {
+  const breads: BREADCRUMB[] = [
+    {
+      name: "category",
+      slug: "/category",
+    },
+  ];
   return (
     <>
       <Layout title="カテゴリの一覧ページ">
+        <Breadcrumb breads={breads} />
         <section className="text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto">
             <div className="flex flex-col">
@@ -29,8 +39,8 @@ const Category: NextPage<STATICPROPS> = ({ categories }) => {
             </div>
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
               {categories &&
-                categories.map((category) => (
-                  <CategoryDetail key={category.id} {...category} />
+                categories.map((category, index) => (
+                  <CategoryList key={index} {...category} />
                   //   <p key={category.id}>{category.name}</p>
                 ))}
             </div>
@@ -42,10 +52,11 @@ const Category: NextPage<STATICPROPS> = ({ categories }) => {
 };
 export default Category;
 export const getStaticProps: GetStaticProps = async () => {
-  const categories = await getAllCategories();
+  //   const categories = await getAllCategories();
+  // categories
   return {
     props: {
-      categories,
+      categories: categories,
     },
   };
 };

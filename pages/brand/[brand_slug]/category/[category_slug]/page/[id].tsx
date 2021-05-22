@@ -6,6 +6,8 @@ import Product from "../../../../../../components/Product";
 import Pagination from "../../../../../../components/Pagination";
 import { slugs } from "../../../../../../constants/slugs";
 import { getBrandCategoryFilteredProductData } from "../../../../../../lib/fetchProducts";
+import { BREADCRUMB } from "../../../../../../types/breadcrumb";
+import Breadcrumb from "../../../../../../components/Breadcrumb";
 
 interface STATICPROPS {
   category: string;
@@ -22,17 +24,50 @@ const Detail: React.FC<STATICPROPS> = ({
   totalCount,
   page,
 }) => {
+  const breads: BREADCRUMB[] = [
+    {
+      name: "brand",
+      slug: `/brand`,
+    },
+    {
+      name: `${brand}`,
+      slug: `/brand/${brand}`,
+    },
+    {
+      name: "category",
+      slug: "/category",
+    },
+    {
+      name: `${category}`,
+      slug: `/category/${category}`,
+    },
+    {
+      name: "page",
+      slug: `//brand/${brand}/category/${category}page/1`,
+    },
+    {
+      name: `${page}`,
+      slug: `/brand/${brand}/category/${category}/page/${page}`,
+    },
+  ];
   return (
     <Layout title="ペンの一覧ページ">
+      <Breadcrumb breads={breads} />
       <div>
         <section className="text-gray-600 body-font overflow-auto h-auto">
-          {/* <h2>{}</h2> */}
-          <div className="container px-5 py-24 mx-auto">
+          <div className="container px-5 py-20 mx-auto">
+            <h2 className="text-center text-2xl font-bold">
+              {products && products[0].brand.name}の
+              {products && products[0].category.name}一覧
+            </h2>
             <div className="flex flex-wrap ">
               {products &&
-                products.map((product) => (
-                  <div className="p-2 lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer ">
-                    <Product key={product.id} {...product} />
+                products.map((product, index) => (
+                  <div
+                    key={index}
+                    className="p-2 sm:w-1/2 w-full cursor-pointer "
+                  >
+                    <Product {...product} />
                   </div>
                 ))}
             </div>

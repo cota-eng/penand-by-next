@@ -30,12 +30,16 @@ const Hero = () => {
             </p>
             <div className="flex">
               <button
-                className="mr-5  text-center w-40  bg-blue-100 text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                className="mr-5  text-center w-40  bg-blue-100 text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline  "
                 onClick={() => setIsModalOpen(true)}
               >
+                {/* <button
+                className="mr-5  text-center w-40  bg-blue-100 text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                onClick={() => setIsModalOpen(true)}
+              > */}
                 Login
               </button>
-              <button className=" text-center w-40  bg-gray-50 text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+              <button className=" text-center w-40  bg-gray-50 text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline  ease-in-out">
                 <Link href="/about">About</Link>
               </button>
             </div>

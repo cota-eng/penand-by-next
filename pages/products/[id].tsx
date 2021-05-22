@@ -11,6 +11,7 @@ import { getAllProductIds, getProductData } from "../../lib/fetchProducts";
 import { PRODUCT } from "../../types/product";
 import Image from "next/image";
 import RelatedProducts from "../../components/RelatedProducts";
+import Breadcrumb from "../../components/Breadcrumb";
 const MyChart = dynamic(() => import("../../components/Review/ReviewDetail"), {
   ssr: false,
 });
@@ -21,6 +22,10 @@ const CategoryColor: { [key: string]: string } = {
 };
 interface ProductIncludeRelatedProps extends PRODUCT {
   related: PRODUCT[];
+}
+interface Bread {
+  name: string;
+  slug: string;
 }
 const ProductPage: React.FC<ProductIncludeRelatedProps> = ({
   id,
@@ -42,10 +47,33 @@ const ProductPage: React.FC<ProductIncludeRelatedProps> = ({
   if (router.isFallback || !name) {
     return <div>loading...</div>;
   }
+  const breads: Bread[] = [
+    {
+      name: "category",
+      slug: "/category",
+    },
+    {
+      name: `${category.slug}`,
+      slug: `/category/${category.slug}`,
+    },
+    {
+      name: "brand",
+      slug: "/brand",
+    },
+    {
+      name: `${brand.slug}`,
+      slug: `/brand/${brand.slug}`,
+    },
+    {
+      name: `${name}`,
+      slug: ``,
+    },
+  ];
   // pen.tsxからのpropsを分解しているから、nameがないときはpenがないと同じはず
   return (
     <div>
-      <Layout title={`${name}の詳細、レビューページ`}>
+      <Layout title={`${name}の詳細、レビューページ | Bista`}>
+        <Breadcrumb breads={breads} />
         <section className="text-gray-600 body-font w-5/6 mx-auto">
           <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col w-3/4">
             <span
@@ -122,7 +150,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const product = await getProductData(context.params.id as string);
   return {
     props: { ...product },
-    revalidate: 10,
+    // revalidate: 10,
   };
 };
 export default ProductPage;

@@ -1,221 +1,223 @@
 import Layout from "../components/Layout";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { SEARCH } from "../types/search";
-import { getFilteredPens } from "../lib/fetchSearchResult";
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import { RESULTS } from "../types/results";
 import PenResult from "../components/ProductResult";
 import { PRODUCT } from "../types/product";
 import Product from "../components/Product";
 import axios from "axios";
-import Autosuggest from "react-autosuggest";
-import { suggest } from "../constants/suggest";
-import { SUGGESTINPUT } from "../types/suggestInput";
 import Link from "next/link";
+import ClipLoader from "react-spinners/ClipLoader";
+import { BREADCRUMB } from "../types/breadcrumb";
+import Breadcrumb from "../components/Breadcrumb";
+import SearchTag from "../components/SearchTag";
 
-const getSuggestions = (value: string): SUGGESTINPUT[] => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-
-  return inputLength === 0
-    ? []
-    : suggest.filter(
-        (product) => product.name.slice(0, inputLength) === inputValue
-      );
-};
 const Search: React.FC = () => {
-  const [value, setValue] = useState("");
+  const breads: BREADCRUMB[] = [
+    {
+      name: "search",
+      slug: "/search",
+    },
+  ];
+  const [name, setName] = useState<string | null>("");
+  const [isSearched, setIsSearched] = useState(false);
+  const [products, setProducts] = useState<PRODUCT[]>([]);
+  const [isFetching, setIsFetching] = useState(false);
+  const [page, setPage] = useState(1);
+  const [HasMore, setHasMore] = useState(false);
+  const resetName = () => {
+    setName("");
+    setProducts([]);
+    setIsSearched(false);
+    setHasMore(false);
+    setIsFetching(false);
+  };
+  const firstLoad = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsFetching(true);
+    setProducts([]);
+    setPage(1);
+    setIsSearched(true);
+    axios({
+      method: "GET",
+      url: `${process.env.NEXT_PUBLIC_API_URL}/api/search`,
+      params: { name: name, page: 1 },
+    })
+      .then((res) => {
+        setProducts(() => {
+          return [...res.data.results];
+        });
+        setPage((pre) => pre + 1);
+        setHasMore(res.data.next);
+        setIsFetching(false);
+      })
+      .catch(() => setIsFetching(false));
+  };
+  const loadMore = () => {
+    setIsFetching(true);
+    axios({
+      method: "GET",
+      url: `${process.env.NEXT_PUBLIC_API_URL}/api/search`,
+      params: { name: name, page: page },
+    }).then((res) => {
+      if (res.data.count !== 0) {
+        setProducts((prevProducts) => {
+          return [...prevProducts, ...res.data.results];
+        });
+        setPage((pre) => pre + 1);
+        setHasMore(res.data.next);
+        setIsFetching(false);
+      } else {
+        setProducts([]);
+        setHasMore(false);
+        setIsFetching(false);
+      }
+    });
+  };
+
   const router = useRouter();
-  const [isSearch, setIsSearch] = useState(false);
-  const [suggestions, setSuggestions] = useState<SUGGESTINPUT[]>([]);
-
-  const getSuggestionValue = (suggestion: SUGGESTINPUT): string => {
-    const { name } = suggestion;
-
-    return name;
-  };
-
-  const renderSuggestion = (suggestion: SUGGESTINPUT) => {
-    return (
-      <>
-        <div className="text-sm underline to-blue-200 text-left  mt-1">
-          <Link href={`product/${suggestion.pk}`}>
-            <a target="_blank">{suggestion.name}</a>
-          </Link>
-        </div>
-      </>
-    );
-  };
-
-  const onChange = (
-    event: React.BaseSyntheticEvent,
-    { newValue }: { newValue: string }
-  ) => {
-    if (event) setValue(newValue);
-  };
-
-  const onSuggestionsFetchRequested = ({ value }: { value: string }) => {
-    const suggestions: SUGGESTINPUT[] = getSuggestions(value);
-    setSuggestions(suggestions);
-  };
-
-  // Autosuggest will call this function every time you need to clear suggestions.
-  const onSuggestionsClearRequested = () => {
-    setSuggestions([]);
-  };
-
-  const inputProps = {
-    placeholder: "商品名で検索",
-    value,
-    onChange,
-  };
-
-  //   useEffect(() => {
-  //     if (isSearch) {
-  //       try {
-  //         setProducts(null);
-  //         axios
-  //           .get(`${process.env.NEXT_PUBLIC_API_URL}/api/search/?name=${name}`)
-  //           .then((res) => setProducts(res.data));
-  //       } catch (e) {
-  //         () => setIsSearch(false);
-  //       } finally {
-  //         () => setIsSearch(false);
-  //       }
-  //     }
-  //   }, [isSearch]);
-
   if (router.isFallback) {
     return <div>loading...</div>;
   }
-  //   if (error) return <div>failed to load</div>;
-  //   if (!data || router.isFallback) return <div>loading...</div>;
+
   return (
     <Layout title="条件検索">
+      <Breadcrumb breads={breads} />
       <div className="w-full max-w-screen-xl  ">
         <div className="flex flex-col mx-auto  px-3 py-10">
-          <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900 text-center">
-            SEARCH
-          </h1>
-          <div className="md:w-1/2 w-3/4 mx-auto">
-            <div className="bg-gray-200 shadow-md rounded-lg px-3 py-2 mb-4 text-center mx-auto">
-              {/* <div className="flex items-center bg-white rounded-md mt-5 mx-auto"> */}
-              <div className="flex  mb-4">
-                <svg
-                  className="fill-current text-gray-500 w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    className="heroicon-ui"
-                    d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
+          <div className="z-0 min-w-screen flex items-center justify-center px-5 py-5">
+            <div className="w-full mx-auto rounded-xl bg-gray-100 shadow-lg p-10 text-gray-800 relative overflow-hidden  ">
+              <h1 className="title-font sm:text-4xl text-3xl mb-2 font-medium text-gray-900 text-center">
+                SEARCH
+              </h1>
+              <div className="relative mt-1">
+                <form onSubmit={firstLoad}>
+                  <input
+                    type="text"
+                    className="w-full pl-3 pr-10 py-2 border-2 bg-gray-50 focus:bg-white border-gray-200 rounded-xl hover:border-gray-300 focus:outline-none focus:border-blue-500 transition-colors"
+                    placeholder="キーワードを入力..."
+                    value={name}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setName(e.target.value)
+                    }
                   />
-                </svg>
-                <p className="title-font text-sm  font-medium text-gray-900 text-center">
-                  タップすると新しいタブで開かれます。
-                </p>
+                  <div className="">
+                    <button
+                      className="block w-7 h-7 text-center text-xl leading-0 absolute top-2 right-10 text-gray-400 focus:outline-none hover:text-gray-900 transition-colors"
+                      type="submit"
+                    >
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </button>
+                    <a
+                      className="block w-7 h-7 text-center text-xl leading-0 absolute top-2.5 right-3 text-gray-400 focus:outline-none hover:text-gray-900 transition-colors"
+                      onClick={resetName}
+                    >
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414a2 2 0 001.414.586H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </form>
               </div>
-              <div className="mx-0 flex justify-items-center">
-                <Autosuggest
-                  suggestions={suggestions}
-                  onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-                  onSuggestionsClearRequested={onSuggestionsClearRequested}
-                  getSuggestionValue={getSuggestionValue}
-                  renderSuggestion={renderSuggestion}
-                  inputProps={inputProps}
-                />
-                <svg
-                  className="w-6 h-6 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414a2 2 0 001.414.586H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z"
-                  />
-                </svg>
-              </div>
-
-              <div className="py-3 text-sm">
-                {/* <TagSelect setTag={setTag} /> */}
+              <div className="absolute top-0 left-0 w-full h-2 flex">
+                <div className="h-2 bg-blue-500 flex-1"></div>
+                <div className="h-2 bg-red-500 flex-1"></div>
+                <div className="h-2 bg-yellow-500 flex-1"></div>
+                <div className="h-2 bg-blue-500 flex-1"></div>
+                <div className="h-2 bg-green-500 flex-1"></div>
+                <div className="h-2 bg-red-500 flex-1"></div>
               </div>
             </div>
           </div>
+          <section className="text-gray-600 body-font  h-auto">
+            <div className="container px-4 pb-24 mx-auto">
+              {!isSearched && (
+                <h3 className="text-center text-2xl font-bold my-4">
+                  タグ一覧
+                </h3>
+              )}
+              <div className="flex flex-wrap">
+                {!isSearched && <SearchTag />}
+              </div>
+              <div className="flex flex-wrap space-between mx-auto ">
+                {products &&
+                  products.map((product, index) => (
+                    <div
+                      key={index}
+                      className="p-2 lg:w-1/2 md:w-1/2 sm:w-1/2 w-full cursor-pointer "
+                    >
+                      <Product {...product} />
+                    </div>
+                  ))}
+                {/* {products.length === 0 && !isFetching && (
+                  <div className="mx-auto mt-5">
+                    <p>何も見つかりませんでした。</p>
+                  </div>
+                )} */}
+                {isFetching && (
+                  <div className="mx-auto mt-5">
+                    <ClipLoader />
+                  </div>
+                )}
+                {!isFetching && HasMore ? (
+                  <div className="mx-auto">
+                    <button
+                      onClick={loadMore}
+                      className="focus:outline-none transition mt-5 duration-500 ease-in-out px-20 py-2 rounded-xl border-2 border-solid border-gray-400 bg-white hover:bg-blue-100 flex  "
+                    >
+                      <span>
+                        <svg
+                          className="w-6 h-6 inline mb-1 mr-2 gray-400 "
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                          />
+                        </svg>
+                        もっと見る
+                      </span>
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+          </section>
         </div>
       </div>
-      <style jsx>{`
-        input {
-          width: full;
-        }
-        .react-autosuggest__container {
-          position: relative;
-        }
-
-        .react-autosuggest__input {
-          width: 200px;
-          height: 30px;
-          padding: 10px 20px;
-          font-weight: 300;
-          font-size: 16px;
-          border: 1px solid #aaa;
-          border-radius: 4px;
-          -webkit-appearance: none;
-        }
-
-        .react-autosuggest__input--focused {
-          outline: none;
-        }
-
-        .react-autosuggest__input::-ms-clear {
-          display: none;
-        }
-
-        .react-autosuggest__input--open {
-          border-bottom-left-radius: 0;
-          border-bottom-right-radius: 0;
-        }
-
-        .react-autosuggest__suggestions-container {
-          display: none;
-          margin: 2rem auto;
-        }
-
-        .react-autosuggest__suggestions-container--open {
-          display: block;
-          position: relative;
-          top: -1px;
-          width: 280px;
-          border: 1px solid #aaa;
-          background-color: #fff;
-          font-family: "Open Sans", sans-serif;
-          font-weight: 300;
-          font-size: 16px;
-          border-bottom-left-radius: 4px;
-          border-bottom-right-radius: 4px;
-          z-index: 2;
-        }
-
-        .react-autosuggest__suggestions-list {
-          margin: 0;
-          padding: 0;
-          list-style-type: none;
-        }
-
-        .react-autosuggest__suggestion {
-          cursor: pointer;
-          padding: 10px 20px;
-        }
-
-        .react-autosuggest__suggestion--highlighted {
-          background-color: #ddd;
-        }
-      `}</style>
     </Layout>
   );
 };

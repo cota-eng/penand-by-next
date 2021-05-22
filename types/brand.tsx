@@ -3,4 +3,6 @@ export interface BRAND {
   name: string;
   slug: string;
   official_site_link: string;
+  img_path: string;
+  description: string;
 }

@@ -4,7 +4,7 @@
 SEO からの流入をメインとしたいので SSG，ISR を用いた高速なレスポンスを期待する。
 SEO 対策にも力を入れる
 バックエンドの API は、
-https://github.com/cota-eng/stationery-rest-api
+https://github.com/cota-eng/bista-rest-api
 である。
 
 ## 実装内容
@@ -19,16 +19,8 @@ https://github.com/cota-eng/stationery-rest-api
 - Next.js(SSG,ISR,Link,Image,DynamicImport,useRouter etc...)
 - tailwindcss
 - TypeScript
-- ReactHooks(useState,useEffect etc...)
+- ReactHooks
 
-## ユーザー認証について
-
-Django のデプロイ先とクロスオリジンになり、Django の都合上 Cookie を使用する場合、以下の条件を満たせないことが発覚した。
-
-- httpOnly
-- SameSite=Lax
-
-Django 側では set-cookie のオプションと指定しても、cookie にセットされない。よって、LocalStorage を用いることとした。
 
 ## 実装予定
 
@@ -38,4 +30,3 @@ Django 側では set-cookie のオプションと指定しても、cookie にセ
 - Recoil などを用いてログイン状態をグローバルに管理
 - SEO 対策（画像の最適化、クローリングの最適化、Analytics/SearchConsole での分析）
 - OGP 画像の出力（サイズも何通りか）
--

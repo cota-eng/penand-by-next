@@ -9,8 +9,10 @@ import { categories } from "../../../../../../constants/categories";
 import { brands } from "../../../../../../constants/brands";
 import Category from "../../../../../../components/Search/Category";
 import { slugs } from "../../../../../../constants/slugs";
+import Breadcrumb from "../../../../../../components/Breadcrumb";
+import { BREADCRUMB } from "../../../../../../types/breadcrumb";
 
-interface STATICPROPS {
+interface Props {
   category: string;
   brand: string;
   products: PRODUCT[] | null;
@@ -18,25 +20,57 @@ interface STATICPROPS {
   page: string | null;
 }
 
-
-const Detail: React.FC<STATICPROPS> = ({
+const Detail: React.FC<Props> = ({
   category,
   brand,
   products,
   totalCount,
   page,
 }) => {
+  const breads: BREADCRUMB[] = [
+    {
+      name: "category",
+      slug: "/category",
+    },
+    {
+      name: `${category}`,
+      slug: `/category/${category}`,
+    },
+    {
+      name: "brand",
+      slug: `/brand`,
+    },
+    {
+      name: `${brand}`,
+      slug: `/brand/${brand}`,
+    },
+    {
+      name: "page",
+      slug: `/category/${category}/brand/${brand}/page/1`,
+    },
+    {
+      name: `${page}`,
+      slug: `/category/${category}/brand/${brand}/page/${page}`,
+    },
+  ];
   return (
     <Layout title="ペンの一覧ページ">
+      <Breadcrumb breads={breads} />
       <div>
         <section className="text-gray-600 body-font overflow-auto h-auto">
-          {/* <h2>{}</h2> */}
-          <div className="container px-5 py-24 mx-auto">
+          <div className="container px-5 py-20 mx-auto">
+            <h2 className="text-center text-2xl font-bold">
+              {products && products[0].brand.name}の
+              {products && products[0].category.name}一覧
+            </h2>
             <div className="flex flex-wrap ">
               {products &&
-                products.map((product) => (
-                  <div className="p-2 lg:w-1/3 md:w-1/2 sm:w-1/2 w-full cursor-pointer ">
-                    <Product key={product.id} {...product} />
+                products.map((product, index) => (
+                  <div
+                    key={index}
+                    className="p-2 sm:w-1/2 w-full cursor-pointer "
+                  >
+                    <Product {...product} />
                   </div>
                 ))}
             </div>
