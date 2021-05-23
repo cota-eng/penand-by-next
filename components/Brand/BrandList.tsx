@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { BRAND } from "../types/brand";
+import { BRAND } from "../../types/brand";
 import Image from "next/image";
 import FadeIn from "react-fade-in";
 
