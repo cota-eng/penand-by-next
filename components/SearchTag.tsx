@@ -40,4 +40,4 @@ const SearchTag: React.FC = () => {
   );
 };
 
-export default SearchTag;
+export default React.memo(SearchTag);

@@ -14,13 +14,13 @@ import { BREADCRUMB } from "../types/breadcrumb";
 import Breadcrumb from "../components/Breadcrumb";
 import SearchTag from "../components/SearchTag";
 
+const breads: BREADCRUMB[] = [
+  {
+    name: "search",
+    slug: "/search",
+  },
+];
 const Search: React.FC = () => {
-  const breads: BREADCRUMB[] = [
-    {
-      name: "search",
-      slug: "/search",
-    },
-  ];
   const [name, setName] = useState<string | null>("");
   const [isSearched, setIsSearched] = useState(false);
   const [products, setProducts] = useState<PRODUCT[]>([]);
