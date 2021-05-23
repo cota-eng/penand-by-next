@@ -234,7 +234,7 @@ const NavBar: React.FC = React.memo(() => {
                                   </a>
                                 ))}
                               </div>
-                              <div className="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
+                              {/* <div className="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
                                 {callsToAction.map((menu) => (
                                   <div key={menu.name} className="flow-root">
                                     <a
@@ -249,7 +249,7 @@ const NavBar: React.FC = React.memo(() => {
                                     </a>
                                   </div>
                                 ))}
-                              </div>
+                              </div> */}
                             </div>
                           </Popover.Panel>
                         </Transition>
