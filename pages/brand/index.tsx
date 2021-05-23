@@ -4,7 +4,7 @@ import { GetStaticProps, NextPage } from "next";
 import Layout from "../../components/Layout";
 import { getAllBrands } from "../../lib/fetchBrand";
 import { BRAND } from "../../types/brand";
-import BrandList from "../../components/BrandList";
+import BrandList from "../../components/Brand/BrandList";
 import { brands } from "../../constants/brands";
 import { BREADCRUMB } from "../../types/breadcrumb";
 import Breadcrumb from "../../components/Breadcrumb";
@@ -22,7 +22,7 @@ const Brand: NextPage<STATICPROPS> = ({ brands }) => {
     <>
       <Layout title="ブランドの一覧ページ">
         <Breadcrumb breads={breads} />
-        <section className="text-gray-600 body-font">
+        <section className="text-gray-600 body-font pb-20">
           <div className="container px-5 py-24 mx-auto">
             <div className="flex flex-col">
               <div className="h-1 bg-gray-200 rounded overflow-hidden">
@@ -33,7 +33,7 @@ const Brand: NextPage<STATICPROPS> = ({ brands }) => {
                   Brand List
                 </h1>
                 <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
-                  カテゴリ一覧です。それぞれのブランドに分類されるカテゴリの商品を閲覧することができます。
+                  ブランド一覧です。それぞれのブランドに分類されるカテゴリの商品を閲覧することができます。
                 </p>
               </div>
             </div>
@@ -44,6 +44,7 @@ const Brand: NextPage<STATICPROPS> = ({ brands }) => {
                 ))}
             </div>
           </div>
+          <p className="text-center text-2xl">ブランドはさらに追加予定！</p>
         </section>
       </Layout>
     </>
