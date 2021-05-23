@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Layout from "../../../components/Layout";
 import { getAllBrands } from "../../../lib/fetchBrand";
 import { BRAND } from "../../../types/brand";
-import BrandDetail from "../../../components/BrandDetail";
+import BrandDetail from "../../../components/Brand/BrandDetail";
 import { brands } from "../../../constants/brands";
 import { categories } from "../../../constants/categories";
 import CategoryDetail from "../../../components/CategoryDetail";
@@ -28,7 +28,7 @@ const Brand: NextPage<STATICPROPS> = ({ categories }) => {
   ];
   return (
     <>
-      <Layout title="ブランドの一覧ページ">
+      <Layout title="カテゴリの一覧ページ">
         <Breadcrumb breads={breads} />
         <section className="text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto">
