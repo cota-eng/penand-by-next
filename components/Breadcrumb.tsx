@@ -17,8 +17,8 @@ const Breadcrumb: React.FC<Props> = ({ breads }) => {
           </Link>
         </li>
         {breads &&
-          breads.map((bread) => (
-            <li className="flex items-center">
+          breads.map((bread, index) => (
+            <li className="flex items-center" key={index}>
               <Link href={`${bread.slug}`}>
                 <a className="underline font-semibold">
                   <svg
