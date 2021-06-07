@@ -15,7 +15,7 @@ const ResultSkelton: React.FC = () => {
               <Skeleton width={140} height={140} />
               <div className="flex flex-col justify-between ml-3 w-1/2">
                 <h3 className=" font-semibold mb-2">
-                  <Skeleton count={1} width={200} height={20} />
+                  <Skeleton count={1} width={120} height={20} />
                 </h3>
                 <p className="text-gray-800 mt-2">
                   {/* <span

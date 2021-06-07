@@ -160,7 +160,7 @@ const Search: React.FC = () => {
             </div>
           </div>
           <section className="text-gray-600 body-font  h-auto">
-            <div className="container px-4 pb-24 mx-auto">
+            <div className="container px-2 pb-24 mx-auto">
               {!isSearched && (
                 <h3 className="text-center text-2xl font-bold my-4">
                   タグ一覧（現在ご利用できません）
