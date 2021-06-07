@@ -9,6 +9,7 @@ import { CURRENTUSER } from "../types/currentUser";
 import ScrollToTop from "./ScrollToTop";
 import LoginModal from "./LoginModal";
 import MyModal from "./Modal";
+import Banner from "./Banner";
 interface Props {
   title: string;
   //   currentUser:CURRENTUSER|null|undefined
@@ -25,11 +26,14 @@ const Layout: React.FC<Props> = ({
         <meta property="og:title" content="My page title" key="title" />
       </Head>
       <NavBar />
-      <div className="flex pt-20 min-h-screen ">
-        <div className="hidden w-0  lg:w-1/5 lg:block ">
-          <SideBar />
+      <div className="flex  pt-20 flex-col">
+        <Banner />
+        <div className="flex min-h-screen ">
+          <div className="hidden w-0  lg:w-1/5 lg:block ">
+            <SideBar />
+          </div>
+          <main className=" lg:w-4/5   bg-white  w-full">{children}</main>
         </div>
-        <main className=" lg:w-4/5   bg-white  w-full">{children}</main>
       </div>
       {/* <LoginModal /> */}
       <MyModal />

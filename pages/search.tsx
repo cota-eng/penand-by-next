@@ -13,6 +13,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { BREADCRUMB } from "../types/breadcrumb";
 import Breadcrumb from "../components/Breadcrumb";
 import SearchTag from "../components/SearchTag";
+import { truncate } from "node:fs";
+import ResultSkelton from "../components/ResultSkelton";
 
 const breads: BREADCRUMB[] = [
   {
@@ -61,20 +63,22 @@ const Search: React.FC = () => {
       method: "GET",
       url: `${process.env.NEXT_PUBLIC_API_URL}/api/search`,
       params: { name: name, page: page },
-    }).then((res) => {
-      if (res.data.count !== 0) {
-        setProducts((prevProducts) => {
-          return [...prevProducts, ...res.data.results];
-        });
-        setPage((pre) => pre + 1);
-        setHasMore(res.data.next);
-        setIsFetching(false);
-      } else {
-        setProducts([]);
-        setHasMore(false);
-        setIsFetching(false);
-      }
-    });
+    })
+      .then((res) => {
+        if (res.data.count !== 0) {
+          setProducts((prevProducts) => {
+            return [...prevProducts, ...res.data.results];
+          });
+          setPage((pre) => pre + 1);
+          setHasMore(res.data.next);
+          setIsFetching(false);
+        } else {
+          setProducts([]);
+          setHasMore(false);
+          setIsFetching(false);
+        }
+      })
+      .catch(() => alert("error"));
   };
 
   const router = useRouter();
@@ -83,7 +87,7 @@ const Search: React.FC = () => {
   }
 
   return (
-    <Layout title="条件検索">
+    <Layout title="検索">
       <Breadcrumb breads={breads} />
       <div className="w-full max-w-screen-xl  ">
         <div className="flex flex-col mx-auto  px-3 py-10">
@@ -159,7 +163,7 @@ const Search: React.FC = () => {
             <div className="container px-4 pb-24 mx-auto">
               {!isSearched && (
                 <h3 className="text-center text-2xl font-bold my-4">
-                  タグ一覧
+                  タグ一覧（現在ご利用できません）
                 </h3>
               )}
               <div className="flex flex-wrap">
@@ -176,13 +180,13 @@ const Search: React.FC = () => {
                     </div>
                   ))}
                 {/* {products.length === 0 && !isFetching && (
-                  <div className="mx-auto mt-5">
+                    <div className="mx-auto mt-5">
                     <p>何も見つかりませんでした。</p>
-                  </div>
+                    </div>
                 )} */}
                 {isFetching && (
-                  <div className="mx-auto mt-5">
-                    <ClipLoader />
+                  <div className="flex flex-wrap space-between mx-auto ">
+                    <ResultSkelton />
                   </div>
                 )}
                 {!isFetching && HasMore ? (
