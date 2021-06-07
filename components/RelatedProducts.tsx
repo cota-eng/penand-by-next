@@ -10,8 +10,11 @@ const RelatedProducts: React.FC<Props> = ({ related }) => {
       <h2 className="text-center text-gray-800 text-xl my-5">Related</h2>
       <div className="">
         {related &&
-          related.map((product: PRODUCT) => (
-            <div className="p-2 inline-block  md:w-1/2 sm:w-1/2 w-full cursor-pointer ">
+          related.map((product: PRODUCT, index) => (
+            <div
+              key={index}
+              className="p-2 inline-block  md:w-1/2 sm:w-1/2 w-full cursor-pointer "
+            >
               <Product {...product} />
             </div>
           ))}
