@@ -7,11 +7,13 @@ import ReviewForm from "../../components/Review/ReviewForm";
 import Tag from "../../components/Tag";
 import ReviewTop from "../../components/Review/ReviewTop";
 import Fav from "../../components/Fav";
+import { useState, useEffect } from "react";
 import { getAllProductIds, getProductData } from "../../lib/fetchProducts";
 import { PRODUCT } from "../../types/product";
 import Image from "next/image";
 import RelatedProducts from "../../components/RelatedProducts";
 import Breadcrumb from "../../components/Breadcrumb";
+import { RESULTS } from "../../types/results";
 const MyChart = dynamic(() => import("../../components/Review/ReviewDetail"), {
   ssr: false,
 });
@@ -20,14 +22,14 @@ const CategoryColor: { [key: string]: string } = {
   "2": "blue",
   "3": "green",
 };
-interface ProductIncludeRelatedProps extends PRODUCT {
-  related: PRODUCT[];
-}
+// interface ProductIncludeRelatedProps extends PRODUCT {
+//   related: PRODUCT[];
+// }
 interface Bread {
   name: string;
   slug: string;
 }
-const ProductPage: React.FC<ProductIncludeRelatedProps> = ({
+const ProductPage: React.FC<PRODUCT> = ({
   id,
   name,
   image,
@@ -40,10 +42,11 @@ const ProductPage: React.FC<ProductIncludeRelatedProps> = ({
   created_at,
   updated_at,
   review,
-  related,
+  //   related,
 }) => {
   const color = CategoryColor[`${category.id}`];
   const router = useRouter();
+  const [related, setRelated] = useState<PRODUCT[]>([]);
   if (router.isFallback || !name) {
     return <div>loading...</div>;
   }
@@ -70,6 +73,19 @@ const ProductPage: React.FC<ProductIncludeRelatedProps> = ({
     },
   ];
   // pen.tsxからのpropsを分解しているから、nameがないときはpenがないと同じはず
+  useEffect(() => {
+    const params = {
+      method: "GET",
+      //   body: JSON.stringify({ category: category.slug, brand: brand.slug }),
+    };
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/related/?brand=${brand.slug}&category=${category.slug}`;
+    async function fetchRelated() {
+      const res = await fetch(url, params);
+      const products: RESULTS = await res.json();
+      setRelated(products.results);
+    }
+    fetchRelated();
+  }, []);
   return (
     <div>
       <Layout title={`${name}の詳細、レビューページ | Bista`}>
@@ -87,11 +103,6 @@ const ProductPage: React.FC<ProductIncludeRelatedProps> = ({
             </span>
             <Fav id={id} />
             {tag && tag.map((t) => <Tag key={t.id} {...t} />)}
-            {/* <img
-              className="lg:w-6/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
-              alt={`${name}の画像`}
-              src={image}
-            /> */}
             <Image
               className="lg:w-6/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
               src={image}
@@ -118,7 +129,7 @@ const ProductPage: React.FC<ProductIncludeRelatedProps> = ({
                 <p>0円の場合、価格データがまだありません。</p>
                 <p className="mt-5">
                   <Link href={`${image_src}`}>
-                    <a>出典</a>
+                    <a className="text-blue-500">出典</a>
                   </Link>
                 </p>
               </div>
@@ -126,7 +137,7 @@ const ProductPage: React.FC<ProductIncludeRelatedProps> = ({
           </div>
         </section>
         <section className="mx-auto w-full">
-          <RelatedProducts related={related} />
+          {related && <RelatedProducts related={related} />}
         </section>
         <section className="mx-auto w-4/5">
           <ReviewTop />
