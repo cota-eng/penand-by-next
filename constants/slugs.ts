@@ -33,13 +33,19 @@ export const slugs = [
   {
     category: "mechanical",
     brand: "uni",
-    count: 413,
+    count: 367,
   },
   {
     category: "mechanical",
     brand: "zebra",
     count: 19,
   },
+  {
+    category: "mechanical",
+    brand: "pilot",
+    count: 246,
+  },
+
   {
     category: "ballpoint",
     brand: "carandache",
@@ -79,5 +85,10 @@ export const slugs = [
     category: "ballpoint",
     brand: "zebra",
     count: 49,
+  },
+  {
+    category: "ballpoint",
+    brand: "pilot",
+    count: 562,
   },
 ];

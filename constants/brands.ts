@@ -68,6 +68,15 @@ export const brands: ConstBrand[] = [
     slug: "zebra",
     official_site_link: "https://www.zebra.co.jp/",
     img_path: "/brand/zebra.png",
-    description: "1897年設立の日本の文具メーカーである。芯の折れないデルガードを生み出した会社である。",
+    description:
+      "1897年設立の日本の文具メーカーである。芯の折れないデルガードを生み出した会社である。",
+  },
+  {
+    name: "パイロット",
+    slug: "pilot",
+    official_site_link: "https://www.pilot.co.jp/",
+    img_path: "/brand/pilot.png",
+    description:
+      "",
   },
 ];
