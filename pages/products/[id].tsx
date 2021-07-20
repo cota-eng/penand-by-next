@@ -11,12 +11,18 @@ import { useState, useEffect } from "react";
 import { getAllProductIds, getProductData } from "../../lib/fetchProducts";
 import { PRODUCT } from "../../types/product";
 import Image from "next/image";
-import RelatedProducts from "../../components/RelatedProducts";
+// import RelatedProducts from "../../components/RelatedProducts";
 import Breadcrumb from "../../components/Breadcrumb";
 import { RESULTS } from "../../types/results";
 const MyChart = dynamic(() => import("../../components/Review/ReviewDetail"), {
   ssr: false,
 });
+const RelatedProducts = dynamic(
+  () => import("../../components/RelatedProducts"),
+  {
+    ssr: false,
+  }
+);
 const CategoryColor: { [key: string]: string } = {
   "1": "red",
   "2": "blue",
@@ -72,20 +78,20 @@ const ProductPage: React.FC<PRODUCT> = ({
       slug: ``,
     },
   ];
-  // pen.tsxからのpropsを分解しているから、nameがないときはpenがないと同じはず
   useEffect(() => {
     const params = {
       method: "GET",
-      //   body: JSON.stringify({ category: category.slug, brand: brand.slug }),
     };
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/related/?brand=${brand.slug}&category=${category.slug}`;
     async function fetchRelated() {
       const res = await fetch(url, params);
       const products: RESULTS = await res.json();
+      setRelated([]);
       setRelated(products.results);
     }
     fetchRelated();
-  }, []);
+  }, [router.query]);
+
   return (
     <div>
       <Layout title={`${name}の詳細、レビューページ | Bista`}>
