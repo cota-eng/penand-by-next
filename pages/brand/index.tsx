@@ -8,7 +8,6 @@ import BrandList from "../../components/BrandList";
 import { brands } from "../../constants/brands";
 import { BREADCRUMB } from "../../types/breadcrumb";
 import Breadcrumb from "../../components/Breadcrumb";
-import BrandDetail from "../../components/Brand/BrandDetail";
 interface STATICPROPS {
   brands: BRAND[];
 }
