@@ -4,7 +4,6 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Layout from "../../../components/Layout";
 import { getAllBrands } from "../../../lib/fetchBrand";
 import { BRAND } from "../../../types/brand";
-import BrandDetail from "../../../components/Brand/BrandDetail";
 import { brands } from "../../../constants/brands";
 import { categories } from "../../../constants/categories";
 import CategoryDetail from "../../../components/CategoryDetail";
@@ -45,13 +44,14 @@ const Brand: NextPage<STATICPROPS> = ({ categories }) => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+            <div className="flex flex-wrap  justify-center -mb-10 -mt-4">
               {categories &&
                 categories.map((category, index) => (
                   <CategoryDetail
                     key={index}
                     brand={brand_slug}
                     {...category}
+                    detail={true}
                   />
                 ))}
             </div>
