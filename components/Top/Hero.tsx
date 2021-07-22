@@ -1,10 +1,7 @@
-import { useState, useEffect } from "react";
-import useSnackBar from "../hooks/useSnackBar";
-import SnackBar from "./SnackBar";
+import useSnackBar from "../../hooks/useSnackBar";
 import Link from "next/link";
-import LoginModal from "./LoginModal";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { loginModalState } from "../states/loginModalState";
+import { useSetRecoilState } from "recoil";
+import { loginModalState } from "../../states/loginModalState";
 const Hero = () => {
   const { isActive, message, openSnackBar } = useSnackBar();
   const _showSnackbarHandler = () => {

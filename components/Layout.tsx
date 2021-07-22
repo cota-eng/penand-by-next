@@ -6,10 +6,10 @@ import SideBar from "./SideBar";
 import dynamic from "next/dynamic";
 import AnotherModal from "./AnotherModal";
 import { CURRENTUSER } from "../types/currentUser";
-import ScrollToTop from "./ScrollToTop";
-import LoginModal from "./LoginModal";
+import ScrollToTop from "./Utils/ScrollToTop";
+import LoginModal from "./Authentication/LoginModal";
 import MyModal from "./Modal";
-import Banner from "./Banner";
+import Banner from "./Utils/Banner";
 interface Props {
   title: string;
   //   currentUser:CURRENTUSER|null|undefined
