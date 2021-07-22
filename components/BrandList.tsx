@@ -1,15 +1,20 @@
 import React from "react";
 import Link from "next/link";
-import { BRAND } from "../../types/brand";
+import { BRAND } from "../types/brand";
 import Image from "next/image";
 import FadeIn from "react-fade-in";
-
-const BrandList: React.FC<BRAND> = ({
+interface Props extends BRAND {
+  category: string;
+  detail: boolean;
+}
+const BrandList: React.FC<Props> = ({
   name,
   official_site_link,
   slug,
   img_path,
   description,
+  category,
+  detail,
 }) => {
   return (
     <div className="p-4 md:w-1/3 ">
@@ -22,7 +27,7 @@ const BrandList: React.FC<BRAND> = ({
           />
           <div className="p-6">
             <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-              BRAND
+              BRANDDDD
             </h2>
             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
               <Link href={official_site_link}>
@@ -47,8 +52,13 @@ const BrandList: React.FC<BRAND> = ({
             </h1>
             <p className="leading-relaxed mb-3">{description}</p>
             <div className="flex items-center flex-wrap  ">
-              <Link href={`/brand/${slug}`}>
-                {/* <Link href={`/brand/${brand}/category/${slug}/page/1`}> */}
+              <Link
+                href={
+                  detail
+                    ? `/category/${category}/brand/${slug}/page/1`
+                    : `/brand/${slug}`
+                }
+              >
                 <a className="flex justify-center items-center bg-blue-500 rounded-lg font-bold text-white text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mx-auto">
                   このブランドを見る
                   <svg

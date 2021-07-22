@@ -9,6 +9,7 @@ import { brands } from "../../../constants/brands";
 import { categories } from "../../../constants/categories";
 import { BREADCRUMB } from "../../../types/breadcrumb";
 import Breadcrumb from "../../../components/Breadcrumb";
+import BrandList from "../../../components/BrandList";
 interface STATICPROPS {
   brands: BRAND[];
 }
@@ -47,10 +48,11 @@ const Brand: NextPage<STATICPROPS> = ({ brands }) => {
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
               {brands &&
                 brands.map((brand, index) => (
-                  <BrandDetail
+                  <BrandList
                     key={index}
                     category={category_slug}
                     {...brand}
+                    detail={true}
                   />
                 ))}
             </div>
