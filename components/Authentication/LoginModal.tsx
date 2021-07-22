@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import GoogleSocialAuth from "./Authentication/GoogleSocialAuth";
-import { loginModalState } from "../states/loginModalState";
+import GoogleSocialAuth from "./GoogleSocialAuth";
+import { loginModalState } from "../../states/loginModalState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 // const LoginModal: React.FC<PROPS> = () => {

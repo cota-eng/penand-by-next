@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import useSnackBar from "../hooks/useSnackBar";
-import SnackBar from "./SnackBar";
+import useSnackBar from "../../hooks/useSnackBar";
 import Link from "next/link";
-import LoginModal from "./LoginModal";
+import LoginModal from "../Authentication/LoginModal";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { loginModalState } from "../states/loginModalState";
+import { loginModalState } from "../../states/loginModalState";
 const News = () => {
   return (
     <div className="py-10 px-10 w-full bg-yellow-50">

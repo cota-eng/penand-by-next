@@ -4,7 +4,7 @@ import { GetStaticProps, NextPage } from "next";
 import Layout from "../../components/Layout";
 import { getAllBrands } from "../../lib/fetchBrand";
 import { BRAND } from "../../types/brand";
-import BrandList from "../../components/BrandList";
+import BrandList from "../../components/BrandDetail";
 import { brands } from "../../constants/brands";
 import { BREADCRUMB } from "../../types/breadcrumb";
 import Breadcrumb from "../../components/Breadcrumb";

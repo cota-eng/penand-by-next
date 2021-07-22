@@ -12,9 +12,9 @@ import {
 import { NextPage } from "next";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import Image from "next/image";
-import Hero from "../components/Hero";
-import News from "../components/News";
-import Question from "../components/Question";
+import Hero from "../components/Top/Hero";
+import News from "../components/Top/News";
+import Question from "../components/Top/Question";
 import Feature from "../components/Feature";
 const Home: NextPage = () => {
   return (
