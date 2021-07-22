@@ -7,7 +7,7 @@ interface Props extends BRAND {
   category: string;
   detail: boolean;
 }
-const BrandList: React.FC<Props> = ({
+const BrandDetail: React.FC<Props> = ({
   name,
   official_site_link,
   slug,
@@ -82,4 +82,4 @@ const BrandList: React.FC<Props> = ({
     </div>
   );
 };
-export default BrandList;
+export default BrandDetail;

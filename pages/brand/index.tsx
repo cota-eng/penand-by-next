@@ -4,10 +4,10 @@ import { GetStaticProps, NextPage } from "next";
 import Layout from "../../components/Layout";
 import { getAllBrands } from "../../lib/fetchBrand";
 import { BRAND } from "../../types/brand";
-import BrandList from "../../components/BrandDetail";
 import { brands } from "../../constants/brands";
 import { BREADCRUMB } from "../../types/breadcrumb";
 import Breadcrumb from "../../components/Breadcrumb";
+import BrandDetail from "../../components/BrandDetail";
 interface STATICPROPS {
   brands: BRAND[];
 }
@@ -40,7 +40,7 @@ const Brand: NextPage<STATICPROPS> = ({ brands }) => {
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
               {brands &&
                 brands.map((brand, index) => (
-                  <BrandList
+                  <BrandDetail
                     key={index}
                     {...brand}
                     detail={false}
