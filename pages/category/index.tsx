@@ -4,9 +4,9 @@ import { GetStaticProps, NextPage } from "next";
 import Layout from "../../components/Layout";
 import { CATEGORY } from "../../types/category";
 import { categories } from "../../constants/categories";
-import CategoryList from "../../components/Category";
 import { BREADCRUMB } from "../../types/breadcrumb";
 import Breadcrumb from "../../components/Breadcrumb";
+import CategoryDetail from "../../components/CategoryDetail";
 
 interface STATICPROPS {
   categories: CATEGORY[];
@@ -37,11 +37,15 @@ const Category: NextPage<STATICPROPS> = ({ categories }) => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+            <div className="flex flex-wrap justify-center -mb-10 -mt-4 ">
               {categories &&
                 categories.map((category, index) => (
-                  <CategoryList key={index} {...category} />
-                  //   <p key={category.id}>{category.name}</p>
+                  <CategoryDetail
+                    key={index}
+                    {...category}
+                    brand=""
+                    detail={false}
+                  />
                 ))}
             </div>
           </div>

@@ -1,13 +1,11 @@
 import { Link } from "@material-ui/core";
 import React from "react";
 import { CATEGORY } from "../types/category";
-import { brands } from "../constants/brands";
-import { slugs } from "../constants/category-brand-slug";
-import Image from "next/image";
 import FadeIn from "react-fade-in";
 
 interface Props extends CATEGORY {
   brand: string;
+  detail: boolean;
 }
 
 const CategoryDetail: React.FC<Props> = ({
@@ -16,6 +14,7 @@ const CategoryDetail: React.FC<Props> = ({
   description,
   img_path,
   brand,
+  detail,
 }) => {
   return (
     <div className="p-4 md:w-1/4 mx-5 sm:mb-0 mb-6 h-full border-2 shadow-lg border-gray-200 border-opacity-60 rounded-lg overflow-hidden hover:bg-gray-50">
@@ -26,7 +25,13 @@ const CategoryDetail: React.FC<Props> = ({
         {/* Next/Image で書き換えたい */}
         <img className="my-20" src={img_path} />
         <p className="text-base leading-relaxed mt-2">{description}</p>
-        <Link href={`/brand/${brand}/category/${slug}/page/1`}>
+        <Link
+          href={
+            detail
+              ? `/brand/${brand}/category/${slug}/page/1`
+              : `category/${slug}`
+          }
+        >
           <a className="text-indigo-500 inline-flex items-center mt-3">
             {name}を見る
             <svg
